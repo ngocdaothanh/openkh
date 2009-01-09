@@ -51,7 +51,7 @@ var OpenKH = {
     if (OpenKH.comment != null && OpenKH.comment.id != null) {
       alert('<%= t('comment.error_editing') %>');
     } else {
-      $('#' + id).html('<%= image_tag('loading.gif') %>');
+      $('#' + id).html('<%= theme_image_tag('loading.gif') %>');
       $('#' + id).load(url);
     }
     return false;
