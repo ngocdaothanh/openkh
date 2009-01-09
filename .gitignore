@@ -1,15 +1,22 @@
+# Eclipse-specific files
 .project
 .loadpath
+
 config/conf.rb
 config/database.yml
+
 db/schema.rb
 log/*.log
+
 public/javascripts/jquery*
 public/javascripts/jrails.js
+
 public/javascripts/tiny_mce/langs/vi.js
 public/javascripts/tiny_mce/plugins/insertcode
 public/javascripts/tiny_mce/themes/advanced/langs/vi.js
 public/javascripts/tiny_mce/themes/advanced/langs/vi_dlg.js
-public/modules/**
+
 public/stylesheets/*.css
+
+public/modules/**
 public/themes/**
