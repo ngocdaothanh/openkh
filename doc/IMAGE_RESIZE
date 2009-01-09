@@ -1,3 +1,0 @@
-By default, big images in views are automatically resized to their parent's
-size. To disable this functionality, set the class of the images or their parent
-(not neccessarily direct parent) to "no_resize_images".

@@ -1,10 +1,10 @@
-OpenKH is Open + Know-How. It is just "Drupal on Rails" with one difference
-in philosophy: OPEN
+OpenKH is Open + Know-How. It aims to become "Drupal on Rails" with one
+difference: OPEN
 * There are only 2 types of users: normal user and admin (e.g no moderator).
-* Basically normal users can do everything with minimum restriction from the
-admins, perfect for building open knowledge sites (e.g. sites where users are
-able to openly collaborate to create books, blikis, QAs).
+* Normal users can do everything with minimum restriction from the admins, thus
+OpenKH is perfect for building open community sites (e.g. sites where users are
+able to collaborate to create blikis, QAs, books).
 
-To install read INSTALL, to create modules or themes read doc directory.
+Demo: http://demo.cntt.tv
 
-If you are a developer, see "doc" directory for more documentation.
+Read http://wiki.github.com/ngocdaothanh/openkh for instruction to install etc.
