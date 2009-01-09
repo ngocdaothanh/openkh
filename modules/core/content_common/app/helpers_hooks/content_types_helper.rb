@@ -1,6 +1,6 @@
 module ApplicationHelper
   def content_types_block(block)
-    content = content_tag(:li, link_to(t('common.create') + ' ' + image_tag('edit.png'), new_content_path))
+    content = content_tag(:li, link_to(t('common.create') + ' ' + theme_image_tag('edit.png'), new_content_path))
     ActiveRecord::Acts::Content.model_types.each do |t|
       klass = t.constantize
       down = t.downcase

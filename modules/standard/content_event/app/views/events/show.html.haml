@@ -3,7 +3,7 @@
 .event_instruction= sanitize(@event.instruction)
 
 - if !mod[:me].nil? && mod[:me].id == @event.user_id
-  = link_to(image_tag('edit.png'), edit_event_path(@event), :name => t('common.edit'))
+  = link_to(theme_image_tag('edit.png'), edit_event_path(@event), :name => t('common.edit'))
 
 %h2= t('content_event.participants')
 

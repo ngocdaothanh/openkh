@@ -24,7 +24,7 @@ module ApplicationHelper
     if user.num_contents == 0
       return ''
     else
-      return "#{image_tag('contents.png', :title => t('user.contributed_contents'))} #{user.num_contents}"
+      return "#{theme_image_tag('contents.png', :title => t('user.contributed_contents'))} #{user.num_contents}"
     end
   end
 

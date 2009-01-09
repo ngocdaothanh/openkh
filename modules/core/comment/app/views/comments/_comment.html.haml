@@ -9,8 +9,8 @@
 
 - extra_columns = []
 - if mod[:me] && mod[:me].id == comment.user_id
-  - extra_columns << link_to(image_tag('edit.png'),   '#', {:title => t('common.edit'),   :onclick => "return OpenKH.comment.edit('#{comment.id}')"})
-  - extra_columns << link_to(image_tag('delete.png'), '#', {:title => t('common.delete'), :onclick => "return OpenKH.comment.del('#{comment.id}')"})
+  - extra_columns << link_to(theme_image_tag('edit.png'),   '#', {:title => t('common.edit'),   :onclick => "return OpenKH.comment.edit('#{comment.id}')"})
+  - extra_columns << link_to(theme_image_tag('delete.png'), '#', {:title => t('common.delete'), :onclick => "return OpenKH.comment.del('#{comment.id}')"})
 
 %div[comment]
   = html_user_info(comment.user, extra_row, *extra_columns)

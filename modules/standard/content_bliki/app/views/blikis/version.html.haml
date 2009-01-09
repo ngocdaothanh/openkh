@@ -6,4 +6,4 @@
 %p
   - unless @effective_version.nil?
     = html_content_version_pager(@bliki, @effective_version)
-    = link_to(image_tag('edit.png'), edit_bliki_path(@bliki, :version => @bliki.version), :name => t('common.edit'))
+    = link_to(theme_image_tag('edit.png'), edit_bliki_path(@bliki, :version => @bliki.version), :name => t('common.edit'))

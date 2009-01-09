@@ -12,4 +12,4 @@
         %td= number_to_human_size(u[:stat].size)
         %td= users_info(u[:user])
         %td= t('common.time_ago', :dt => time_ago_in_words(u[:stat].mtime))
-        %td= ((!u[:user].nil? and !mod[:me].nil? and mod[:me].id == u[:user].id) or users_admin?)? link_to(image_tag('delete.png'), '#', {:title => t('common.delete'), :onclick => "uploadsDelete(this); return false;"}) : ''
+        %td= ((!u[:user].nil? and !mod[:me].nil? and mod[:me].id == u[:user].id) or users_admin?)? link_to(theme_image_tag('delete.png'), '#', {:title => t('common.delete'), :onclick => "uploadsDelete(this); return false;"}) : ''

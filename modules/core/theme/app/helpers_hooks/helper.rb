@@ -71,4 +71,8 @@ module ApplicationHelper
     CONF[:regions].each_with_index { |r, i| ret << [r, i] }
     ret
   end
+
+  def theme_image_tag(file_name, options = {})
+    image_tag("../themes/#{CONF[:theme]}/images/#{file_name}", options)
+  end
 end
