@@ -7,7 +7,4 @@ able to openly collaborate to create books, blikis, QAs).
 
 To install read INSTALL, to create modules or themes read doc directory.
 
-See "doc" directory for some documentation. To build the guides:
-* Install source-highlighter (http://www.gnu.org/software/src-highlite/source-highlight.html)
-* Install the mizuho gem (http://github.com/FooBarWidget/mizuho/tree/master)
-* Run `rake guides` from the railties directory
+If you are a developer, see "doc" directory for more documentation.
