@@ -1,0 +1,39 @@
+-# Inputs:
+-#   block
+-#   fullscreen: display fullscreen or not
+
+- div_id = "google_map#{block.id}"
+
+- if fullscreen
+  %div{:id => div_id, :class => 'no_resize_images', :style => 'width: 100%; height: 100%'}
+- else
+  %p= link_to(t('google_map.fullscreen'), google_map_block_path(block), :target => '_blank')
+  %div{:id => div_id, :class => 'no_resize_images', :style => "width:#{block.width}; height:#{block.height}"}
+
+%script{:src => "http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{GoogleMapConf.instance.key}", :type => 'text/javascript'}
+%script{:type => 'text/javascript'}
+  == var #{div_id};
+
+  $(document).ready(function () {
+  if (GBrowserIsCompatible()) {
+  == #{div_id} = new GMap2(document.getElementById('#{div_id}'));
+
+  == var center = new GLatLng(#{block.center[:latitude]}, #{block.center[:longitude]});
+
+  == var sw = new GLatLng(#{block.sw_ne[:sw][:s]}, #{block.sw_ne[:sw][:w]});
+  == var ne = new GLatLng(#{block.sw_ne[:ne][:n]}, #{block.sw_ne[:ne][:e]});
+  var bounds = new GLatLngBounds(sw, ne);
+  == var zoomLevel = #{div_id}.getBoundsZoomLevel(bounds) - 1;
+
+  == #{div_id}.setCenter(center, zoomLevel);
+  == #{div_id}.addControl(new GLargeMapControl());
+  == #{div_id}.addControl(new GMapTypeControl());
+
+  var marker;
+  - block.markers.each do |m|
+    == marker = new GMarker(new GLatLng(#{m.latitude}, #{m.longitude}), {title: '#{h(m.title)}'});
+    - unless m.html.blank?
+      == marker.bindInfoWindowHtml("#{escape_javascript(m.html)}");
+    == #{div_id}.addOverlay(marker);
+  }
+  });

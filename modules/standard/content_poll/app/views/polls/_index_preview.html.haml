@@ -1,0 +1,9 @@
+-# Input:
+-#   content
+
+- poll = content
+%h2= link_to(poll.title, poll_path(poll))
+= html_content_header(poll)
+= render('polls/poll', :poll => poll)
+
+= html_comment_last(poll)

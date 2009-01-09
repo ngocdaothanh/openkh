@@ -1,0 +1,36 @@
+- mod[:help] = t('content_poll.help')
+
+- form_for(:poll, :url => polls_path, :html => {:method => :post, :onsubmit => 'return captcha.show(this);'}) do |f|
+  = f.error_messages
+
+  = f.label(:title, t('common.title'))
+  = f.text_field(:title)
+
+  = f.label(:responses)
+  #responses
+    - @poll.responses.each do |o|
+      = text_field_tag('poll[responses][]', o)
+      %br
+    - size = 3 - @poll.responses.size
+    - if size > 0
+      - size.times do
+        = text_field_tag('poll[responses][]')
+        %br
+
+  %input{:type => 'button', :value => t('content_poll.add_response'), :id => 'add_response'}
+
+  = f.label(:categories)
+  %ul
+    - mod[:categories].each do |cat|
+      = html_tree(cat) do |c, level|
+        - [check_box_tag('poll[category_ids][]', c.id, @poll.category_ids.include?(c.id)) + ' ' + h(c.name)]
+
+  = f.label(:tag_list, t('tag.input'))
+  = f.text_field(:tag_list)
+
+  = f.submit(t('common.save'))
+
+%script{:type => 'text/javascript'}
+  $('#add_response').click(function() {
+  == $('#responses').append('#{escape_javascript(text_field_tag('poll[responses][]'))}<br />');
+  });

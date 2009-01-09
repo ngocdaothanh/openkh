@@ -1,0 +1,17 @@
+- form_for(@block, :url => {:action => @block.new_record? ? 'create' : 'update'}) do |f|
+  = f.error_messages
+
+  = hidden_field_tag('type', params[:type])
+
+  = render_if_exists("#{@block.class.to_s.underscore}/form", :block => @block, :f => f)
+
+  = f.label(:categories)
+  = f.select(:category_ids, Category.all.map { |c| [c.name, c.id] }, {}, :multiple => true)
+
+  = f.label(:region)
+  = f.select(:region, region_select_choices)
+
+  = f.label(:position)
+  = f.select(:position, (1..99).to_a)
+
+  = submit_tag(t('common.save'))

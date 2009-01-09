@@ -1,0 +1,17 @@
+-# Renders a comment in a comment list.
+-# Input:
+-#   comment
+
+- dt = time_ago_in_words(comment.updated_at)
+- key = (comment.updated_at > comment.created_at)? 'common.updated_ago' : 'common.time_ago'
+- extra_row = t(key, :dt => dt)
+-# extra_row << ' ' << link_to(t('common.admin'), admin_comment_path(comment), :class => 'admin') if user_admin?
+
+- extra_columns = []
+- if mod[:me] && mod[:me].id == comment.user_id
+  - extra_columns << link_to(image_tag('edit.png'),   '#', {:title => t('common.edit'),   :onclick => "return OpenKH.comment.edit('#{comment.id}')"})
+  - extra_columns << link_to(image_tag('delete.png'), '#', {:title => t('common.delete'), :onclick => "return OpenKH.comment.del('#{comment.id}')"})
+
+%div[comment]
+  = html_user_info(comment.user, extra_row, *extra_columns)
+  .comment_message~ comment.message

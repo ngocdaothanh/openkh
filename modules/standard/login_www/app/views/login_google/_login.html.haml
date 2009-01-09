@@ -1,0 +1,16 @@
+%h2= t('login_www.title')
+
+- unless flash[:error_www].nil?
+  .error= flash[:error_www]
+
+- form_tag(login_www_path, :onsubmit => 'return captcha.show(this)') do
+  = label_tag('user[kind]', t('login_www.type'))
+  = select_tag('user[kind]', options_for_select([['Google', 'google'], ['Yahoo', 'yahoo']]))
+
+  = label_tag('user[user_name]', t('user.user_name'))
+  = text_field('user', 'user_name')
+
+  = label_tag('user[password]', t('login_www.password'))
+  = password_field('user', 'password')
+
+  = submit_tag(t('user.login'))

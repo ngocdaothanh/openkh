@@ -1,0 +1,45 @@
+-# TODO: allow each login module to have its own custom display
+
+- if @user.type == 'OpenidUser'
+  %p== <b>#{t('openid.openid_page')}</b>: #{link_to('http://' + @user.user_name, 'http://' + h(@user.user_name))}
+- else
+  %p== <b>#{t('user.user_name')}</b>: #{h("#{@user.class.human_type}/#{@user.user_name}")}
+
+%h3= t('user.send_email')
+
+- if @user.email.nil?
+  %p.notice= t('user.no_email')
+- elsif mod[:me].nil?
+  %p.notice= link_to(t('user_login_to_email'), new_user_path(:destination => user_path(@user)))
+- elsif mod[:me].email.nil?
+  %p.notice= t('user.need_email_to_send_email')
+  - if @user.type == 'OpenidUser'
+    %p.notice= t('openid.email_instruction', :openid_page => link_to(t('openid.openid_page'), 'http://' + h(mod[:me].user_name)))
+- else
+  #users_pm_loading{:style => 'display:none'}= image_tag('loading.gif')
+  = text_area_tag('users_pm_message', nil, :rows => 10, :class => 'mce_no_editor')
+  %br
+  = button_to_function(t('user.send'), 'captcha.show(usersPMSend)', :id => 'users_pm_submit')
+
+  %script{:type => 'text/javascript'}
+    function usersPMSend() {
+    == new Ajax.Request('#{pm_user_path(@user.id)}', {
+    method: 'post',
+    parameters: 'message=' + encodeURI($F('users_pm_message')),
+    evalScripts: true
+    });
+    usersPMToggle();
+    }
+
+    function usersPMToggle() {
+    $('users_pm_loading').toggle();
+    $('users_pm_message').toggle();
+    $('users_pm_submit').toggle();
+    }
+
+- unless @user.contents.empty?
+  %h3= t('user.contributed_contents')
+  %ul
+    - @user.contents.each do |c|
+      - method_name = "#{c.class.to_s.underscore}_path"
+      %li= link_to(c.title, send(method_name, n))

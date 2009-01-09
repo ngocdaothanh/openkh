@@ -1,0 +1,11 @@
+- # Inputs:
+- #   content
+
+- toc = content
+
+%h2= link_to(toc.title, toc_path(toc))
+= html_content_header(toc)
+
+.toc_introduction= sanitize(toc.introduction)
+
+= html_comment_last(toc)

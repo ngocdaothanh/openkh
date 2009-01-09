@@ -1,0 +1,2 @@
+class ContentTypesBlock < Block
+end

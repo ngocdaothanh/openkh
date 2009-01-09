@@ -1,0 +1,27 @@
+- mod[:help] = t('upload.save_to_upload') if @toc.new_record?
+
+- form_for(@toc, :html => {:onsubmit => 'tinyMCE.triggerSave(); return captcha.show(this);'}) do |f|
+  = f.error_messages
+
+  = f.label(:title)
+  = f.text_field(:title)
+
+  = f.label(:introduction)
+  ~ f.text_area(:introduction)
+
+  = f.label(:table_of_contents)
+  ~ f.text_area(:table_of_contents, :rows => '30')
+
+  = f.label(:categories)
+  %ul
+    - mod[:categories].each do |cat|
+      = html_tree(cat) do |c, level|
+        - [check_box_tag('toc[category_ids][]', c.id, @toc.category_ids.include?(c.id)) + ' ' + h(c.name)]
+
+  = f.label(:tag_list, t('tag.input'))
+  = f.text_field(:tag_list)
+
+  = f.submit(t('common.save'))
+
+- unless @toc.new_record?
+  = html_upload_list_and_upload(@toc)

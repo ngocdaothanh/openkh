@@ -1,0 +1,19 @@
+-# Inputs:
+-#   content
+-#   no_user_info: boolean
+
+-#- if content.categorizings[0].model_updated_at > Time.now
+-#  = image_tag('sticky.png')
+-#  |
+
+- if content.class.column_names.include?('views')
+  %span.views
+    = image_tag('views.png', :title => t('common.number_of_views'))
+    = content.views
+  |
+
+- unless content.categories.empty?
+  - links = content.categories.map { |c| link_to(c.name, category_path(c.slug)) }
+  = links.join(', ')
+
+= html_content_user_info(content) unless no_user_info

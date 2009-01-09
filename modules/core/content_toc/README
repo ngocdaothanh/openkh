@@ -1,0 +1,2 @@
+This module allows creating books. A book is a collection of nodes. For example,
+you can use book to create a series of articles.

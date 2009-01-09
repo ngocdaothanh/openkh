@@ -1,0 +1,11 @@
+en:
+  breadcrumb:
+    prefix: "Prefix"
+    separator: "Separator"
+    last_one_included: "Last one included"
+
+  breadcrumb_conf:
+    title: "Breadcrumb"
+
+    default:
+      prefix: "Browse"

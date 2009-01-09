@@ -1,0 +1,80 @@
+var OpenKH = {
+  isNoResizeImages: function(element) {
+    if (element.attr('class').indexOf('no_resize_images') != -1) {
+      return true;
+    } else {
+      try {
+        var p = element.parent();
+        if (p == null) {
+          return false;
+        } else {
+          return OpenKH.isNoResizeImages(p);
+        }
+      } catch(err) {
+        return false;
+      }
+    }
+  },
+
+  resizeBigImages: function() {
+    $('#container img').each(function(i, img) {
+      img = $(img);
+      if (OpenKH.isNoResizeImages(img)) {
+        return;
+      }
+
+      var p = img.parent();
+      if (p != null) {
+        var w = p.width();
+        if (img.width() > w) {
+          var ratio = w/img.width();
+          var h = ratio*img.height();
+          img.css('width', '' + w + 'px');
+          img.css('height', '' + h + 'px');
+        }
+      }
+    })
+  },
+
+  <%# Returns the TinyMCE editor specified by id then by name %>
+  editor: function(id, name) {
+    var ret = tinymce.EditorManager.editors[id];  <%# Does not work on Safari %>
+    if (ret == null) {
+      ret = tinymce.EditorManager.editors[name];  <%# Works on Safari %>
+    }
+    return ret;
+  },
+
+  showPage: function(id, url) {
+    <%# Check if a comment is being edited because if we jump to another page the textarea will be lost %>
+    <%# OpenKH.comment != null check is needed because comment module's JS is not always loaded %>
+    if (OpenKH.comment != null && OpenKH.comment.id != null) {
+      alert('<%= t('comment.error_editing') %>');
+    } else {
+      $('#' + id).html('<%= image_tag('loading.gif') %>');
+      $('#' + id).load(url);
+    }
+    return false;
+  },
+
+  nodesRevert: function(url, id) {
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: '_method=put',
+      complete: function(request, settings) {
+        if (request.status == 200) {
+          $('#' + id).remove();
+          alert('<%= t('common.version_reverted') %>');
+        } else {
+          eval(request.responseText);
+        }
+      }
+    })
+    return false;
+  }
+}
+
+$(document).ready(function() {
+  setInterval(OpenKH.resizeBigImages, 3000);
+})

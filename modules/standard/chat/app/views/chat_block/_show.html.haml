@@ -1,0 +1,14 @@
+%p
+  %span#chats_flash{:style => 'position:absolute; left:-100px; top:-1000px'}= t('chat.need_flash', :link => link_to(t('chat.flash_9_or_above'), 'http://www.adobe.com/go/getflashplayer'))
+  = link_to_function(t('chat.toggle_messages_users'), 'OpenKH.chat.toggle()')
+  %span#chat_user_count
+
+#chat_output.chat_output
+#chat_users.chat_output{:style => 'display:none'}
+
+= text_field_tag('chat_input')
+
+= javascript_include_tag('chat')
+%script{:type => 'text/javascript'}
+  $('#chat_input').keydown(OpenKH.chat.onKeyDown);
+  == OpenKH.chat.embed('#{h(block.remote_port)}', '#{session.session_id}')

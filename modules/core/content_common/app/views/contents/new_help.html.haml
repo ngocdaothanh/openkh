@@ -1,0 +1,9 @@
+%p= t('content.which_type')
+
+- ActiveRecord::Acts::Content.model_types.each do |type|
+  - underscore = type.underscore
+  - down = type.downcase
+  %h2= link_to(t("#{underscore}.name"), send("new_#{down}_path"))
+  %p= t("#{underscore}.description")
+
+%p.notice= t('content.avoid_duplication')

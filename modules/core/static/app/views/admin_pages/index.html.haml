@@ -1,0 +1,11 @@
+%p= link_to(t('common.create'), new_admin_page_path)
+
+- unless @pages.empty?
+  %h2= t('common.edit')
+  - form_tag({:controller => 'admin_pages', :action => 'batch_update'}, :method => :put) do
+    %ul
+      - @pages.each do |page|
+        = html_tree(page) do |p, level|
+          - [label_tag("pages[#{p.id}][title]", t('common.title')) + text_field_tag("pages[#{p.id}][title]", p.title) + label_tag("pages[#{p.id}][slug]", t('common.slug')) + text_field_tag("pages[#{p.id}][slug]", p.slug) + label_tag("pages[#{p.id}][parent_id]", t('common.parent')) + select_tag("pages[#{p.id}][parent_id]", nodes_for_select(Page, :title, p.parent.nil? ? nil : p.parent.id)) + label_tag("pages[#{p.id}][position]", t('common.position')) + select_tag("pages[#{p.id}][position]", options_for_select((1..99).to_a, p.position)) + link_to(t('common.delete'), admin_page_path(p), :confirm => t('common.delete_confirmation'), :method => :delete) + ' | ' + link_to(t('common.show'), admin_page_path(p))]
+
+    = submit_tag(t('common.save'))

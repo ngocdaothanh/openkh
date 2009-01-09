@@ -1,0 +1,39 @@
+%meta{'http-equiv' => 'content-type', :content => 'text/html; charset=utf-8'}
+%link{:rel => 'shortcut icon', :href => image_path('/favicon.ico'), :type => 'image/x-icon'}
+= auto_discovery_link_tag(:atom, {:controller => 'local_feeds', :action => 'root', :format => :atom})
+
+%title= h(title_from_breadcrumbs || SiteConf.instance.title)
+%meta{:name => 'keywords', :content => CONF[:keywords]}
+
+= javascript_include_tag('jquery', 'jquery-ui', 'jrails', 'swfobject', :cache => 'all')
+= javascript_include_tag('application')  # Dynamic thus does not exist on disk thus cannot be cached
+= stylesheet_link_tag('application', :media => 'all')
+
+- if mod[:wysiwyg]
+  = javascript_include_tag('tiny_mce/tiny_mce')
+  %script{:type => 'text/javascript'}
+    == $authenticityToken = '#{form_authenticity_token}';
+
+    tinyMCE.init({
+    == language: '#{CONF[:locale]}',
+    mode: 'textareas',
+    editor_deselector: 'mce_no_editor',
+    add_form_submit_trigger: 1,
+    submit_patch: 0,
+    == content_css: '#{stylesheet_path('application.css')}',
+    entity_encoding : 'raw',
+    convert_urls: false,
+    - # Source-code-friendly
+    remove_linebreaks: false,
+    button_tile_map: true,
+    theme: 'advanced',
+    plugins: 'emotions,media,table,insertcode',
+    theme_advanced_toolbar_location: 'top',
+    theme_advanced_toolbar_align: 'left',
+    theme_advanced_path_location: 'bottom',
+    paste_auto_cleanup_on_paste: true,
+    theme_advanced_buttons1: 'formatselect,removeformat,bold,italic,underline,strikethrough,sub,sup,forecolor,backcolor,bullist,numlist,blockquote',
+    theme_advanced_buttons2: 'table,row_props,cell_props,delete_col,delete_row,col_after,row_after,split_cells,merge_cells,link,unlink,charmap,emotions,image,media,insertcode,code',
+    theme_advanced_buttons3: '',
+    extended_valid_elements: 'code'
+    });

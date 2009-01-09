@@ -1,0 +1,12 @@
+%h2= t('login_openid.title')
+
+- unless flash[:error_openid].nil?
+  .error= flash[:error_openid]
+
+- form_tag(login_openid_path) do
+  = label_tag('user[openid]', 'OpenID')
+  = text_field('user', 'openid')
+
+  = submit_tag(t('user.login'))
+
+%p= t('login_openid.instruction', :link_to_gravatar => link_to('gravatar', 'http://gravatar.com/'))

@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#insertcode.desc}</title>
+	<script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="js/insertcode.js"></script>
+</head>
+<body onresize="resizeInputs()">
+	<form onsubmit="insert();return false;">
+		<textarea name="codeContent" rows="30"
+			style="width: 100%; font-family: 'Courier New',Courier,mono; font-size: 12px;"
+			dir="ltr" wrap="soft"></textarea>
+
+		<div class="mceActionPanel">
+			<div style="float: left">
+				<input type="button" id="insert" name="insert" value="{#insert}" onclick="insertCode();" />
+			</div>
+
+			<div style="float: right">
+				<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+			</div>
+		</div>
+	</form>
+</body>
+</html>

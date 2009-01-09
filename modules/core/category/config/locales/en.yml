@@ -1,0 +1,10 @@
+en:
+  category:
+    categories: "Categories"
+    saved: "Categories saved"
+    not_found: "Category not found"
+    uncategorized: "Uncategorized"
+
+  categories_block:
+    title: "Categories"
+    help: "List of categories."

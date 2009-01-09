@@ -1,0 +1,19 @@
+- if mod[:me].nil? || poll.voted?(mod[:me])
+  - poll.responses.each_with_index do |o, i|
+    %div
+      = h(o)
+      %br
+      = html_poll_bar(poll, i)
+- else
+  - form_for(:poll, :url => poll_path(poll), :html => {:method => :put}) do |f|
+    - poll.responses.each_with_index do |o, i|
+      %div
+        %input{:type => 'radio', :name => 'iresponse', :value => i}
+        = h(o)
+        %br
+        = html_poll_bar(poll, i)
+
+    %input{:type => 'submit', :value => 'OK'}
+
+- if mod[:me].nil?
+  %p= user_link_to_login(t('content_poll.login_to_vote'), poll_path(poll))

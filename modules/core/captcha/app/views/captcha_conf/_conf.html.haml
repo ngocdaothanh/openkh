@@ -1,0 +1,10 @@
+%ul
+  %li
+    %em= t('captcha.enabled')
+    = check_box_tag(nil, '1', conf.enabled, :disabled => true)
+  %li
+    %em= t('captcha.public_key')
+    = h(conf.public_key)
+  %li
+    %em= t('captcha.private_key')
+    = h(conf.private_key)

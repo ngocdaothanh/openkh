@@ -1,0 +1,111 @@
+OpenKH.chat = {
+  name: null,
+  names: [],
+  lastName: null,
+
+  escapeHTML: function(s) {
+    var div = document.createElement('div');
+    var text = document.createTextNode(s);
+    div.appendChild(text);
+    return div.innerHTML;
+  },
+
+  embed: function(remotePort, sessionId) {
+    var flashvars = {
+      port: remotePort,
+      sessionId: sessionId
+    };
+    var params = {allowScriptAccess: 'sameDomain'};
+    var attributes = {id: 'chat_flash_object', name: 'chat_flash_object'};
+    swfobject.embedSWF('<%= image_path('chat/chat.swf') %>', 'chat_flash', '1', '1', '9.0.0', '/flashes/swfobject.swf', flashvars, params, attributes);
+  },
+
+  addSystem: function(msg) {
+    $('#chat_output').html($('#chat_output').html() + '<em>' + this.escapeHTML(msg) + '</em><br />');
+    $('#chat_output')[0].scrollTop = $('#chat_output')[0].scrollHeight;
+  },
+
+  addBatch: function(name, names, chats) {
+    this.name = name;
+    this.names = names;
+    $('#chat_num_users').html(names.length);
+
+    var s = '';
+    for (var i = 0; i < chats.length; i++) {
+      name = chats[i][0];
+      var msg = chats[i][1];
+      if (msg == null) {
+        msg = '';
+      }
+
+      if (this.lastName != name) {
+        this.lastName = name;
+        name = '<b>' + this.escapeHTML(name) + ':</b> ';
+      } else {
+        name = '';
+      }
+      s += name + this.escapeHTML(msg) + '<br />';
+    }
+    $('#chat_output').html($('#chat_output').html() + s);
+    $('#chat_output')[0].scrollTop = $('#chat_output')[0].scrollHeight;
+  },
+
+  enter: function(name) {
+    $('#chat_num_users').html(parseInt($('#chat_num_users').html()) + 1);
+    this.names.push(name);
+    this.refreshUsers();
+  },
+
+  leave: function(name) {
+    $('#chat_num_users').html(parseInt($('#chat_num_users').html()) - 1);
+
+    for (var i = 0; i < this.names.length; i++) {
+      if (this.names[i] == name) {
+        this.names.splice(i, 1);
+        this.refreshUsers();
+        break;
+      }
+    }
+  },
+
+  toggle: function() {
+    this.refreshUsers();
+    $('#chat_output').toggle();
+    $('#chat_users').toggle();
+    $('#chat_output')[0].scrollTop = $('#chat_output')[0].scrollHeight;
+    $('#chat_users')[0].scrollTop = $('#chat_users')[0].scrollHeight;
+  },
+
+  refreshUsers: function() {
+    var s = '';
+    for (var i = 0; i < this.names.length; i++) {
+      if (this.names[i] == this.name) {
+        s += '<b>' + this.escapeHTML(this.names[i]) + '</b><br />';
+      } else {
+        s += this.escapeHTML(this.names[i]) + '<br />';
+      }
+    }
+    $('#chat_users').html(s);
+  },
+
+  add: function(name, msg) {
+    if (this.lastName != name) {
+      this.lastName = name;
+      name = '<b>' + this.escapeHTML(name) + ':</b> ';
+    } else {
+      name = '';
+    }
+    $('#chat_output').html($('#chat_output').html() + name + this.escapeHTML(msg) + '<br />');
+    $('#chat_output')[0].scrollTop = $('#chat_output')[0].scrollHeight;
+  },
+
+  onKeyDown: function(evt) {
+    if (evt.keyCode == 13) {
+      var msg = $('#chat_input').attr('value');
+      if (msg != '') {
+        $('#chat_flash_object')[0].enqueueChat(msg);
+        $('#chat_input').attr('value', '');
+      }
+    }
+  }
+}

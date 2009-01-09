@@ -1,0 +1,22 @@
+en:
+  upload:
+    upload: "Upload"
+    uploads: "Uploads"
+    size: "Size"
+    label_limit: "Limit (MB)"
+    limit: "Max {{mb}} MB"
+    save_to_upload: "To be able to upload files, please save first."
+    login_to_upload: "You must login to be able to upload."
+
+    success: "File uploaded succesfully."
+    provide_file: "Please provide a file."
+    too_big: "The file is too big."
+    same_file_exists: "A file with the same name already exists."
+    deleted: "File deleted."
+    delete_own_file: "You can only delete the file you have uploaded."
+    unknown_error: "Could not upload."
+
+    uploaded_files: "Upload files"
+
+  upload_conf:
+    title: "Upload"

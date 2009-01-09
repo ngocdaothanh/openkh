@@ -1,0 +1,4 @@
+- @classes.each do |c|
+  - title   = t("#{c.to_s.underscore}.title")
+  - content = render('admin_confs/conf', :conf => c.instance)
+  = html_blocklike_show(title, content)

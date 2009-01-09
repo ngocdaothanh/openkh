@@ -1,0 +1,5 @@
+en:
+  login_unp:
+    title: "Login with user name and password"
+    password: "Password"
+    wrong_user_name_or_password: "Wrong user name or password"

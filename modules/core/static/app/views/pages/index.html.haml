@@ -1,0 +1,5 @@
+- unless @pages.empty?
+  %ul
+    - @pages.each do |page|
+      = html_tree(page) do |p, level|
+        - [link_to(p.title, page_path(:slug => p.slug))]

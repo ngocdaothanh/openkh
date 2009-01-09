@@ -1,0 +1,38 @@
+en:
+  common:
+    home: "Home"
+    please_login: "Please login"
+    not_admin: "Your are not admin"
+
+    title: "Title"
+    name: "Name"
+    slug: "Slug"
+    body: "Body"
+
+    number_of_views: "Views"
+
+    parent: "Parent"
+    position: "Position"
+
+    error_400: "This page does not exist."
+    error_500: "There is error."
+
+    show: "Show detail"
+    create: "Create new"
+    edit: "Edit"
+    save: "Save"
+    cancel: "Cancel"
+    delete: "Delete"
+    delete_confirmation: "Are you sure you want to delete?"
+
+    version_reverted: "Version reverted"
+
+    time: "Time"
+    time_ago: "{{dt}} ago"
+    updated_ago: "Updated {{dt}} ago"
+    diff: "Diff of version {{v1}} and {{v2}}"
+
+    admin: "Admin"
+    limit: "Limit"
+
+    hack_you: "Hack you."

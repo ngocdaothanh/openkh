@@ -1,0 +1,2 @@
+class AdminBlikisController < AdminController
+end

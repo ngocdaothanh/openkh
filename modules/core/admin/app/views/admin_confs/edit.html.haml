@@ -1,0 +1,7 @@
+- form_for(@conf, :url => {:action => 'update'}) do |f|
+  = error_messages_for(:conf)  # f.error_messages does not work
+  = hidden_field_tag('type', params[:type])
+
+  = render("#{@conf.class.to_s.underscore}/form", :conf => @conf, :f => f)
+
+  %p= submit_tag(t('common.save'))

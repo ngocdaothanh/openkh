@@ -1,0 +1,3 @@
+- User.subclasses.each do |c|
+  - dir = "login_#{c.human_type}"
+  = render_if_exists("#{dir}/login")

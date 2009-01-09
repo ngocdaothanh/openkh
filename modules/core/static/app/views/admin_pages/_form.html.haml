@@ -1,0 +1,19 @@
+- form_for(@page, :url => {:controller => 'admin_pages', :action => @page.new_record? ? 'create' : 'update'}, :html => {:method => @page.new_record? ? :post : :put}) do |f|
+  = f.error_messages
+
+  = f.label(:title)
+  = f.text_field(:title)
+
+  = f.label(:slug)
+  = f.text_field(:slug)
+
+  = f.label(:parent)
+  = select_tag('page[parent_id]', nodes_for_select(Page, :title, @page.parent_id))
+
+  = f.label(:position)
+  = f.select(:position, (1..99).to_a)
+
+  = f.label(:body)
+  ~ f.text_area(:body)
+
+  = submit_tag(t('common.save'))

@@ -1,0 +1,8 @@
+%ul
+  %li
+    %em= t('google_search.url')
+    - url = url_for(:controller => 'google_search', :action => 'index', :only_path => false)
+    = link_to(url, url)
+  %li
+    %em= t('google_search.key')
+    = h(block.key)

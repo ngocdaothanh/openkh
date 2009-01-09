@@ -1,0 +1,26 @@
+en:
+  user:
+    user_name: "User name"
+    login: "Login"
+    logout: "Logout"
+    personal_page: "Personal page"
+    all_users: "All users"
+    contributed_contents: "Contributed contents"
+
+    send_email: "Send email to this user"
+    no_email: "You cannot send email. This user has not declared an email address."
+    login_to_email: "Login to send email."
+    need_email_to_send_email: "You must declare an email address in order to send email."
+    send: "Send"
+    blank_message: "Message cannot be blank."
+    sent: "Email has been sent successfully."
+    could_not_send: "Could not send email."
+
+    wrote: "{{user_name}} ({{email}}) wrote:"
+
+    user: "User"
+    users: "Users"
+
+  current_user_block:
+    title: "Current user"
+    help: "Information about the current user and links to let him login/out."

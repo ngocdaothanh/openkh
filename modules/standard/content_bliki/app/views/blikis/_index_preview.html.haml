@@ -1,0 +1,11 @@
+- # Inputs:
+- #   content
+
+- bliki = content
+
+%h2= link_to(bliki.title, bliki_path(bliki))
+= html_content_header(bliki)
+
+.bliki_introduction= sanitize(bliki.introduction)
+
+= html_comment_last(bliki)

@@ -1,0 +1,13 @@
+%h2= t('login_unp.title')
+
+- unless flash[:error_unp].nil?
+  .error= flash[:error_unp]
+
+- form_tag(login_with_unp_path, :onsubmit => 'return captcha.show(this)') do
+  = label_tag('user[user_name]', t('user.user_name'))
+  = text_field('user', 'user_name')
+
+  = label_tag('user[password]', t('login_unp.password'))
+  = password_field('user', 'password')
+
+  = submit_tag(t('user.login'))

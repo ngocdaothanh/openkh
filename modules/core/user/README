@@ -1,0 +1,3 @@
+This module makes the skeleton for user profile login/logout.
+
+You must use other modules like login_openid, login_unp to allow users to login.

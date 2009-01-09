@@ -1,0 +1,58 @@
+See themes directory for samples.
+
+How a theme works? Easy. Files (e.g. views, CSS, JavaScript, images) you put in
+the active theme directory will overwrite files at other places.
+
+To create a theme, you must be familliar with at least Rails, HAML (for views),
+SASS (for CSS).
+
+== Loading and effective order
+
+Just create .sass files and they will be automatically loaded in alphanumeric
+order. Remember to prefix them with your module name to avoid naming conflict.
+
+File loading order: modules_core -> modules -> theme
+
+CSS effective order: theme -> modules -> modules_core
+
+== Classes
+
+.notice
+.help
+.error
+
+== Ids
+
+
+
+== Notes
+
+For the CAPTCHA to work, in all pages there must be a div that the id
+"container" and contains all elements.
+
+== Tip: Fix for IE
+
+The right div drops down on IE if the font is justify and italic at the same
+time. If justify is used, the following fix is needed:
+
+/* Fix IE: the right div drops down if font is justify and italic at the same time */
+blockquote {
+  font-style: normal;
+  padding-left: 10px;
+  border-left: 4px solid #B9335D;
+}
+
+/* Fix IE: the right div drops down if font is justify and italic at the same time */
+em {
+  font-style: normal;
+  font-weight: bolder;
+}
+
+== Tip: Fix for Blueprint
+
+/* Fix Blueprint: clear float:left for images */
+#container img {
+  float: none;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,12 @@
+en:
+  google_search:
+    url: "Search URL"
+    key: "Google search key"
+    search: "Search"
+
+  google_search_block:
+    title: "Google search"
+    help: "Google search box."
+
+    default:
+      key: "Register at http://code.google.com/apis/ajaxsearch/"

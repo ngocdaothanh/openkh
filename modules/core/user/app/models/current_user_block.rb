@@ -1,0 +1,2 @@
+class CurrentUserBlock < Block
+end

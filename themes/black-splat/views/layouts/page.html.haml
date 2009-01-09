@@ -1,0 +1,33 @@
+!!!
+%html{:xmlns => 'http://www.w3.org/1999/xhtml', :lang => 'en', 'xml:lang' => 'en'}
+  %head= mod[:head]
+  %body
+    #wrapper
+      #headerwrapper
+        #header
+          #title
+            %h1= link_to(SiteConf.instance.title, root_path)
+            %h3= h(SiteConf.instance.subtitle)
+          #topright= mod[:regions][:topright]
+          #nav
+      #main
+        #contentwrapper
+          #content= mod[:regions][:content]
+        #sidebars
+          #sidebar0= mod[:regions][:sidebar0]
+          #sidebar1= mod[:regions][:sidebar1]
+          #sidebar2= mod[:regions][:sidebar2]
+          .cleared
+        .cleared
+      #footerwrapper
+        #footer
+          #footerleft
+            %p
+              Powered by
+              = link_to('OpenKH', 'http://rubyforge.org/projects/openkh')
+              and
+              = link_to('BlackSplat', 'http://samk.ca/freebies/free-wordpress-theme-blacksplat/')
+            %p= ':)'
+          #bottomcurve
+            %a{:title => 'design by sam@samk.ca', :href => 'http://samk.ca'}
+              %span

@@ -1,0 +1,18 @@
+%ul
+  %li
+    %em= t('admin.title')
+    = h(conf.title)
+  %li
+    %em= t('admin.subtitle')
+    = h(conf.subtitle)
+  %li
+    %em= t('admin.admins')
+    %ul
+      - conf.admins.each do |a|
+        %li= link_to(a.user_name, user_path(a))
+  %li
+    %em= t('admin.new_threshold')
+    = conf.new_threshold
+  %li
+    %em= t('admin.google_analytics_key')
+    = h(conf.google_analytics_key)

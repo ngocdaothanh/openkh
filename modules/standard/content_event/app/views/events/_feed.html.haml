@@ -1,0 +1,10 @@
+- # Renders feed for an bliki.
+- # Input:
+- #   bliki
+
+= bliki.abstract
+
+- last_comment = Comment.last('Bliki', bliki.id)
+- unless last_comment.nil?
+  %hr
+  = last_comment.message

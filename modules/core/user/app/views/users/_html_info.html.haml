@@ -1,0 +1,10 @@
+%table{:class => 'user'}
+  %tr
+    %td{:width => 30}= html_user_gravatar(user)
+    %td{:width => '100%'}
+      %b= link_to("#{user.class.human_type}/#{user.user_name}", user_path(user))
+      = html_user_content_count(user)
+      %br
+      = extra_row
+    - extra_columns.each do |c|
+      %td{:align => 'right'}= c

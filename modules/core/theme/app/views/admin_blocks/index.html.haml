@@ -1,0 +1,29 @@
+- unless @unassigneds.empty?
+  %h2= t('theme.unassigned_blocks')
+  - @unassigneds.each do |b|
+    = html_blocklike_show(t("#{b.class.to_s.underscore}.title"), render('admin_blocks/conf', :block => b))
+
+- form_tag(batch_update_admin_blocks_path, :method => :put, :onsubmit => 'batchUpdate(this)') do
+  = submit_tag(t('common.save'))
+
+%h2= t('common.create')
+%ul
+  - @classes.each do |b|
+    %li
+      = link_to(t("#{b.to_s.underscore}.title"), new_admin_block_path(:type => b.to_s))
+      %br
+      = h(t("#{b.to_s.underscore}.help"))
+
+%script
+  :plain
+    function batchUpdate(f) {
+      var a = $('.block_conf');
+      a.each(function(i, e) {
+        var i = document.createElement('input');
+        i.type  = 'hidden';
+        i.name  = e.name;
+        i.value = e.value;
+        f.appendChild(i)
+      });
+      f.submit();
+    }

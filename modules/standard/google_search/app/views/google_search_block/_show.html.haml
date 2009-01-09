@@ -1,0 +1,7 @@
+%form{:action => url_for(:controller => 'google_search', :action => 'index', :only_path => false), :id => "searchbox_#{block.key}"}
+  %input{:type => 'hidden', :name => 'cx',  :value => block.key}
+  %input{:type => 'hidden', :name => 'cof', :value => 'FORID:11'}
+  %input{:type => 'text', :name => 'q'}
+  %input{:type => 'submit', :name => 'sa', :value => t('google_search.search')}
+
+%script{:type => 'text/javascript', :src => "http://www.google.com/coop/cse/brand?form=searchbox_#{block.key}"}

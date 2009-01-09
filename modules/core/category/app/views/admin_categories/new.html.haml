@@ -1,0 +1,16 @@
+- form_for(@category, :url => {:controller => 'admin_categories', :action => 'create'}) do |f|
+  = f.error_messages
+
+  = f.label(:name)
+  = f.text_field(:name)
+
+  = f.label(:slug)
+  = f.text_field(:slug)
+
+  = f.label(:parent)
+  = select_tag('category[parent_id]', nodes_for_select(Category, :name, @category.parent_id))
+
+  = f.label(:position)
+  = f.select(:position, (1..99).to_a)
+
+  = submit_tag(t('common.save'))

@@ -1,0 +1,7 @@
+en:
+  remote_feed:
+    type: "Type"
+
+  remote_feed_block:
+    title: "Remote feed"
+    help: "Feeds from remote sites. Can be configured to display entry titles or entry previews."

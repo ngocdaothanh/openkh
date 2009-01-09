@@ -1,0 +1,2 @@
+class CategoriesBlock < Block
+end

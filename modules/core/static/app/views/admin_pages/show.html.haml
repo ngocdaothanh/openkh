@@ -1,0 +1,10 @@
+%ul
+  %li
+    %em= t('common.title')
+    = h(@page.title)
+  %li
+    %em= t('common.body')
+    %pre
+      = h(@page.body)
+
+%p= link_to(t('common.edit'), edit_admin_page_path(@page))

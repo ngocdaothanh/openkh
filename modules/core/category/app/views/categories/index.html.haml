@@ -1,0 +1,5 @@
+- unless mod[:categories].empty?
+  %ul
+    - mod[:categories].each do |cat|
+      = html_tree(cat) do |c, level|
+        - [link_to(c.name, category_path(:slug => c.slug))]

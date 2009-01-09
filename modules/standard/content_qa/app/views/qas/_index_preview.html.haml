@@ -1,0 +1,9 @@
+-# Input:
+-#   content
+
+- qa = content
+
+%h2= link_to(qa.title, qa_path(qa))
+= html_content_header(qa, true)
+
+= html_comment_last(qa)

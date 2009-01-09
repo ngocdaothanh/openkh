@@ -1,0 +1,108 @@
+OpenKH.comment = {
+  id: null,  <%# id of the comment being edited, null for "new" mode %>
+
+  <%# Can be "create" or "update" %>
+  submit: function() {
+    $('#comment_buttons').toggle();
+    $('#comment_busy').toggle();
+
+    tinyMCE.triggerSave();
+
+    var action = $('#comment_form').attr('action');
+    var data = {
+      authenticity_token: $authenticityToken,
+      _method: $('#comment_method').attr('value'),
+      'comment[model_type]': $('#comment_model_type').attr('value'),
+      'comment[model_id]': $('#comment_model_id').attr('value'),
+      'comment[message]': $('#comment_message').attr('value') || ''  <%# The value can be "undefined" %>
+    }
+    $.ajax({
+      url: action,
+      type: 'POST',
+      data: $.param(data),
+      complete: function(request, settings) {
+        if (request.status == 200) {
+          if (OpenKH.comment.id == null) {  <%# new %>
+            eval(request.responseText);
+          } else {  <%# update %>
+            var comment = $('#comment_' + OpenKH.comment.id);
+            comment.children('.comment_message').html($('#comment_message').attr('value'));
+            OpenKH.comment.cancelEdit();
+          }
+        } else {
+          eval(request.responseText);
+        }
+
+        $('#comment_buttons').toggle();
+        $('#comment_busy').toggle();
+      }
+    });
+
+    return false;
+  },
+
+  <%# Set the form to in-place edit mode %>
+  edit: function(id) {
+    if (this.id != null) {  <%# A comment is being edited %>
+      alert('<%= t('comment.error_editing_another') %>');
+      return false;
+    }
+
+    this.mode = 'edit';
+    $('#comment_form').attr('action', '<%= comments_path %>/' + id);
+    $('#comment_method').attr('value', 'put');
+
+    var comment = $('#comment_' + id);
+    var message = comment.children('.comment_message').html();
+
+    <%# Move the form, trick: (1) disable then reenable TinyMCE (2) set value to the textarea before reenable %>
+    tinyMCE.execCommand('mceRemoveControl', false, 'comment_message');
+    comment.after($('#comment_form'));
+    $('#comment_message').attr('value', message);
+    tinyMCE.execCommand('mceAddControl', false, 'comment_message');
+
+    $('#comment_cancel').show();
+    comment.hide();
+
+    this.id = id;  <%# Remember so that the comment can be restored %>
+    return false;
+  },
+
+  <%# Set the form to "new" mode %>
+  cancelEdit: function() {
+    $('#comment_form').attr('action', '<%= comments_path %>');
+    $('#comment_method').attr('value', 'post');
+
+    tinyMCE.execCommand('mceRemoveControl', false, 'comment_message');
+    $('#comment_message').attr('value', '');
+    $('#comment_container').after($('#comment_form'));
+    tinyMCE.execCommand('mceAddControl', false, 'comment_message');
+
+    $('#comment_cancel').hide();
+    $('#comment_' + this.id).show();
+
+    this.id = null;
+    return false;
+  },
+
+  <%# delete is JS keyword %>
+  del: function(id) {
+    if (!confirm('<%= t('common.delete_confirmation') %>')) {
+      return false;
+    }
+    $.ajax({
+      url: '<%= comments_path %>/' + id,
+      type: 'POST',
+      data: 'authenticity_token=' + $authenticityToken + '&_method=delete',
+      dataType: 'script',  <%# Autoeval iff status is 200 %>
+      complete: function(request, settings) {
+        if (request.status == 200) {
+          $('#comment_' + id).remove();
+        } else {
+          eval(request.responseText);
+        }
+      }
+    });
+    return false;
+  }
+}

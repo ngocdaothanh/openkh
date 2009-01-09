@@ -1,0 +1,10 @@
+en:
+  poll:
+    name: "Poll"
+    description: "A poll is a question with a set of selectable responses. Select if you want to ask a short question and limit the number of responses."
+
+  content_poll:
+    login_to_vote: "Login to vote"
+    help: "Once created, this poll cannot be edited, please write carefully. Empty options will be ignored."
+    add_response: "+ Response"
+    at_least_2_responses: "There must be at least 2 responses"

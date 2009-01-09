@@ -1,0 +1,13 @@
+%ul
+  %li
+    %em= t('remote_feed.type')
+    = block.feed_type
+  %li
+    %em= t('common.title')
+    = h(block.title)
+  %li
+    %em URL
+    = link_to(block.url, block.url)
+  %li
+    %em= t('common.limit')
+    = block.limit

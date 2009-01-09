@@ -1,0 +1,2 @@
+class PagesBlock < Block
+end

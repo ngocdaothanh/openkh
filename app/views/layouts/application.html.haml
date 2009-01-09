@@ -1,0 +1,14 @@
+- theme_prepare
+
+- # The order of checking is reversed to keep the order of content: breadcrumbs -> notice -> title -> tabs -> help
+- mod[:regions][:content] = content_tag(:p, mod[:help], :class => 'help') + mod[:regions][:content] if mod[:help]
+- # TODO: tabs
+- mod[:regions][:content] = content_tag(:h1, h(title_from_breadcrumbs)) + mod[:regions][:content] unless title_from_breadcrumbs.blank?
+- mod[:regions][:content] = content_tag(:p, flash[:notice], :class => 'notice') + mod[:regions][:content] if flash[:notice]
+- mod[:regions][:content] = content_tag(:p, html_breadcrumbs) + mod[:regions][:content] if html_breadcrumbs
+
+- mod[:regions][:content] << yield
+- mod[:regions][:content] << render('layouts/captcha')
+- mod[:regions][:content] << render('layouts/analytics')
+
+= render(:file => 'layouts/page')

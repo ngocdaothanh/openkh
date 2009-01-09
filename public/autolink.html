@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Autolink</title>
+</head>
+<body>
+  <h1>Autolink, by Ngoc Dao@<a href="http://cntt.tv/">cntt.tv</a></h1>
+
+  <textarea id="input" style="width: 100%; height: 300px"></textarea><br />
+  <input type="button" id="convert" value="Convert to links" /><br />
+  <div id="output"></div>
+  
+  <script>
+    var button = document.getElementById('convert');
+    button.onclick = function() {
+      var input = document.getElementById('input');
+      var output = document.getElementById('output');
+      lines = input.value.split("\n");
+      s = '';
+      for (var i = 0; i < lines.length; i++) {
+        s += '<a href="' + lines[i] + '"/>' + lines[i] + '</a></br>';
+      }
+      output.innerHTML = s;
+    }
+  </script>
+</body>
+</html>

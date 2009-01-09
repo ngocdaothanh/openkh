@@ -1,0 +1,94 @@
+OpenKH.upload = {
+  swfu: null,      <%# Initialized on page load, see below %>
+  file: null,      <%# The file being uploaded %>
+
+  select: function(nodeId, sessionId) {
+    this.swfu.selectFiles();
+  },
+
+  humanFileSize: function(size) {
+    ret = '';
+    if (size > 1024*1024) {
+      ret += parseInt(size/(1024*1024)) + ' MB';
+    } else if (size > 1024) {
+      ret += parseInt(size/1024) + ' KB';
+    } else {
+      ret += size + ' Byte';
+    }
+    return ret;
+  },
+
+  onFileQueued: function(file) {
+    var statusText = file.name;
+    statusText += ' (' + OpenKH.upload.humanFileSize(file.size) + ')';
+    if (file.size > <%= CONF[:upload][:limit]*1024*1024 %>) {
+      statusText += "\n<%= t('upload.too_big') %>";
+      alert(statusText);
+    } else {
+      OpenKH.upload.file = file;
+      $('#upload_upload').attr('disabled', '');
+      $('#upload_status_text').html(statusText);
+      $('#upload_status_percent').html('');
+    }
+  },
+
+  upload: function() {
+    var stats = this.swfu.getStats();
+    if (stats.in_progress == 0) {
+      $('#upload_select').attr('disabled', 'disabled');
+      $('#upload_upload').html('<%= t('common.cancel') %>');
+      this.swfu.startUpload(this.file.id);
+    } else {
+      this.swfu.cancelUpload(this.file.id);  <%# Will fire onUploadError %>
+    }
+  },
+
+  onUploadProgress: function(file, completed, total) {
+    var percent = parseInt(completed*100/total);
+    $('#upload_status_percent').html(percent + ' %');
+  },
+
+  onUploadError: function(file, error, message) {
+    $('#upload_select').attr('disabled', '');
+    $('#upload_upload').html('<%= t('upload.upload') %>');
+    $('#upload_upload').attr('disabled', 'disabled');
+    alert('<%= t('upload.unknown_error') %>');
+  },
+
+  onUploadSuccess: function(file, serverData) {
+    $('#upload_select').attr('disabled', '');
+    $('#upload_upload').html('<%= t('upload.upload') %>');
+    $('#upload_upload').attr('disabled', 'disabled');
+
+    serverData = eval('(' + serverData + ')');
+    if (serverData.failed) {
+      $('#upload_status_percent').html('0 %');
+      alert(serverData.notice);
+    } else {
+      $('#upload_status_percent').html('100 %');
+      $('#upload_list').html(serverData.notice);  <%# New file list %>
+      alert('<%= t('upload.success') %>');
+    }
+  },
+
+  del: function(a) {
+    if (!confirm('<%= t('common.delete_confirmation') %>')) {
+      return;
+    }
+    var href = a.parentNode.parentNode.getElementsByTagName('a')[0].href;
+    href = decodeURIComponent(href);
+    $.ajax({
+      url: '/uploads/dummy',
+      type: 'POST',
+      data: '_method=delete&href=' + encodeURIComponent(href),
+      complete: function(request, settings) {
+        var notice = request.responseText;
+        if (request.status == 200) {
+          $('#upload_list').html(notice);
+        } else {
+          eval(notice);
+        }
+      }
+    });
+  }
+}

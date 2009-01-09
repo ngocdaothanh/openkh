@@ -1,0 +1,30 @@
+- # Inputs:
+- #   region: name of region
+- #   blocks: arrays of [title, content]
+
+- # WordPress' default:
+- #   %ul
+- #     %li
+- #       %h2 Title
+- #       Content
+- #     %li
+- #       %h2 Title
+- #       Content
+- #
+- # For "content" region, %ul and %li are skipped:
+- #   %h2 Title
+- #     Content
+- #   %h2 Title
+- #     Content
+
+- if region == :content
+  - blocks.each do |b|
+    - title, content = b
+    = render('layouts/block', :region => region, :title => title, :content => content)
+- else
+  - blocks.each do |b|
+    .box3
+      .box3text
+        %ul
+          - title, content = b
+          %li= render('layouts/block', :region => region, :title => title, :content => content)

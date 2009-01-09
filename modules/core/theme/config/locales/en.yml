@@ -1,0 +1,10 @@
+en:
+  theme:
+    create_new_block: "Create new {{block}} block"
+    edit_block: "Edit {{block}} block"
+    region: "Region"
+    unassigned_blocks: "Unassigned blocks"
+    blocks_saved: "Blocks saved"
+    notice_for_content_region: "Blocks in this region will only be displayed on Home page."
+
+    blocks: "Blocks"

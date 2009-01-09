@@ -1,0 +1,19 @@
+en:
+  google_map:
+    marker: "Marker"
+    add: "Add"
+    fullscreen: "Fullscreen"
+    key: "Google map key"
+
+  google_map_conf:
+    title: "Google map key"
+
+    default:
+      key: "Register for a key at http://code.google.com/apis/maps/signup.html"
+
+  google_map_block:
+    title: "Google map"
+    help: "Display Google map with markers."
+
+    default:
+      title: "Map"

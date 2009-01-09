@@ -1,0 +1,12 @@
+en:
+  captcha:
+    enabled: "Enabled"
+    public_key: "Public key"
+    private_key: "Private key"
+
+  captcha_conf:
+    title: "CAPTCHA"
+
+    default:
+      public_key: "Register at http://recaptcha.net/"
+      private_key: "Register at http://recaptcha.net/"

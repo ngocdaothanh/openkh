@@ -1,0 +1,6 @@
+en:
+  login_www:
+    title: "Login with email"
+    type: "Type"
+    password: "Password (we do not remember your password)"
+    wrong_user_name_or_password: "Wrong user name or password"

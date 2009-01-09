@@ -1,0 +1,4 @@
+%p= t('google_search.url') + ': ' + url_for(:controller => 'google_search', :action => 'index', :only_path => false)
+
+= f.label(:key)
+= f.text_field(:key)

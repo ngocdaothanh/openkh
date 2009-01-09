@@ -1,0 +1,17 @@
+en:
+  static:
+    pages: "Pages"
+    pages_saved: "Page saved"
+    page_not_found: "Page not found"
+
+  pages_block:
+    title: "Pages"
+    help: "List of pages."
+
+  static_block:
+    title: "Static"
+    help: "Static HTML, very useful for dislaying anything."
+
+    default:
+      title: "Title for this block"
+      body: "HTML for this block."

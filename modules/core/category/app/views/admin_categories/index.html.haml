@@ -1,0 +1,11 @@
+%p= link_to(t('common.create'), new_admin_category_path)
+
+- unless mod[:categories].empty?
+  %h2= t('common.edit')
+  - form_tag({:controller => 'admin_categories', :action => 'batch_update'}, :method => :put) do
+    %ul
+      - mod[:categories].each do |cat|
+        = html_tree(cat) do |c, level|
+          - [label_tag("categories[#{c.id}][name]", t('common.name')) + text_field_tag("categories[#{c.id}][name]", c.name) + label_tag("categories[#{c.id}][slug]", t('common.slug')) + text_field_tag("categories[#{c.id}][slug]", c.slug) + label_tag("categories[#{c.id}][parent_id]", t('common.parent')) + select_tag("categories[#{c.id}][parent_id]", nodes_for_select(Category, :name, c.parent.nil? ? nil : c.parent.id)) + label_tag("categories[#{c.id}][position]", t('common.position')) + select_tag("categories[#{c.id}][position]", options_for_select((1..99).to_a, c.position)) + link_to(t('common.delete'), admin_category_path(c), :confirm => t('common.delete_confirmation'), :method => :delete)]
+
+    = submit_tag(t('common.save'))

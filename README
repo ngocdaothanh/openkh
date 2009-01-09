@@ -1,0 +1,13 @@
+OpenKH is Open + Know-How. It is just "Drupal on Rails" with one difference
+in philosophy: OPEN
+* There are only 2 types of users: normal user and admin (e.g no moderator).
+* Basically normal users can do everything with minimum restriction from the
+admins, perfect for building open knowledge sites (e.g. sites where users are
+able to openly collaborate to create books, blikis, QAs).
+
+To install read INSTALL, to create modules or themes read doc directory.
+
+See "doc" directory for some documentation. To build the guides:
+* Install source-highlighter (http://www.gnu.org/software/src-highlite/source-highlight.html)
+* Install the mizuho gem (http://github.com/FooBarWidget/mizuho/tree/master)
+* Run `rake guides` from the railties directory

@@ -1,0 +1,15 @@
+- unless urls.empty?
+  %table
+    %tr
+      %th= t('common.name')
+      %th= t('upload.size')
+      %th= t('user.user_name')
+      %th= t('common.time')
+      %th
+    - urls.each do |u|
+      %tr
+        %td= link_to(u[:name], u[:href])
+        %td= number_to_human_size(u[:stat].size)
+        %td= users_info(u[:user])
+        %td= t('common.time_ago', :dt => time_ago_in_words(u[:stat].mtime))
+        %td= ((!u[:user].nil? and !mod[:me].nil? and mod[:me].id == u[:user].id) or users_admin?)? link_to(image_tag('delete.png'), '#', {:title => t('common.delete'), :onclick => "uploadsDelete(this); return false;"}) : ''

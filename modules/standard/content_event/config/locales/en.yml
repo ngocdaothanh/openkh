@@ -1,0 +1,12 @@
+en:
+  event:
+    name: "Event"
+    description: "Select if you want to invite people to participate in an event such as a party, AND you want to create a list of participants so that you know the exact number."
+
+  content_event:
+    participants: "Participants"
+    note: "Note"
+    join: "Join"
+    unjoin: "Unjoin"
+    login_to_join: "You must login in order to join"
+    not_original_author: "Only the original author is allowed to edit"

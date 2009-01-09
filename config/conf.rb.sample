@@ -1,0 +1,25 @@
+# Other configs are in each module's init.rb
+CONF = {
+  # Your secret key for verifying cookie session data integrity.
+  # If you change this key, all old sessions will become invalid!
+  # Make sure the secret is at least 30 characters and all random,
+  # no regular words or you'll be exposed to dictionary attacks.
+  :session => {
+    # You should change this when you run multiple sites under one domain
+    :session_key => '_openkh_session',
+    # Run "rake secret" to generate random secret key to encrypt session data
+    :secret => '012345678901234567890123456789'
+  },
+
+  # Rarely changed, thus not put in DB
+  :locale => 'en',
+  :theme  => 'qwilm',
+}
+
+#ActionMailer::Base.smtp_settings = {
+#  :address        => 'localhost',
+#  :port           => 25,
+#  :user_name      => 'user_name',
+#  :password       => 'password',
+#  :authentication => :plain
+#}

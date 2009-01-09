@@ -1,0 +1,40 @@
+This module adds utilities common for node (content) types.
+
+= For designers
+
+== Helpers for use in themes
+
+* List nodes: block('node', 'index', :preview | :name, <array of types>)
+
+= For module developers
+
+== URL summary
+
+Create a node:
+* /new                   Show descriptions about all node types
+Home > Create new content
+
+List previews of nodes, unfiltered: node
+* /nodes                 Show previews of all node types
+Home > All contents
+* /nodes/<page>
+* /nodes/<type>          Show previews of a node type
+Home > <type>
+* /nodes/<type>/<page>
+
+List previews of nodes, filtered by a tag:
+* /tags/<tag>/nodes
+Home > <tag> > All contents
+* /tags/<tag>/nodes/<page>
+* /tags/<tag>/nodes/<type>
+Home > <tag> > <type>
+* /tags/<tag>/nodes/<type>/<page>
+
+== Breadcrumb helpers for use in node controllers
+
+* add_breadcrumbs_new(<type>)
+Home > Create new content > Create new <type>
+* add_breadcrumbs_show(<type>)
+Home >
+* add_breadcrumbs_edit(<type>)
+Home >

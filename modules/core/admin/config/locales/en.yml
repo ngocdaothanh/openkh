@@ -1,0 +1,15 @@
+en:
+  admin:
+    title: "Title"
+    subtitle: "Subtitle"
+    admins: "Admins"
+    new_threshold: "Threshold for a content to be marked as NEW"
+    google_analytics_key: "Google Analytics key"
+    google_analytics_key_blank: "Google Analytics key (leave blank if you do not use)"
+
+    ids: "Admin IDs (comma separated)"
+    configurations: "Configurations"
+    configuration_saved: "Configuration saved"
+
+  site_conf:
+    title: "Site"

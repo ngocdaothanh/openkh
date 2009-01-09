@@ -1,0 +1,14 @@
+en:
+  chat:
+    need_flash: "Please install {{link}}"
+    flash_9_or_above: "Flash player 9 or above"
+    toggle_messages_users: "Messages | Users"
+
+    remote_port: "Port"
+
+  chat_conf:
+    title: "Chat"
+
+  chat_block:
+    title: "Chat"
+    help: "Realtime chat using flash socket."

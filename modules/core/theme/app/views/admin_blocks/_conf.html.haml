@@ -1,0 +1,12 @@
+= render_if_exists("#{block.class.to_s.underscore}/conf", :block => block)
+
+= label_tag("blocks[#{block.id}][category_ids][]", t('category.categories'))
+= select_tag("blocks[#{block.id}][category_ids][]", options_for_select(Category.all.map { |c| [c.name, c.id] }, block.categories.map { |c| c.id }), :multiple => true)
+
+= label_tag("blocks[#{block.id}][region]", t('theme.region'))
+= select_tag("blocks[#{block.id}][region]", options_for_select(region_select_choices, block.region), :class => 'block_conf')
+
+= label_tag("blocks[#{block.id}][position]", t('common.position'))
+= select_tag("blocks[#{block.id}][position]", options_for_select((1..99).to_a, block.position), :class => 'block_conf')
+
+%p= link_to(t('common.edit'), edit_admin_block_path(block)) + ' | ' + link_to(t('common.delete'), admin_block_path(block), :confirm => t('common.delete_confirmation'), :method => :delete)

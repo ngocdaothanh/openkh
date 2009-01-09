@@ -1,0 +1,6 @@
+%ul.content_bookmarks
+  - bookmarks.each do |b|
+    %li
+      - img = image_tag("../modules/content_common/images/#{b[:icon]}.gif", :title => b[:site])
+      - connector = (b[:url] =~ /\?/)? '&' : '?'
+      = link_to(img, escape_once("#{b[:url]}#{connector}#{b[:title_uri]}=#{title}&#{b[:url_uri]}=#{url}"))

@@ -1,0 +1,14 @@
+!!!
+%html{:xmlns => 'http://www.w3.org/1999/xhtml', :lang => 'en', 'xml:lang' => 'en'}
+  %head
+    %title= h(@block.title)
+
+    -# Should be the same as application.html.haml to reuse the cache
+    = javascript_include_tag('jquery', 'jquery-ui', 'jrails', 'swfobject', :cache => 'all')
+
+    -# Make the document body take up the full screen
+    %style{:type => 'text/css'}
+      v\:* {behavior:url(#default#VML);} html, body {width: 100%; height: 100%} body {margin-top: 0px; margin-right: 0px; margin-left: 0px; margin-bottom: 0px}
+
+  %body
+    = render('google_map_block/show', :block => @block, :fullscreen => true)

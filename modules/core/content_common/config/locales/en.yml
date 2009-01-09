@@ -1,0 +1,25 @@
+en:
+  content:
+    create_new_content: "Create new content"
+    which_type: "Which type of content do you want to create?"
+    avoid_duplication: "To avoid duplicate contents, before creating please search to check if similar thing has already existed."
+    mode: "Mode"
+    mode_preview: "Preview"
+    mode_title: "Title"
+    content_types: "Types"
+    contributors: "Contributors"
+    content_types: "Content types"
+    recent_content: "Recent contents"
+    tocs: "Tables of contents"
+    bookmarks: "Bookmarks"
+
+  content_types_block:
+    title: "Content types"
+    help: "Display list of of content types in the system."
+
+  recent_contents_block:
+    title: "Recent contents"
+    help: "A mixed list of recent contents."
+
+    default:
+      title: "Recent contents"

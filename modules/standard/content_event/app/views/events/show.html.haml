@@ -1,0 +1,43 @@
+= html_content_header(@event)
+.event_introduction= sanitize(@event.introduction)
+.event_instruction= sanitize(@event.instruction)
+
+- if !mod[:me].nil? && mod[:me].id == @event.user_id
+  = link_to(image_tag('edit.png'), edit_event_path(@event), :name => t('common.edit'))
+
+%h2= t('content_event.participants')
+
+%table.content_event
+  %tr
+    %th
+    %th= t('user.user_name')
+    %th{:width => '100%'}= t('content_event.note')
+
+  - @event.event_joiners.each_with_index do |ej, i|
+    %tr
+      %td= i + 1
+      %td
+        = link_to(ej.user.user_name, user_path(ej.user))
+        - if !mod[:me].nil? && ej.user.id == mod[:me].id
+          - form_tag(:controller => 'events', :action => 'unjoin') do
+            = hidden_field_tag('id', @event.id)
+            = submit_tag(t('content_event.unjoin'))
+      %td= h(ej.note)
+
+  - if !mod[:me].nil? && !@event.users.map { |u| u.id }.include?(mod[:me].id)
+    %tr
+      %td
+      %td
+      %td
+        - form_tag(:controller => 'events', :action => 'join') do
+          = hidden_field_tag('id', @event.id)
+          = text_field_tag('note')
+          %br
+          = submit_tag(t('content_event.join'))
+
+- if mod[:me].nil?
+  %p.notice= t('content_event.login_to_join')
+
+= html_content_tocs(@event)
+= html_content_bookmarks(@event)
+= html_comment_all(@event)

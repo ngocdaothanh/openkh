@@ -1,0 +1,12 @@
+- if mod[:me].nil?
+  %ul
+    %li= user_link_to_login(t('user.login'))
+    %li= link_to(t('user.all_users'), users_path)
+- else
+  %ul
+    %li= html_user_gravatar(mod[:me])
+    %li= link_to(t('user.personal_page'), user_path(mod[:me]))
+    %li= link_to(t('user.all_users'), users_path)
+    - if mod[:me].admin?
+      %li= link_to(t('common.admin'), admin_path)
+    %li= link_to(t('user.logout'), logout_path)

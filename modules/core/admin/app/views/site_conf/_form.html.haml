@@ -1,0 +1,14 @@
+= f.label(:title)
+= f.text_field(:title)
+
+= f.label(:subtitle)
+= f.text_field(:subtitle)
+
+= f.label(:admin_ids, link_to(t('admin.ids'), users_path))
+= f.text_field(:admin_ids)
+
+= f.label(:new_threshold)
+= f.text_field(:new_threshold)
+
+= f.label(:google_analytics_key, t('admin.google_analytics_key_blank'))
+= f.text_field(:google_analytics_key)

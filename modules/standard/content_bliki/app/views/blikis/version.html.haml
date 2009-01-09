@@ -1,0 +1,9 @@
+= html_content_header(@bliki)
+
+.bliki_introduction= sanitize(@bliki.introduction)
+.blikis_body= sanitize(@bliki.body)
+
+%p
+  - unless @effective_version.nil?
+    = html_content_version_pager(@bliki, @effective_version)
+    = link_to(image_tag('edit.png'), edit_bliki_path(@bliki, :version => @bliki.version), :name => t('common.edit'))

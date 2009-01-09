@@ -1,0 +1,10 @@
+en:
+  comment:
+    comments: "Comments"
+    need_login: "You must login to be able to comment"
+    only_edit_own_comment: "You can only edit your own comment"
+    only_delete_own_comment: "You can only delete your own comment"
+    model_deleted: "The thing you want to comment on has been deleted."
+
+    error_editing: "You are editing a comment"
+    error_editing_another: "You are editing another comment"

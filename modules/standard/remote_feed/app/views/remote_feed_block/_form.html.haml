@@ -1,0 +1,11 @@
+= f.label(:feed_type)
+= f.select(:feed_type, ['ATOM', 'RSS'])
+
+= f.label(:title)
+= f.text_field(:title)
+
+= f.label(:url)
+= f.text_field(:url)
+
+= f.label(:limit)
+= f.select(:limit, (1..99).to_a)
