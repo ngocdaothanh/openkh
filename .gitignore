@@ -1,2 +1,9 @@
 .project
 .loadpath
+config/conf.rb
+config/database.yml
+db/schema.rb
+log/*.log
+public/modules/**
+public/stylesheets/*.css
+public/themes/**
