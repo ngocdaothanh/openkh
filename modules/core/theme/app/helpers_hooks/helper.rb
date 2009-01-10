@@ -72,7 +72,11 @@ module ApplicationHelper
     ret
   end
 
-  def theme_image_tag(file_name, options = {})
-    image_tag("../themes/#{CONF[:theme]}/images/#{file_name}", options)
+  def theme_image_path(source)
+    compute_public_path(source, "themes/#{CONF[:theme]}/images")
+  end
+
+  def theme_image_tag(source, options = {})
+    image_tag(theme_image_path(source), options)
   end
 end
