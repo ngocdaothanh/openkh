@@ -10,22 +10,26 @@ able to collaborate to create blikis, QAs, books).
 h2. Links
 
 * "Demo":http://demo.cntt.tv/
-* "Wiki (instruction to install etc.)":http://wiki.github.com/ngocdaothanh/openkh
+* "Wiki":http://wiki.github.com/ngocdaothanh/openkh (instruction to install etc.)
 
 h2. Developers
 
-Current developers:
+h3. Current developers
+
 * "Nguyen Tuan Anh":http://rubyforge.org/users/akia/   
 * "Pham Manh Lan":http://rubyforge.org/users/rollingstone/         
 * "Dao Thanh Ngoc":http://rubyforge.org/users/ngocdaothanh/      
 * "Nguyen Duy Tho":http://rubyforge.org/users/ntdt/         
 
-Retired developers (only ones who have committed are listed):
+h3. Retired developers
+
 * "Tran Truong Duc Giang":http://rubyforge.org/users/jishin/
 * "Tran Thien Khiem":http://rubyforge.org/users/danicount/
 * "Tran Thi Phuong Linh":http://rubyforge.org/users/alide/
 * "Dang Ba Khac Trieu":http://rubyforge.org/users/dangtrieu/
 * "Vo Thanh Trung":http://rubyforge.org/users/thanhtrungvv/
+
+Only ones who have committed are listed.
 
 h2. License
 
