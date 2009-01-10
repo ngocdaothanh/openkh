@@ -16,7 +16,8 @@ require File.join(File.dirname(__FILE__), 'conf')
 #-------------------------------------------------------------------------------
 
 Rails::Initializer.run do |config|
-  config.gem 'haml', :version => '>= 2.1'
+  # Use vendor/plugins/haml
+  #config.gem 'haml', :version => '>= 2.1'
 
   # Evaluate gems.rb from all modules
   files = Dir.glob("#{RAILS_ROOT}/modules/**/gems.rb")
