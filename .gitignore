@@ -11,6 +11,9 @@ log/*.log
 public/javascripts/jquery*
 public/javascripts/jrails.js
 
+# In production environment, all JS files are merged into all.js
+public/javascripts/all.js
+
 public/javascripts/tiny_mce/langs/vi.js
 public/javascripts/tiny_mce/plugins/insertcode
 public/javascripts/tiny_mce/themes/advanced/langs/vi.js
