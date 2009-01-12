@@ -12,7 +12,7 @@ CONF = {
   },
 
   # Rarely changed, thus not put in DB
-  :locale => 'en',
+  :locale => 'en',  # IMPORTANT: I18n.t (in class methods) must be used with care so that string resource of the correct locale is picked up, if locale can be changed (in controller's before filter) based on HTTP request
   :theme  => 'qwilm',
 }
 
