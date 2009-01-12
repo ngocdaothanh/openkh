@@ -1,0 +1,3 @@
+This directory contains converters to
+* Upgrade backup of OpenKH from a lower version to a higher one.
+* Convert backup of another software (phpBB etc.) to OpenKH.
