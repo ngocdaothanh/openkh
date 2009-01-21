@@ -4,7 +4,6 @@ difference: OPEN
 * Normal users can do everything with minimum restriction from the admins, thus
 OpenKH is perfect for building open community sites (e.g. sites where users are
 able to collaborate to create blikis, QAs, books).
-
 * "Demo":http://demo.cntt.tv/
 * "Wiki":http://wiki.github.com/ngocdaothanh/openkh (instruction to install etc.)
 
@@ -12,8 +11,7 @@ h2. Installation
 
 You should have some experience with deploying Rails applications
 (see http://rubyonrails.org/deploy) to successfully installing OpenKH. If you
-have trouble installing OpenKH, find some help at the mailing list:
-http://rubyforge.org/mail/?group_id=3480
+have trouble installing OpenKH, you may ask for help at the "mailing list":http://rubyforge.org/mail/?group_id=3480.
 
 h3. Requirements
 
