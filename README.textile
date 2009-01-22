@@ -13,6 +13,8 @@ You should have some experience with deploying Rails applications
 (see http://rubyonrails.org/deploy) to successfully installing OpenKH. If you
 have trouble installing OpenKH, you may ask for help at the "mailing list":http://rubyforge.org/mail/?group_id=3480.
 
+Use git-submodule to install additional modules
+
 h3. Requirements
 
 * ruby 1.8.5+
