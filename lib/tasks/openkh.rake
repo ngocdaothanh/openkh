@@ -1,4 +1,31 @@
 namespace :openkh do
+  desc 'Prepare package to release openkh (only tested in Unix)'
+  task :release do
+    path_dir = '/tmp/' # require slash at the end
+    base_name = 'openkh'
+    target = path_dir + base_name
+
+    sync_cmd = "rsync -avz --delete-excluded --exclude=.git* --exclude-from=.gitignore . #{target}"
+    zip_cmd = "cd #{path_dir} && zip -r #{target}.zip #{base_name}" # add option -y to keep symlinks
+
+    # comment out 2 lines below to view the detail
+    sync_cmd << " > /dev/null"
+    zip_cmd << " > /dev/null"
+
+    t = Thread.new do
+      require 'functions'; include Functions # to use method external_command
+      if external_command(sync_cmd) && external_command(zip_cmd)
+        puts "Release package created at: #{target}.zip"
+      else
+        puts "Failed to create package"
+      end
+    end
+
+    puts "Processing..."
+
+    t.join
+  end
+
   desc 'Install OpenKH'
   task :install do
     puts 'Create basic data tables...'

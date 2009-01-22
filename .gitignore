@@ -1,3 +1,7 @@
+# Vim swap file
+*.swp
+*.swo
+
 # Mac preference file (explaination: http://rixstep.com/1/20030521,00.shtml)
 .DS_Store
 
