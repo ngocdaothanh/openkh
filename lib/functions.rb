@@ -4,6 +4,7 @@ module Functions
     if output
       `#{command}`
     else
+      command << " > /dev/null" if command
       system(command)
     end
   end

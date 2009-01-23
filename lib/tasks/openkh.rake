@@ -8,10 +8,6 @@ namespace :openkh do
     sync_cmd = "rsync -avz --delete-excluded --exclude=.git* --exclude-from=.gitignore . #{target}"
     zip_cmd = "cd #{path_dir} && zip -r #{target}.zip #{base_name}" # add option -y to keep symlinks
 
-    # comment out 2 lines below to view the detail
-    sync_cmd << " > /dev/null"
-    zip_cmd << " > /dev/null"
-
     t = Thread.new do
       require 'functions'; include Functions # to use method external_command
       if external_command(sync_cmd) && external_command(zip_cmd)
