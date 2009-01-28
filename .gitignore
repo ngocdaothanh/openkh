@@ -9,13 +9,14 @@
 .project
 .loadpath
 
-# Config files customed by the person who installs OpenKH
+# Config files customized by the person who installs OpenKH
 config/conf.rb
 config/database.yml
 
-# Auto-generated when migrating DB
-db/schema.rb
+# Schema file and sqlite DB files which are auto-generated when migrating DB
+db/*.*
 
+# Log files
 log/*.log
 
 # Copied by JRails from its directory
