@@ -1,18 +1,21 @@
-# Vim swap file
+# Vim swap files
 *.swp
 *.swo
 
-# Mac preference file (explaination: http://rixstep.com/1/20030521,00.shtml)
+# Mac preference file (explanation: http://rixstep.com/1/20030521,00.shtml)
 .DS_Store
 
-# Eclipse-specific files
+# Eclipse project files
 .project
 .loadpath
 
+# Config files customed by the person who installs OpenKH
 config/conf.rb
 config/database.yml
 
+# Auto-generated when migrating DB
 db/schema.rb
+
 log/*.log
 
 # Copied by JRails from its directory
@@ -25,6 +28,7 @@ public/javascripts/all.js
 # TinyMCE must be manually downloaded when installing OpenKH
 public/javascripts/tiny_mce
 
+# CSS files are auto-generated from SASS files
 public/stylesheets/*.css
 
 # Mirrors of the public directories of modules and themes
