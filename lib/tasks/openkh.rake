@@ -1,25 +1,20 @@
 namespace :openkh do
-  desc 'Prepare package to release openkh (only tested in Unix)'
+  desc 'Prepare release package for openkh (tool for developer; tested in Unix only)'
   task :release do
-    path_dir = '/tmp/' # require slash at the end
+    release_path = File.join(File.dirname(RAILS_ROOT), 'release')
+    FileUtils.mkdir(release_path) unless File.directory?(release_path)
     base_name = 'openkh'
-    target = path_dir + base_name
+    target = File.join(release_path, base_name)
 
     sync_cmd = "rsync -avz --delete-excluded --exclude=.git* --exclude-from=.gitignore . #{target}"
-    zip_cmd = "cd #{path_dir} && zip -r #{target}.zip #{base_name}" # add option -y to keep symlinks
+    zip_cmd = "cd #{release_path} && rm -f #{base_name}.zip && zip -ry #{base_name}.zip #{base_name}" # option -y will preserve symlinks
 
-    t = Thread.new do
-      require 'functions'; include Functions # to use method external_command
-      if external_command(sync_cmd) && external_command(zip_cmd)
-        puts "Release package created at: #{target}.zip"
-      else
-        puts "Failed to create package"
-      end
+    require 'cmd'; include Cmd # to use method run
+    if run(sync_cmd) && run(zip_cmd)
+      puts "Release package created successfully at: #{target}.zip"
+    else
+      puts "Failed to create package"
     end
-
-    puts "Processing..."
-
-    t.join
   end
 
   desc 'Install OpenKH'
