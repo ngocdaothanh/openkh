@@ -19,6 +19,13 @@ namespace :openkh do
 
   desc 'Install OpenKH'
   task :install do
+    ['public/modules', 'public/themes'].each do |dir|
+      unless File.directory?(dir)
+        puts "Create #{dir}..."
+        FileUtils.mkdir_p(dir)
+      end
+    end
+
     puts 'Create basic data tables...'
     Rake::Task['db:migrate'].invoke
 
