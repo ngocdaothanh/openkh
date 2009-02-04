@@ -1,9 +1,7 @@
 module Cmd
   # Run external command and return the result
-  def run(command, *args)
-    options = args.extract_options!
-
-    puts options[:desc] if options[:desc]
+  def run(command, options = {:desc => '', :get_output_string => false})
+    puts options[:desc]
     puts "Executing: #{command}"
 
     if options[:get_output_string]
