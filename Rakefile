@@ -8,3 +8,7 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+# Load tasks in modules directory
+rakes = Dir.glob('./modules/**/*.rake')
+rakes.each { |r| load r }

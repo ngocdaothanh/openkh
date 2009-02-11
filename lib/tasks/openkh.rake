@@ -252,8 +252,11 @@ namespace :openkh do
         :name     => name,
         :slug     => name.downcase.gsub(/ /, '-'))
     end
-    CategoriesBlock.create(
+    DictBlock.create(
       :region   => 2,
       :position => 5)
+    CategoriesBlock.create(
+      :region   => 2,
+      :position => 6)
   end
 end

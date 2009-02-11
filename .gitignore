@@ -6,8 +6,9 @@
 .DS_Store
 
 # Eclipse project files
-.project
 .loadpath
+.project
+.settings
 
 # Config files customized by the person who installs OpenKH
 config/conf.rb
@@ -39,3 +40,5 @@ public/themes/**
 config/*.sphinx.conf
 db/sphinx
 log/*.pid
+
+tmp/*

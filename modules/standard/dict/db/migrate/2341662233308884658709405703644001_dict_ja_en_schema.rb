@@ -1,7 +1,7 @@
 class DictJaEnSchema < ActiveRecord::Migration
   # FIXME: download directly from the server of EDICT
   def self.import_from_edict
-    source = File.read('/Users/ngocdt/tmp/edict.utf8')
+    source = File.read("#{RAILS_ROOT}/tmp/edict.utf8")
 
     con = DictJaEn.connection
 
