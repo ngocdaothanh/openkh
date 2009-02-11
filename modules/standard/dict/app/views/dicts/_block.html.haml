@@ -1,0 +1,6 @@
+- form_tag(url_for(:controller => 'dicts', :action => 'search')) do
+  %table
+    %tr
+      %td= text_field_tag('keyword')
+      %td= select_tag('dict', options_for_select([[t('dict.ja_en'), 0], [t('dict.ja_vi'), 1]]))
+  #dict_results

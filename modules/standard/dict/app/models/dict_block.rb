@@ -1,0 +1,2 @@
+class DictBlock < Block
+end

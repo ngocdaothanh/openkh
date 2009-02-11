@@ -18,4 +18,4 @@
 	url = git://github.com/aaronchi/jrails.git
 [submodule "vendor/plugins/thinking-sphinx"]
 	path = vendor/plugins/thinking-sphinx
-  url = git://github.com/freelancing-god/thinking-sphinx.git
+	url = git://github.com/freelancing-god/thinking-sphinx.git

@@ -4,7 +4,7 @@
 # Rake::Task["db:schema:dump"].invoke if ActiveRecord::Base.schema_format == :ruby
 namespace :openkh do
   namespace :db do
-    desc "Ensure that MODULE environment variable is given"
+    desc 'This task is used internally by others to ensure that MODULE environment variable is given'
     task :check_module do
       if ENV["MODULE"]
         # Set the full module name back to ENV["MODULE"]
@@ -22,7 +22,7 @@ namespace :openkh do
       end
     end
 
-    desc "Migrate the database through scripts in db/migrate and update db/schema.rb by invoking db:schema:dump. Target specific version with VERSION=x. Turn off output with VERBOSE=false."
+    desc 'Migrate the database through scripts in db/migrate and update db/schema.rb by invoking db:schema:dump. Target specific version with VERSION=x. Turn off output with VERBOSE=false.'
     task :migrate => [:environment, "openkh:db:check_module"] do
       ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
       ActiveRecord::Migrator.migrate("modules/#{ENV["MODULE"]}/db/migrate/", ENV["VERSION"] ? ENV["VERSION"].to_i : nil)

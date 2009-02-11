@@ -1,0 +1,8 @@
+en:
+  dict_block:
+    title: Dictionary
+    help: "Many dictionaries: Japanese-English, Japanese-Vietnamese etc."
+
+  dict:
+    ja_en: "JA-EN"
+    ja_vi: "JA-VI"
