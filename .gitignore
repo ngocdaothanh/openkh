@@ -16,7 +16,6 @@ config/database.yml
 # Schema file and sqlite DB files which are auto-generated when migrating DB
 db/*.*
 
-# Log files
 log/*.log
 
 # Copied by JRails from its directory
@@ -35,3 +34,8 @@ public/stylesheets/*.css
 # Mirrors of the public directories of modules and themes
 public/modules/**
 public/themes/**
+
+# Sphinx
+config/*.sphinx.conf
+db/sphinx
+log/*.pid
