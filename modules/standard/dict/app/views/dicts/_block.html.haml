@@ -1,6 +1,19 @@
-- form_tag(url_for(:controller => 'dicts', :action => 'search')) do
-  %table
-    %tr
-      %td= text_field_tag('keyword')
-      %td= select_tag('dict', options_for_select([[t('dict.ja_en'), 0], [t('dict.ja_vi'), 1]]))
-  #dict_results
+%table
+  %tr
+    %td= text_field_tag('dict_keyword')
+    %td= select_tag('dict_dict', options_for_select([[t('dict.ja_en'), 0], [t('dict.ja_vi'), 1]]))
+
+#dict_results
+
+:javascript
+  $(document).ready(function() {
+    $('#dict_keyword').keypress(function(e) {
+      if (e.which != 13) {
+        return;
+      }
+
+      var url = '#{root_path}dicts/' + encodeURIComponent($('#dict_dict').val()) + '/' + encodeURIComponent($('#dict_keyword').val());
+      $('#dict_results').html('#{theme_image_tag('loading.gif')}');
+      $('#dict_results').load(url);
+    });
+  });

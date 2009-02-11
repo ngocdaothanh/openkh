@@ -3,9 +3,16 @@ class DictJaEn < ActiveRecord::Base
 
   define_index do
     indexes entry, :sortable => true
-    indexes pronunciation
+    indexes pronunciation, :sortable => true
     indexes description
 
-    set_property :field_weights => {"entry" => 30, "pronunciation" => 20, "description" => 10}
+    has 'LENGTH(entry)', :type => :integer, :as => :entry_size  # Shorter is better
+
+    set_property :field_weights => {"entry" => 3, "pronunciation" => 2, "description" => 1}
+  end
+
+  def self.search_for_keyword(keyword, options = {})
+    options.update({:order => 'entry_size asc, pronunciation asc, entry asc'})
+    search(keyword, options)
   end
 end

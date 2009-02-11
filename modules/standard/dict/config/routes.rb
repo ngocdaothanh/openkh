@@ -1,3 +1,3 @@
 ActionController::Routing::Routes.draw do |map|
-  map.connect 'dicts/search', :controller => 'dicts', :action => 'search'
+  map.connect 'dicts/:dict/:keyword', :controller => 'dicts', :action => 'search'
 end
