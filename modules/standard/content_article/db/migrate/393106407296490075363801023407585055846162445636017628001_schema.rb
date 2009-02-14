@@ -1,6 +1,6 @@
 class Schema < ActiveRecord::Migration
   def self.up
-    create_table :blikis do |t|
+    create_table :articles do |t|
       # Non-versioned
       t.integer  :views, :null => false, :default => 0
       t.datetime :updated_at
@@ -18,6 +18,6 @@ class Schema < ActiveRecord::Migration
 
   def self.down
     Bliki.drop_versioned_table
-    drop_table :blikis
+    drop_table :articles
   end
 end
