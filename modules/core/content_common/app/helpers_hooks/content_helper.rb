@@ -62,17 +62,18 @@ module ApplicationHelper
       render('contents/bookmarks', :title => title, :url => url, :bookmarks => bookmarks))
   end
 
-  def html_content_tocs(content)
+  # Returns an array of groups containing the content.
+  def html_content_groups(content)
     con = ActiveRecord::Base.connection
     content_type = con.quote(content.class.to_s)
-    toc_ids = con.select_values("SELECT toc_id FROM tocs_contents WHERE content_type = #{content_type} AND content_id = #{content.id}")
-    if toc_ids.empty?
+    group_ids = con.select_values("SELECT group_id FROM contents_groups WHERE content_type = #{content_type} AND content_id = #{content.id}")
+    if group_ids.empty?
       ''
     else
-      tocs = Toc.find(:all, :conditions => {:id => toc_ids})
+      groups = Toc.find(:all, :conditions => {:id => group_ids})
       html_blocklike_show(
-        t('content.tocs'),
-        render('contents/tocs', :tocs => tocs))
+        t('content.groups'),
+        render('contents/groups', :groups => groups))
     end
   end
 

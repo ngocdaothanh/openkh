@@ -37,7 +37,9 @@ class ContentsController < ApplicationController
   end
 
   def search
-
+    @results = Article.search_for_keyword(params[:keyword])
+    add_breadcrumb(t('search_block.title'))
+    render('search/search')
   end
 
   private

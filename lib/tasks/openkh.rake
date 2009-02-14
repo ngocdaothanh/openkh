@@ -209,27 +209,29 @@ namespace :openkh do
       :types    => ['Article', 'Book', 'Event', 'Qa'])
 
     # Region "sidebar1"
-    GoogleSearchBlock.create(
+    SearchBlock.create(
       :region   => 1,
-      :position => 1,
-      :key      => 'my key')
-    ContentTypesBlock.create(
+      :position => 1)
+    DictBlock.create(
       :region   => 1,
       :position => 2)
+    ContentTypesBlock.create(
+      :region   => 1,
+      :position => 3)
     RecentContentsBlock.create(
       :region   => 1,
-      :position => 3,
+      :position => 4,
       :mode     => 'title',
       :types    => ['Article', 'Book', 'Event', 'Qa'])
     RecentContentsBlock.create(
       :region   => 1,
-      :position => 4,
+      :position => 5,
       :mode     => 'title',
       :types    => ['Poll'],
       :limit    => 1)
     RemoteFeedBlock.create(
       :region   => 1,
-      :position => 5)
+      :position => 6)
 
     # Region "sidebar2"
     CurrentUserBlock.create(
@@ -252,11 +254,8 @@ namespace :openkh do
         :name     => name,
         :slug     => name.downcase.gsub(/ /, '-'))
     end
-    DictBlock.create(
-      :region   => 2,
-      :position => 5)
     CategoriesBlock.create(
       :region   => 2,
-      :position => 6)
+      :position => 5)
   end
 end

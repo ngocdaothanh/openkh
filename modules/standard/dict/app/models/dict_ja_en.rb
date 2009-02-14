@@ -8,7 +8,7 @@ class DictJaEn < ActiveRecord::Base
 
     has 'LENGTH(entry)', :type => :integer, :as => :entry_size  # Shorter is better
 
-    set_property :field_weights => {"entry" => 3, "pronunciation" => 2, "description" => 1}
+    set_property :field_weights => {'entry' => 10, 'pronunciation' => 5, 'description' => 1}
   end
 
   def self.search_for_keyword(keyword, options = {})

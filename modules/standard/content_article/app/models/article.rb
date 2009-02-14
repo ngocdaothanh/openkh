@@ -1,10 +1,29 @@
 class Article < ActiveRecord::Base
+  validates_presence_of :introduction, :body
+
   acts_as_versioned
   self.non_versioned_columns << 'open' << 'views' << 'updated_at'
 
   acts_as_content
 
-  validates_presence_of :introduction, :body
+  #-----------------------------------------------------------------------------
+
+  define_index do
+    indexes title
+    indexes introduction
+    indexes body
+
+    #has :created_at
+
+    set_property :field_weights => {'title' => 10, 'introduction' => 5, 'body' => 1}
+  end
+
+  def self.search_for_keyword(keyword, options = {})
+    options.update({:order => 'updated_at DESC'})
+    search(keyword, options)
+  end
+
+  #-----------------------------------------------------------------------------
 
   # Converts to QA, returns true on success or false on failure.
   def to_qa

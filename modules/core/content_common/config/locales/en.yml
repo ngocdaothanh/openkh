@@ -9,7 +9,7 @@ en:
     contributors: "Contributors"
     content_types: "Content types"
     recent_content: "Recent contents"
-    tocs: "Tables of contents"
+    groups: "Groups"
     bookmarks: "Bookmarks"
 
   content_types_block:

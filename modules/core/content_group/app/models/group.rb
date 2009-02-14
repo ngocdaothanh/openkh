@@ -11,10 +11,10 @@ class Group < ActiveRecord::Base
     contents = contents_from_html
     con = ActiveRecord::Base.connection
     con.transaction do
-      con.execute("DELETE FROM groups_contents WHERE group_id=#{self.id}")
+      con.execute("DELETE FROM contents_groups WHERE group_id=#{self.id}")
       contents.each do |n|
         content_type = con.quote(n.class.to_s)
-        con.execute("INSERT INTO groups_contents(content_type, content_id, group_id) VALUES(#{content_type}, #{n.id}, #{self.id})")
+        con.execute("INSERT INTO contents_groups(content_type, content_id, group_id) VALUES(#{content_type}, #{n.id}, #{self.id})")
       end
     end
   end

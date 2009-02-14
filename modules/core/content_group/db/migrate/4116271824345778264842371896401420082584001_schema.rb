@@ -10,7 +10,7 @@ class Schema < ActiveRecord::Migration
     end
     Group.create_versioned_table
 
-    create_table :groups_contents, :id => false do |t|
+    create_table :contents_groups, :id => false do |t|
       t.string  :content_type, :null => false
       t.integer :content_id,   :null => false
       t.integer :group_id,     :null => false
@@ -19,7 +19,7 @@ class Schema < ActiveRecord::Migration
 
   def self.down
     Group.drop_versioned_table
-    drop_table :groups_contents
+    drop_table :contents_groups
     drop_table :groups
   end
 end
