@@ -36,6 +36,10 @@ class ContentsController < ApplicationController
     render(:template => "#{plural}/new")
   end
 
+  def search
+
+  end
+
   private
 
   # Convert params[:type] which is passed from routes.rb of each content type to

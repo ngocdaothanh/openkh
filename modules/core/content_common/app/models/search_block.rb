@@ -1,0 +1,2 @@
+class SearchBlock < Block
+end

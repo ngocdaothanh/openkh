@@ -1,0 +1,5 @@
+- categories = Category.all
+- if categories.empty?
+  = link_to(t('toc_block.no_category'), new_admin_category_path)
+- else
+  = f.select(:category_id, categories.map { |c| [c.title, c.id] })

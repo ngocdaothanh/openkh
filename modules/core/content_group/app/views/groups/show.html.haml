@@ -1,0 +1,6 @@
+- @effective_version = @group.version
+#group_versions= render(:file => 'groups/version')
+
+= html_content_contributors(@group)
+= html_content_bookmarks(@group)
+= html_comment_all(@group)

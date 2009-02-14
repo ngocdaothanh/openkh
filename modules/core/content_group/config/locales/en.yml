@@ -1,0 +1,4 @@
+en:
+  group:
+    name: "Group"
+    description: "A group is a collection of links. Select if you want to create a series of contents or group existing contents together."

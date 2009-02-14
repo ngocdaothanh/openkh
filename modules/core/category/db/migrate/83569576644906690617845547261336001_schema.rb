@@ -22,10 +22,22 @@ class Schema < ActiveRecord::Migration
     end
     add_index :categorizings, :category_id
     add_index :categorizings, [:model_type, :model_id]
+
+    # Each category has a table of contents
+    create_table :tocs, :force => true do |t|
+      t.integer :category_id,       :null => false
+      t.text    :table_of_contents, :null => false
+      t.integer :user_id,           :null => false
+      t.string  :ip,                :null => false, :limit => 15
+      t.timestamps
+    end
+    Toc.create_versioned_table
   end
 
   def self.down
-    drop_table :categories
+    Toc.drop_versioned_table
+    drop_table :tocs
     drop_table :categorizings
+    drop_table :categories
   end
 end

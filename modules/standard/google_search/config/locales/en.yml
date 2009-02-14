@@ -6,7 +6,7 @@ en:
 
   google_search_block:
     title: "Google search"
-    help: "Google search box."
+    help: "This site must be online for some time to let Google index the content before it can be searched."
 
     default:
       key: "Register at http://code.google.com/apis/ajaxsearch/"

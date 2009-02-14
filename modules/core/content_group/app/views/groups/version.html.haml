@@ -1,0 +1,9 @@
+= html_content_header(@group)
+
+.group_introduction= sanitize(@group.introduction)
+.groups_table_of_contents= sanitize(@group.table_of_contents)
+
+%p
+  - if !@effective_version.nil?
+    = html_content_version_pager(@group, @effective_version)
+    = link_to(theme_image_tag('edit.png'), edit_group_path(@group, :version => @group.version), :name => t('common.edit'))

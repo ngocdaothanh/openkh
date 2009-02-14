@@ -1,8 +1,7 @@
 en:
   content:
     create_new_content: "Create new content"
-    which_type: "Which type of content do you want to create?"
-    avoid_duplication: "To avoid duplicate contents, before creating please search to check if similar thing has already existed."
+    help: "Which type of content do you want to create? To avoid duplicate contents, before creating please search to check if similar thing has already existed."
     mode: "Mode"
     mode_preview: "Preview"
     mode_title: "Title"
@@ -23,3 +22,7 @@ en:
 
     default:
       title: "Recent contents"
+
+  search_block:
+    title: "Search"
+    help: "Search in all content types."
