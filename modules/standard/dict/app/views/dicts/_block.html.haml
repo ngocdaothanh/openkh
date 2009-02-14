@@ -12,7 +12,13 @@
         return;
       }
 
-      var url = '#{root_path}dicts/' + encodeURIComponent($('#dict_dict').val()) + '/' + encodeURIComponent($('#dict_keyword').val());
+      var keyword = $('#dict_keyword').val();
+      keyword = jQuery.trim(keyword);
+      if (keyword == '') {
+        return;
+      }
+
+      var url = '#{root_path}dicts/' + encodeURIComponent($('#dict_dict').val()) + '/' + encodeURIComponent(keyword);
       $('#dict_results').html('#{theme_image_tag('loading.gif')}');
       $('#dict_results').load(url);
     });
