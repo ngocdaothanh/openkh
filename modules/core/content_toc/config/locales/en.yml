@@ -1,9 +1,0 @@
-en:
-  toc:
-    name: "Table of contents"
-    description: "Select if you want to group existing contents together."
-
-  toc_block:
-    title: "Table of contents"
-    help: "This block can be used for displaying table of contents for the whole site and each category."
-    no_toc: "There is no existing table of content. You need to create one."

@@ -1,6 +1,0 @@
-- tocs = Toc.all
-- if tocs.empty?
-  = link_to(t('toc_block.no_toc'), new_toc_path)
-- else
-  = f.label(:toc_id, t('toc_block.title'))
-  = f.select(:toc_id, tocs.map { |t| [t.title, t.id] })

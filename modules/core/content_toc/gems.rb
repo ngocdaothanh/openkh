@@ -1,1 +1,0 @@
-config.gem 'hpricot'
