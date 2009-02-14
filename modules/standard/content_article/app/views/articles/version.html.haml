@@ -1,9 +1,9 @@
-= html_content_header(@bliki)
+= html_content_header(@article)
 
-.bliki_introduction= sanitize(@bliki.introduction)
-.blikis_body= sanitize(@bliki.body)
+.article_introduction= sanitize(@article.introduction)
+.articles_body= sanitize(@article.body)
 
 %p
   - unless @effective_version.nil?
-    = html_content_version_pager(@bliki, @effective_version)
-    = link_to(theme_image_tag('edit.png'), edit_bliki_path(@bliki, :version => @bliki.version), :name => t('common.edit'))
+    = html_content_version_pager(@article, @effective_version)
+    = link_to(theme_image_tag('edit.png'), edit_article_path(@article, :version => @article.version), :name => t('common.edit'))

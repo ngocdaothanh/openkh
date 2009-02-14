@@ -1,4 +1,4 @@
 .breadcrumb= t('common.diff', :v1 => params[:v1], :v2 => params[:v2])
 .diff= @diff
 
-%p.pager= contents_diff_with_pager(@bliki, 'bliki_versions') { |v| version_bliki_path(@bliki, :version => v) }
+%p.pager= contents_diff_with_pager(@article, 'article_versions') { |v| version_article_path(@article, :version => v) }

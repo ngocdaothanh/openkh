@@ -54,13 +54,13 @@ namespace :openkh do
       :password              => 'admin',
       :password_confirmation => 'admin')
 
-    puts 'Add some blikis and comments...'
+    puts 'Add some articles and comments...'
     15.times do |i|
       t = Time.now
-      b = Bliki.create(
+      b = Article.create(
         :views        => rand(1000) + 1,
         :updated_at   => t,
-        :title        => "Bliki #{i}",
+        :title        => "Article #{i}",
         :introduction => '<p>' + Faker::Lorem.paragraph + '</p>',
         :body         => '<p>' + Faker::Lorem.paragraph + '</p>',
         :user_id      => admin.id,
@@ -69,7 +69,7 @@ namespace :openkh do
 
       rand(15).times do |j|
         Comment.create(
-          :model_type => 'Bliki',
+          :model_type => 'Article',
           :model_id   => b.id,
           :user_id    => admin.id,
           :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
@@ -206,7 +206,7 @@ namespace :openkh do
       :position => 2,  # Kosen map block has position 1
       :title    => '',
       :mode     => 'preview',
-      :types    => ['Bliki', 'Book', 'Event', 'Qa'])
+      :types    => ['Article', 'Book', 'Event', 'Qa'])
 
     # Region "sidebar1"
     GoogleSearchBlock.create(
@@ -220,7 +220,7 @@ namespace :openkh do
       :region   => 1,
       :position => 3,
       :mode     => 'title',
-      :types    => ['Bliki', 'Book', 'Event', 'Qa'])
+      :types    => ['Article', 'Book', 'Event', 'Qa'])
     RecentContentsBlock.create(
       :region   => 1,
       :position => 4,

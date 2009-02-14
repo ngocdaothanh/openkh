@@ -1,2 +1,2 @@
-class AdminBlikisController < AdminController
+class AdminArticlesController < AdminController
 end

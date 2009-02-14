@@ -1,3 +1,3 @@
-# Used by BlikisController#update.
-class BlikiVersion < ActiveRecord::Base
+# Used by ArticlesController#update.
+class ArticleVersion < ActiveRecord::Base
 end

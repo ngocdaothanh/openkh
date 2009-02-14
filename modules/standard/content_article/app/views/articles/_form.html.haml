@@ -1,6 +1,6 @@
-- mod[:help] = t('upload.login_to_upload') if @bliki.new_record?
+- mod[:help] = t('upload.login_to_upload') if @article.new_record?
 
-- form_for(@bliki, :html => {:onsubmit => 'tinyMCE.triggerSave(); return captcha.show(this);'}) do |f|
+- form_for(@article, :html => {:onsubmit => 'tinyMCE.triggerSave(); return captcha.show(this);'}) do |f|
   = f.error_messages
 
   = f.label(:title)
@@ -16,12 +16,12 @@
   %ul
     - mod[:categories].each do |cat|
       = html_tree(cat) do |c, level|
-        - [check_box_tag('bliki[category_ids][]', c.id, @bliki.category_ids.include?(c.id)) + ' ' + h(c.name)]
+        - [check_box_tag('article[category_ids][]', c.id, @article.category_ids.include?(c.id)) + ' ' + h(c.name)]
 
   = f.label(:tag_list, t('tag.input'))
   = f.text_field(:tag_list)
 
   = f.submit(t('common.save'))
 
-- unless @bliki.new_record?
-  = html_upload_list_and_upload(@bliki)
+- unless @article.new_record?
+  = html_upload_list_and_upload(@article)

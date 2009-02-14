@@ -1,7 +1,7 @@
-- @effective_version = @bliki.version
-#bliki_versions= render(:file => 'blikis/version')
+- @effective_version = @article.version
+#article_versions= render(:file => 'articles/version')
 
-= html_content_contributors(@bliki)
-= html_content_tocs(@bliki)
-= html_content_bookmarks(@bliki)
-= html_comment_all(@bliki)
+= html_content_contributors(@article)
+= html_content_tocs(@article)
+= html_content_bookmarks(@article)
+= html_comment_all(@article)

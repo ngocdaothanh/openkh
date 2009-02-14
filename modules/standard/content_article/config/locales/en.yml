@@ -1,4 +1,4 @@
 en:
-  bliki:
-    name: "Bliki"
-    description: "A bliki is a blog or a wiki. Select if you want to post a notice, an article, a tutorial or something you would like everyone to freely edit to improve it."
+  article:
+    name: "Article"
+    description: "Select if you want to post an article, a notice, a tutorial etc. You can allow everyone to freely edit to improve it."

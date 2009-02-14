@@ -1,4 +1,4 @@
 -# Input:
 -#   content
 
-= link_to(content.title + (content_recent?(content) ? (' ' + theme_image_tag('new.png')) : ''), bliki_path(content))
+= link_to(content.title + (content_recent?(content) ? (' ' + theme_image_tag('new.png')) : ''), article_path(content))
