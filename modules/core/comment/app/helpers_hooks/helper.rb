@@ -2,11 +2,10 @@ module ApplicationHelper
   # Renders comment list and lets logged in user create new comment.
   # scroll: true to scroll to the last comment.
   def html_comment_all(object, scroll = false)
-    model_type = object.class.to_s
     comments = Comment.find(
       :all,
       :page       => {:current => 1},
-      :conditions => {:model_type => model_type, :model_id => object.id},
+      :conditions => {Comment.key(object) => object.id},
       :order      => 'created_at ASC')
     comments.last_page!
 

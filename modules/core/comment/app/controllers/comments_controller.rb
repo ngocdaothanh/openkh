@@ -7,10 +7,11 @@ class CommentsController < ApplicationController
   def index
     @comments_model_type = params[:model_type]
     @comments_model_id = params[:model_id]
+
     @comments = Comment.find(
       :all,
       :page       => {:current => params[:page]},
-      :conditions => {:model_type => @comments_model_type, :model_id => @comments_model_id},
+      :conditions => {Comment.key(@comments_model_type) => @comments_model_id},
       :order      => 'created_at ASC')
   end
 

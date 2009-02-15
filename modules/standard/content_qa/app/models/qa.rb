@@ -5,11 +5,6 @@ class Qa < ActiveRecord::Base
 
   validates_presence_of :message, :on => :create
 
-  has_many :comments
-#  def comments
-#    [Comment.new]
-#  end
-
   define_index do
     indexes title
     indexes comments.message, :as => :comments

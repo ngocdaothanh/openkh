@@ -16,10 +16,13 @@ class Schema < ActiveRecord::Migration
       t.integer :user_id,  :null => false
       t.string  :note
     end
+
+    add_column :comments, :event_id, :integer
   end
 
   def self.down
-    drop_table :events
+    remove_column :comments, :event_id
     drop_table :event_joiners
+    drop_table :events
   end
 end

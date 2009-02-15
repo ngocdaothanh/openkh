@@ -7,8 +7,9 @@ class Poll < ActiveRecord::Base
 
   define_index do
     indexes title
+    indexes comments.message, :as => :comments
 
-    set_property :field_weights => {'title' => 10}
+    set_property :field_weights => {'title' => 10, 'comments' => 1}
 
     has updated_at
   end

@@ -9,9 +9,11 @@ class Schema < ActiveRecord::Migration
       t.string   :ip,        :null => false, :limit => 15
       t.timestamps
     end
+    add_column :comments, :poll_id, :integer
   end
 
   def self.down
+    remove_column :comments, :poll_id
     drop_table :polls
   end
 end

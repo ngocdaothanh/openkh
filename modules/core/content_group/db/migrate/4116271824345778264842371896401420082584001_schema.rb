@@ -15,11 +15,14 @@ class Schema < ActiveRecord::Migration
       t.integer :content_id,   :null => false
       t.integer :group_id,     :null => false
     end
+
+    add_column :comments, :group_id, :integer
   end
 
   def self.down
-    Group.drop_versioned_table
+    remove_column :comments, :group_id
     drop_table :contents_groups
+    Group.drop_versioned_table
     drop_table :groups
   end
 end

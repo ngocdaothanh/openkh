@@ -6,9 +6,11 @@ class Schema < ActiveRecord::Migration
       t.integer :user_id,    :null => false
       t.timestamps
     end
+    add_column :comments, :qa_id, :integer
   end
 
   def self.down
+    remove_column :comments, :qa_id
     drop_table :qas
   end
 end

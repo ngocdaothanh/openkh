@@ -1,8 +1,8 @@
 class Schema < ActiveRecord::Migration
   def self.up
+    # <model type in lower case>_id columns will be added into this table by
+    # modules that acts_as_commentable
     create_table :comments do |t|
-      t.string   :model_type, :null => false
-      t.integer  :model_id,   :null => false
       t.integer  :user_id,    :null => false
       t.text     :message,    :null => false
       t.string   :ip,         :null => false, :limit => 15

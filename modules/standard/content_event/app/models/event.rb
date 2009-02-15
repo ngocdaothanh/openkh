@@ -10,8 +10,9 @@ class Event < ActiveRecord::Base
     indexes title
     indexes introduction
     indexes instruction
+    indexes comments.message, :as => :comments
 
-    set_property :field_weights => {'title' => 10, 'introduction' => 5, 'instruction' => 2}
+    set_property :field_weights => {'title' => 10, 'introduction' => 5, 'instruction' => 2, 'comments' => 1}
 
     has updated_at
   end

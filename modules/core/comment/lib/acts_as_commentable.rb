@@ -14,6 +14,7 @@ module ActiveRecord
       module ClassMethods
         def acts_as_commentable
           ActiveRecord::Acts::Commentable.model_types << self.to_s
+          has_many :comments
 
           include ActiveRecord::Acts::Commentable::InstanceMethods
         end
