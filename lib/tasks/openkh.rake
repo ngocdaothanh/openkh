@@ -205,8 +205,7 @@ namespace :openkh do
       :region   => 0,
       :position => 2,  # Kosen map block has position 1
       :title    => '',
-      :mode     => 'preview',
-      :types    => ['Article', 'Book', 'Event', 'Qa'])
+      :mode     => 'preview')
 
     # Region "sidebar1"
     SearchBlock.create(
@@ -220,18 +219,11 @@ namespace :openkh do
       :position => 3)
     RecentContentsBlock.create(
       :region   => 1,
-      :position => 4,
-      :mode     => 'title',
-      :types    => ['Article', 'Book', 'Event', 'Qa'])
-    RecentContentsBlock.create(
-      :region   => 1,
-      :position => 5,
-      :mode     => 'title',
-      :types    => ['Poll'],
-      :limit    => 1)
+      :position => 3,
+      :mode     => 'title')
     RemoteFeedBlock.create(
       :region   => 1,
-      :position => 6)
+      :position => 4)
 
     # Region "sidebar2"
     CurrentUserBlock.create(

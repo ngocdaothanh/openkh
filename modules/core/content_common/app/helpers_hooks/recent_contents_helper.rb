@@ -1,14 +1,11 @@
 module ApplicationHelper
   def recent_contents_block(block)
     # We must count manually
-    types = block.types.map { |t| Categorizing.connection.quote(t)}
     category_ids = mod[:category].nil? ? nil : mod[:category].self_and_subnodes_at_all_depths.map { |c| c.id }
-    where = "model_type IN (#{types.join(', ')})"
-    where += " AND category_id IN (#{category_ids.join(', ')})" unless category_ids.nil?
-    count = Categorizing.count_by_sql("SELECT count(*) FROM (SELECT DISTINCT model_type, model_id FROM categorizings WHERE #{where}) AS foo")
+    where = category_ids.nil? ? '' : "WHERE category_id IN (#{category_ids.join(', ')})"
+    count = Categorizing.count_by_sql("SELECT count(*) FROM (SELECT DISTINCT model_type, model_id FROM categorizings #{where}) AS foo")
 
-    conditions = {:model_type => block.types}
-    conditions[:category_id] = category_ids unless category_ids.nil?
+    conditions = category_ids.nil? ? {} : {:category_id => category_ids}
     categorizings = Categorizing.find(
       :all,
       :page       => {:current => params[:page], :size => block.limit, :count => count},

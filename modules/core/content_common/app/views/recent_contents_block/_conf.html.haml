@@ -6,8 +6,5 @@
     %em= t('content.mode')
     = (block.mode == 'preview') ? t('content.mode_preview') : t('content.mode_title')
   %li
-    %em= t('content.content_types')
-    = h(block.types.join(', '))
-  %li
     %em= t('common.limit')
     = block.limit

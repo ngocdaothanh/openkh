@@ -5,10 +5,5 @@
 = f.radio_button(:mode, 'preview') + t('content.mode_preview')
 = f.radio_button(:mode, 'title') + t('content.mode_title')
 
-= f.label(:types)
-- ActiveRecord::Acts::Content.model_types.each do |type|
-  = check_box_tag("#{block.class.to_s.underscore}[types][]", type, block.types.include?(type))
-  = t("#{type.underscore}.name")
-
 = f.label(:limit)
 = f.select(:limit, (1..99).to_a)

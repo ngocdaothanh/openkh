@@ -8,10 +8,12 @@
     - type           = n.class.to_s
     - down           = type.downcase
     - preview_method = "html_preview_#{down}"
+    - html_preview   = send(preview_method, n)
+    - no_user_info   = html_preview.empty?
     .preview
       %h2= link_to(n.title, content_show_path(n))
-      = html_content_header(n)
-      = sanitize(send(preview_method, n))
+      = html_content_header(n, no_user_info)
+      = sanitize(html_preview)
       = html_comment_last(n)
 
   %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('#{div_id}', this.href)")
