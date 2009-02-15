@@ -1,6 +1,6 @@
 module ApplicationHelper
   def html_preview_article(article)
-    article.introduction
+    sanitize(article.introduction)
   end
 
   def articles_feed(article)

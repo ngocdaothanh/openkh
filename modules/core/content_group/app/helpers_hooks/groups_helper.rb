@@ -1,5 +1,5 @@
 module ApplicationHelper
   def html_preview_group(group)
-    group.introduction
+    sanitize(group.introduction)
   end
 end

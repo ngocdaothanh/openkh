@@ -1,5 +1,5 @@
 module ApplicationHelper
   def html_preview_event(event)
-    event.introduction
+    sanitize(event.introduction)
   end
 end
