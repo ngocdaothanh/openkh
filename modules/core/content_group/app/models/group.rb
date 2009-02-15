@@ -6,6 +6,11 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :introduction, :links
 
+  define_index do
+    indexes title
+    indexes introduction
+  end
+
   # Update groups_contents table.
   def after_save
     contents = contents_from_html

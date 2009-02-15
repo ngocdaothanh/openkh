@@ -6,6 +6,16 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :introduction, :instruction
 
+  define_index do
+    indexes title
+    indexes introduction
+    indexes instruction
+
+    set_property :field_weights => {'title' => 10, 'introduction' => 5, 'instruction' => 2}
+
+    has updated_at
+  end
+
   def join(user, note)
     EventJoiner.destroy_all(:event_id => id, :user_id => user.id)
     EventJoiner.create(:event_id => id, :user_id => user.id, :note => note)

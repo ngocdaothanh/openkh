@@ -5,6 +5,14 @@ class Poll < ActiveRecord::Base
 
   acts_as_content
 
+  define_index do
+    indexes title
+
+    set_property :field_weights => {'title' => 10}
+
+    has updated_at
+  end
+
   def after_initialize
     self.responses = [] if responses.nil?
     self.votes     = [] if votes.nil?

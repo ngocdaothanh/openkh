@@ -37,7 +37,8 @@ class ContentsController < ApplicationController
   end
 
   def search
-    @results = Article.search_for_keyword(params[:keyword])
+    klasses = ActiveRecord::Acts::Content.model_types.map { |t| t.constantize }
+    @results = ThinkingSphinx::Search.search(params[:keyword], :classes => klasses, :order => 'updated_at DESC')
     add_breadcrumb(t('search_block.title'))
     render('search/search')
   end

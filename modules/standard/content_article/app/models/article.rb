@@ -6,8 +6,6 @@ class Article < ActiveRecord::Base
 
   acts_as_content
 
-  #-----------------------------------------------------------------------------
-
   define_index do
     indexes title
     indexes introduction
@@ -17,13 +15,6 @@ class Article < ActiveRecord::Base
 
     has updated_at
   end
-
-  def self.search_for_keyword(keyword, options = {})
-    options.update({:order => 'updated_at DESC'})
-    search(keyword, options)
-  end
-
-  #-----------------------------------------------------------------------------
 
   # Converts to QA, returns true on success or false on failure.
   def to_qa
