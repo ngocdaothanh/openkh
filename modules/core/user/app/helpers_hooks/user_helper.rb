@@ -1,6 +1,10 @@
 module ApplicationHelper
+  def full_user_name(user)
+    "#{user.class.human_type}/#{user.user_name}"
+  end
+
   def current_user_block(block)
-    title = mod[:me].nil? ? t('user.login') : "#{mod[:me].class.human_type}/#{mod[:me].user_name}"
+    title = mod[:me].nil? ? t('user.login') : full_user_name(mod[:me])
     content = render('current_user_block/show')
     [title, content]
   end
