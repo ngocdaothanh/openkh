@@ -1,2 +1,2 @@
 - options = {:controller => 'contents', :action => 'search', :search_keyword => params[:search_keyword]}
-= render(:partial => 'contents/index_previews', :locals => {:contents => @results, :options => options, :no_last_comment => true})
+= render(:partial => 'contents/index_titles', :locals => {:contents => @results, :options => options})

@@ -1,13 +1,11 @@
-- # Inputs:
-- #   contents: may contain different types of contents
-- #   options: params for paginating_links
+-# Inputs:
+-#   contents: may contain different types of contents
+-#   options: params for paginating_links
 
-- div_id = "content_container_titles#{contents.object_id}"
-
-%div{:id => div_id}
+#titles
   %ul
     - contents.each do |n|
       - icon_if_recent = content_recent?(n) ? (' ' + theme_image_tag('new.png')) : ''
       %li= link_to(n.title + icon_if_recent, content_show_path(n))
 
-  %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('#{div_id}', this.href)")
+  %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('titles', this.href)")
