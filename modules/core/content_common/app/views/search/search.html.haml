@@ -1,2 +1,3 @@
-- @results.each do |r|
-  = r
+%ul
+  - @results.each do |r|
+    %li= link_to(r.title, content_show_path(r))

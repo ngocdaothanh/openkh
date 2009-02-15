@@ -5,6 +5,24 @@ class Qa < ActiveRecord::Base
 
   validates_presence_of :message, :on => :create
 
+  #-----------------------------------------------------------------------------
+
+  define_index do
+    indexes title
+    #indexes comments.message, :as => :comments
+
+    #set_property :field_weights => {'title' => 10, 'comments' => 1}
+
+    has updated_at
+  end
+
+  def self.search_for_keyword(keyword, options = {})
+    options.update({:order => 'updated_at DESC'})
+    search(keyword, options)
+  end
+
+  #-----------------------------------------------------------------------------
+
   def after_create
     Comment.record_timestamps = false
     Comment.create(

@@ -3,13 +3,15 @@
 - #   options: params for paginating_links
 
 - div_id = "content_container_previews#{contents.object_id}"
-
 %div{:id => div_id}
   - contents.each do |n|
-    - type        = n.class.to_s
-    - down        = type.downcase
-    - down_plural = down.pluralize
-    - partial     = "#{down_plural}/index_preview"
-    .preview= render(partial, :content => n)
+    - type           = n.class.to_s
+    - down           = type.downcase
+    - preview_method = "html_preview_#{down}"
+    .preview
+      %h2= link_to(n.title, content_show_path(n))
+      = html_content_header(n)
+      = sanitize(send(preview_method, n))
+      = html_comment_last(n)
 
   %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('#{div_id}', this.href)")

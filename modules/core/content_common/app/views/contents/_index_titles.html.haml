@@ -7,10 +7,7 @@
 %div{:id => div_id}
   %ul
     - contents.each do |n|
-      - type        = n.class.to_s
-      - down        = type.downcase
-      - down_plural = down.pluralize
-      - partial     = "#{down_plural}/index_title"
-      %li= render_if_exists(partial, :content => n) { link_to(n.title, content_show_path(n)) }
+      - icon_if_recent = content_recent?(n) ? (' ' + theme_image_tag('new.png')) : ''
+      %li= link_to(n.title + icon_if_recent, content_show_path(n))
 
   %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('#{div_id}', this.href)")

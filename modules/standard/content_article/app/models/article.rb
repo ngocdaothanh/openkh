@@ -13,9 +13,9 @@ class Article < ActiveRecord::Base
     indexes introduction
     indexes body
 
-    #has :created_at
+    set_property :field_weights => {'title' => 10, 'introduction' => 5, 'body' => 2}
 
-    set_property :field_weights => {'title' => 10, 'introduction' => 5, 'body' => 1}
+    has updated_at
   end
 
   def self.search_for_keyword(keyword, options = {})
