@@ -17,13 +17,13 @@ module ApplicationHelper
     end
 
     if contents.empty?
-      content = ''
+      html = ''
     else
       options = {:controller => 'contents', :action => 'recent', :block_id => block.id}
       options[:category_id] = mod[:category].id unless mod[:category].nil?
-      content = render("contents/index_#{block.mode.to_s.pluralize}", :contents => contents, :options => options)
+      html = render("contents/index_#{block.mode.to_s.pluralize}", :contents => contents, :options => options)
     end
 
-    [block.title, content]
+    [block.title, html]
   end
 end

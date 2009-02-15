@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
     m.recent_contents 'recent_contents/:block_id', :action => 'recent'
 
-    m.search 'search', :action => 'search'
+    m.search 'search/:search_keyword', :action => 'search'
+    m.search 'search/:search_keyword/:page', :action => 'search'
   end
 end

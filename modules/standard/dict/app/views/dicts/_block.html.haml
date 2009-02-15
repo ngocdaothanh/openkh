@@ -12,13 +12,13 @@
         return;
       }
 
-      var keyword = $('#dict_keyword').val();
-      keyword = jQuery.trim(keyword);
-      if (keyword == '') {
+      var dict_keyword = $('#dict_keyword').val();
+      dict_keyword = jQuery.trim(dict_keyword);
+      if (dict_keyword == '') {
         return;
       }
 
-      var url = '#{root_path}dicts/' + encodeURIComponent($('#dict_dict').val()) + '/' + encodeURIComponent(keyword);
+      var url = '#{root_path}dicts/' + encodeURIComponent($('#dict_dict').val()) + '/' + encodeURIComponent(dict_keyword);
       $('#dict_results').html('#{theme_image_tag('loading.gif')}');
       $('#dict_results').load(url);
     });

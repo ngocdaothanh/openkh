@@ -1,3 +1,2 @@
-%ul
-  - @results.each do |r|
-    %li= link_to(r.title, content_show_path(r))
+- options = {:controller => 'contents', :action => 'search', :search_keyword => params[:search_keyword]}
+= render(:partial => 'contents/index_previews', :locals => {:contents => @results, :options => options, :no_last_comment => true})

@@ -1,4 +1,21 @@
-- keyword = (params[:controller] == 'contents' && params[:action] == 'search')? params[:keyword] : nil
+- search_keyword = (params[:controller] == 'contents' && params[:action] == 'search')? params[:search_keyword] : nil
 
-%form{:action => url_for(:controller => 'contents', :action => 'search')}
-  %input{:type => 'text', :name => 'keyword', :value => keyword}
+= text_field_tag('search_keyword', search_keyword)
+
+:javascript
+  $(document).ready(function() {
+    $('#search_keyword').keypress(function(e) {
+      if (e.which != 13) {
+        return;
+      }
+
+      var search_keyword = $('#search_keyword').val();
+      search_keyword = jQuery.trim(search_keyword);
+      if (search_keyword == '') {
+        return;
+      }
+
+      var url = '#{root_path}search/' + encodeURIComponent(search_keyword);
+      window.location = url;
+    });
+  });

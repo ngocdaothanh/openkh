@@ -1,9 +1,9 @@
-- # Inputs:
-- #   contents: may contain different types of contents
-- #   options: params for paginating_links
+-# Inputs:
+-#   contents: may contain different types of contents
+-#   options: params for paginating_links
+-#   no_last_comment: boolean
 
-- div_id = "content_container_previews#{contents.object_id}"
-%div{:id => div_id}
+#previews
   - contents.each do |n|
     - type           = n.class.to_s
     - down           = type.downcase
@@ -14,6 +14,6 @@
       %h2= link_to(n.title, content_show_path(n))
       = html_content_header(n, no_user_info)
       = sanitize(html_preview)
-      = html_comment_last(n)
+      = html_comment_last(n) unless no_last_comment
 
-  %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('#{div_id}', this.href)")
+  %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('previews', this.href)")
