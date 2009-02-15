@@ -1,6 +1,6 @@
 %meta{'http-equiv' => 'content-type', :content => 'text/html; charset=utf-8'}
 %link{:rel => 'shortcut icon', :href => theme_image_path('favicon.ico'), :type => 'image/x-icon'}
-= auto_discovery_link_tag(:atom, {:controller => 'local_feeds', :action => 'root', :format => :atom})
+= auto_discovery_link_tag(:atom, {:controller => 'contents', :action => 'feed', :format => :atom})
 
 %title= h(title_from_breadcrumbs || SiteConf.instance.title)
 %meta{:name => 'keywords', :content => CONF[:keywords]}

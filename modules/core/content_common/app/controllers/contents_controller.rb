@@ -48,6 +48,15 @@ class ContentsController < ApplicationController
     render('search/search')
   end
 
+  def feed
+    categorizings = Categorizing.find(
+      :all,
+      :limit      => 20,
+      :select     => 'DISTINCT model_type, model_id, model_updated_at',
+      :order      => 'model_updated_at DESC')
+    @contents = categorizings.map { |c| c.model }
+  end
+
   private
 
   # Convert params[:type] which is passed from routes.rb of each content type to

@@ -6,5 +6,7 @@ ActionController::Routing::Routes.draw do |map|
 
     m.search 'search/:search_keyword', :action => 'search'
     m.search 'search/:search_keyword/:page', :action => 'search'
+
+    m.feed 'feed', :action => 'feed', :format => :atom
   end
 end
