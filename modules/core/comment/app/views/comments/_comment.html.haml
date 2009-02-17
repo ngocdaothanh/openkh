@@ -4,7 +4,7 @@
 
 - dt = time_ago_in_words(comment.updated_at)
 - key = (comment.updated_at > comment.created_at)? 'common.updated_ago' : 'common.time_ago'
-- extra_row = t(key, :dt => dt)
+- extra_row = t(key, :dt => dt).capitalize
 -# extra_row << ' ' << link_to(t('common.admin'), admin_comment_path(comment), :class => 'admin') if user_admin?
 
 - extra_columns = []
