@@ -12,7 +12,7 @@
 	url = git://github.com/rails/acts_as_tree.git
 [submodule "vendor/plugins/acts_as_versioned"]
 	path = vendor/plugins/acts_as_versioned
-	url = git://github.com/ngocdaothanh/acts_as_versioned.git
+	url = git://github.com/technoweenie/acts_as_versioned.git
 [submodule "vendor/plugins/jrails"]
 	path = vendor/plugins/jrails
 	url = git://github.com/aaronchi/jrails.git
