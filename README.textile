@@ -25,6 +25,8 @@ Steps:
 config/database.yml and make proper modification, then create the DB. You may
 create DB by running rake db:create if the user you specify has enough
 permission.
+* Run rake gems to see the list of required gems, and run rake gems:install to
+install
 * Install OpenKH: rake openkh:install
 * To add demo data (with an account with user name "admin" password "admin"):
 rake openkh:demo
