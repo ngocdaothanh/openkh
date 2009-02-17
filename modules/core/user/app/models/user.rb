@@ -22,13 +22,17 @@ class User < ActiveRecord::Base
     @admin ||= SiteConf.instance.admin?(self)
   end
 
-  # FIXME
   def num_contents
-    99
+    ActiveRecord::Acts::Content.model_types.inject(0) do |ret, t|
+      klass = t.constantize
+      ret += klass.count(:conditions => {:user_id => self.id})
+    end
   end
 
-  # FIXME
   def contents
-    []
+    ActiveRecord::Acts::Content.model_types.inject([]) do |ret, t|
+      klass = t.constantize
+      ret.concat(klass.all(:conditions => {:user_id => self.id}))
+    end
   end
 end

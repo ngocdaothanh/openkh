@@ -10,7 +10,7 @@
 - if @user.email.nil?
   %p.notice= t('user.no_email')
 - elsif mod[:me].nil?
-  %p.notice= link_to(t('user_login_to_email'), new_user_path(:destination => user_path(@user)))
+  %p.notice= link_to(t('user.login_to_email'), new_user_path(:destination => user_path(@user)))
 - elsif mod[:me].email.nil?
   %p.notice= t('user.need_email_to_send_email')
   - if @user.type == 'OpenidUser'
@@ -41,5 +41,4 @@
   %h3= t('user.contributed_contents')
   %ul
     - @user.contents.each do |c|
-      - method_name = "#{c.class.to_s.underscore}_path"
-      %li= link_to(c.title, send(method_name, n))
+      %li= link_to(c.title, content_show_path(c))

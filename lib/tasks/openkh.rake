@@ -63,51 +63,58 @@ namespace :openkh do
 
     puts 'Add some articles and comments...'
     15.times do |i|
+      t = rand_time
       b = Article.create(
         :views        => rand(1000) + 1,
-        :updated_at   => t,
         :title        => "Article #{i}",
         :introduction => '<p>' + Faker::Lorem.paragraph + '</p>',
         :body         => '<p>' + Faker::Lorem.paragraph + '</p>',
         :user_id      => admin.id,
         :ip           => '127.0.0.1',
-        :created_at   => rand_time)
+        :created_at   => t,
+        :updated_at => t)
 
       rand(15).times do |j|
+        t = rand_time
         Comment.create(
           :model_type => 'Article',
           :model_id   => b.id,
           :user_id    => admin.id,
           :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
           :ip         => '127.0.0.1',
-          :created_at => rand_time)
+          :created_at => t,
+          :updated_at => t)
       end
     end
 
     puts 'Add some Q/As and comments...'
     15.times do |i|
+      t = rand_time
       q = Qa.create(
         :views      => rand(1000) + 1,
-        :updated_at => t,
         :title      => "Q/A #{i}",
         :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
         :user_id    => admin.id,
         :ip         => '127.0.0.1',
-        :created_at => rand_time)
+        :created_at => t,
+        :updated_at => t)
 
       rand(15).times do |j|
+        t = rand_time
         Comment.create(
           :model_type => 'Qa',
           :model_id   => q.id,
           :user_id    => admin.id,
           :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
           :ip         => '127.0.0.1',
-          :created_at => rand_time)
+          :created_at => t,
+          :updated_at => t)
       end
     end
 
     puts 'Add some polls and comments...'
     15.times do |i|
+      t = rand_time
       p = Poll.create(
         :title      => "Poll #{i}?",
         :responses  => ['Response 1', 'Response 2', 'Response 3'],
@@ -115,16 +122,19 @@ namespace :openkh do
         :voters     => [],
         :user_id    => admin.id,
         :ip         => '127.0.0.1',
-        :created_at => rand_time)
+        :created_at => t,
+        :updated_at => t)
 
       rand(15).times do |j|
+        t = rand_time
         Comment.create(
           :model_type => 'Poll',
           :model_id   => p.id,
           :user_id    => admin.id,
           :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
           :ip         => '127.0.0.1',
-          :created_at => rand_time)
+          :created_at => t,
+          :updated_at => t)
       end
     end
 
