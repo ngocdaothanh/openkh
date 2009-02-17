@@ -4,8 +4,8 @@
 [submodule "vendor/plugins/acts_as_configurable"]
 	path = vendor/plugins/acts_as_configurable
 	url = git://github.com/omghax/acts_as_configurable.git
-[submodule "vendor/plugins/act_as_taggable_on_steroids"]
-	path = vendor/plugins/act_as_taggable_on_steroids
+[submodule "vendor/plugins/acts_as_taggable_on_steroids"]
+	path = vendor/plugins/acts_as_taggable_on_steroids
 	url = git://github.com/mattetti/acts_as_taggable_on_steroids.git
 [submodule "vendor/plugins/acts_as_tree"]
 	path = vendor/plugins/acts_as_tree
