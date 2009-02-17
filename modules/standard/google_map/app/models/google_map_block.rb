@@ -2,7 +2,7 @@ class GoogleMapBlock < Block
   has_many :markers, :class_name => 'GoogleMapMarker', :dependent => :delete_all
 
   acts_as_configurable do |c|
-    c.string :title,  :default => I18n.t('google_map_block.defaul.title')
+    c.string :title,  :default => I18n.t('google_map_block.default.title')
     c.string :width,  :default => '100%'
     c.string :height, :default => '300px'
   end
