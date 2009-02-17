@@ -213,6 +213,17 @@ namespace :openkh do
         :longitude           => longitude)
     end
 
+    video_width, video_height = 170.to_s, 152.to_s
+    StaticBlock.create(
+      :title => 'Funny video',
+      :body  => '<object width="' + video_width + '" height="' + video_height + '"><param name="movie" value="http://www.youtube.com/v/dpfYAghuNtU&hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/dpfYAghuNtU&hl=en&fs=1" type="application/x-shockwave-flash" allowfullscreen="true" width="' + video_width + '" height="' + video_height + '"></embed></object>')
+
+    ['Hardware', 'Software', 'Network', 'Graphics Design'].each do |name|
+      Category.create(
+        :name => name,
+        :slug => name.downcase.gsub(/ /, '-'))
+    end
+
     ENV['THEME'] = 'qwilm'
     Rake::Task['openkh:theme'].invoke
   end
