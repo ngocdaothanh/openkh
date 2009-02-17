@@ -16,10 +16,10 @@
       .menu1
         .menu2
       .content
-        = image_tag('img_08.jpg')
+        = theme_image_tag('img_08.jpg')
         .contenttext
           .post= mod[:regions][:content]
-        = image_tag('img_09.jpg', :style => 'vertical-align: bottom')
+        = theme_image_tag('img_09.jpg', :style => 'vertical-align: bottom')
       .sidebar
         = mod[:regions][:sidebar]
       %div{:style => 'clear: both'}

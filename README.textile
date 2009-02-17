@@ -41,6 +41,12 @@ rake db:migrate:plugin name=[module name] VERSION=0
 and delete its directory
 * Remember to restart OpenKH after installing/uninstalling
 
+h2. Theme
+
+There are many themes in the directory "themes". To switch theme:
+* Run rake openkh:theme THEME=<theme>
+* Restart OpenKH
+
 h2. Developers
 
 h3. Current developers
