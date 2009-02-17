@@ -17,6 +17,7 @@ require File.join(File.dirname(__FILE__), 'conf')
 
 Rails::Initializer.run do |config|
   # Compass needs HAML to be installed as gem, not in vendor/plugins/haml
+  config.gem 'faker'
   config.gem 'haml', :version => '>= 2.1'
   config.gem 'chriseppstein-compass', :version => '>= 0.3.7', :lib => 'compass'
 
