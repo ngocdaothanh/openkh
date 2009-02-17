@@ -1,5 +1,6 @@
 class SiteConf < Conf
   acts_as_configurable do |c|
+    c.string  :theme,                :default => 'qwilm'
     c.string  :title,                :default => 'OpenKH'
     c.string  :subtitle,             :default => 'Open Know-How'
     c.string  :admin_ids,            :default => '1'

@@ -1,1 +1,0 @@
-CONF[:regions] = [:content, :sidebar]

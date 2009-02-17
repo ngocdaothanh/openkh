@@ -12,8 +12,8 @@ CONF = {
   },
 
   # Rarely changed, thus not put in DB
-  :locale => 'en',  # IMPORTANT: I18n.t (in class methods) must be used with care so that string resource of the correct locale is picked up, if locale can be changed (in controller's before filter) based on HTTP request
-  :theme  => 'qwilm',
+  # TODO: If locale can be changed at runtime, I18n.t cannot be used in class methods
+  :locale => 'en'
 }
 
 #ActionMailer::Base.smtp_settings = {

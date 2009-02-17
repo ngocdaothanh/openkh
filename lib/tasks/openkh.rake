@@ -47,6 +47,13 @@ namespace :openkh do
   task :demo => :environment do
     require 'faker'
 
+    MAX_DT = 9999
+    def rand_time
+      now = Time.now
+      t = rand(now - rand(MAX_DT))
+      Time.at(t)
+    end
+
     puts 'Add admin account with user name "admin" password "admin"...'
     admin = UnpUser.create(
       :user_name             => 'admin',
@@ -56,7 +63,6 @@ namespace :openkh do
 
     puts 'Add some articles and comments...'
     15.times do |i|
-      t = Time.now
       b = Article.create(
         :views        => rand(1000) + 1,
         :updated_at   => t,
@@ -65,7 +71,7 @@ namespace :openkh do
         :body         => '<p>' + Faker::Lorem.paragraph + '</p>',
         :user_id      => admin.id,
         :ip           => '127.0.0.1',
-        :created_at   => t)
+        :created_at   => rand_time)
 
       rand(15).times do |j|
         Comment.create(
@@ -73,13 +79,13 @@ namespace :openkh do
           :model_id   => b.id,
           :user_id    => admin.id,
           :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
-          :ip         => '127.0.0.1')
+          :ip         => '127.0.0.1',
+          :created_at => rand_time)
       end
     end
 
     puts 'Add some Q/As and comments...'
     15.times do |i|
-      t = Time.now
       q = Qa.create(
         :views      => rand(1000) + 1,
         :updated_at => t,
@@ -87,7 +93,7 @@ namespace :openkh do
         :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
         :user_id    => admin.id,
         :ip         => '127.0.0.1',
-        :created_at => t)
+        :created_at => rand_time)
 
       rand(15).times do |j|
         Comment.create(
@@ -95,20 +101,21 @@ namespace :openkh do
           :model_id   => q.id,
           :user_id    => admin.id,
           :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
-          :ip         => '127.0.0.1')
+          :ip         => '127.0.0.1',
+          :created_at => rand_time)
       end
     end
 
     puts 'Add some polls and comments...'
     15.times do |i|
-      t = Time.now
       p = Poll.create(
-        :title     => "Poll #{i}?",
-        :responses => ['Response 1', 'Response 2', 'Response 3'],
-        :votes     => [rand(10), rand(10), rand(10)],
-        :voters    => [],
-        :user_id   => admin.id,
-        :ip        => '127.0.0.1')
+        :title      => "Poll #{i}?",
+        :responses  => ['Response 1', 'Response 2', 'Response 3'],
+        :votes      => [rand(10), rand(10), rand(10)],
+        :voters     => [],
+        :user_id    => admin.id,
+        :ip         => '127.0.0.1',
+        :created_at => rand_time)
 
       rand(15).times do |j|
         Comment.create(
@@ -116,14 +123,13 @@ namespace :openkh do
           :model_id   => p.id,
           :user_id    => admin.id,
           :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
-          :ip         => '127.0.0.1')
+          :ip         => '127.0.0.1',
+          :created_at => rand_time)
       end
     end
 
     puts 'Add Kosen map...'
     google_map_block_id = GoogleMapBlock.create(
-      :region   => 0,
-      :position => 1,
       :title    => 'Kosen map',
       :width    => '450px',
       :height   => '300px')
@@ -197,57 +203,75 @@ namespace :openkh do
         :longitude           => longitude)
     end
 
-    # Assume that theme "qwilm" is used
-    puts 'Add some blocks...'
+    ENV['THEME'] = 'qwilm'
+    Rake::Task['openkh:theme'].invoke
+  end
 
-    # Region "content"
-    RecentContentsBlock.create(
-      :region   => 0,
-      :position => 2,  # Kosen map block has position 1
-      :title    => '',
-      :mode     => 'preview')
+  desc ''
+  task :theme => :environment do
+    theme = ENV['THEME']
+    raise 'THEME not set' if theme.nil?
 
-    # Region "sidebar1"
-    SearchBlock.create(
-      :region   => 1,
-      :position => 1)
-    DictBlock.create(
-      :region   => 1,
-      :position => 2)
-    ContentTypesBlock.create(
-      :region   => 1,
-      :position => 3)
-    RecentContentsBlock.create(
-      :region   => 1,
-      :position => 3,
-      :mode     => 'title')
-    RemoteFeedBlock.create(
-      :region   => 1,
-      :position => 4)
+    # Finds the first block with the given name. If the block does not
+    # exist, initialize a new one and returns it.
+    #
+    # If the block name is in the form BlockName(attr1 = value1, attr2 = value2)
+    # it is also handled correctly.
+    def find_block(block_name)
+      attrs = {}
+      if block_name =~ /(.+)\((.*)\)/
+        block_name = $1
+        attrs_values = $2
+        attrs_values.split(',').each do |attr_value|
+          next unless attr_value =~ /(.+)=(.+)/
+          attr  = $1.strip
+          value = $2.strip
+          attrs[attr] = value
+        end
+      end
 
-    # Region "sidebar2"
-    CurrentUserBlock.create(
-      :region   => 2,
-      :position => 1)
-    ChatBlock.create(
-      :region   => 2,
-      :position => 2)
-    video_width, video_height = 170.to_s, 152.to_s
-    StaticBlock.create(
-      :region   => 2,
-      :position => 3,
-      :title    => 'Funny video',
-      :body     => '<object width="' + video_width + '" height="' + video_height + '"><param name="movie" value="http://www.youtube.com/v/dpfYAghuNtU&hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/dpfYAghuNtU&hl=en&fs=1" type="application/x-shockwave-flash" allowfullscreen="true" width="' + video_width + '" height="' + video_height + '"></embed></object>')
-    PagesBlock.create(
-      :region   => 2,
-      :position => 4)
-    ['Hardware', 'Software', 'Network', 'Graphics Design'].each do |name|
-      Category.create(
-        :name     => name,
-        :slug     => name.downcase.gsub(/ /, '-'))
+      class_name = "#{block_name}Block"
+      blocks = Block.find(:all, :conditions => {:type => class_name})
+      blocks.each do |block|
+        broken = false
+        attrs.each do |attr, value|
+          if block.send(attr).to_s != value
+            broken = true
+            break
+          end
+        end
+
+        return block unless broken
+      end
+
+      # Not found, try initializing a new one
+      klass = class_name.constantize
+      block = klass.new
+      attrs.each { |attr, value| block.send("#{attr}=", value) }
+      block
     end
-    CategoriesBlock.create(
-      :region   => 2,
-      :position => 5)
+
+    regions_blocks = YAML.load(File.read("#{RAILS_ROOT}/themes/#{theme}/regions_blocks.yml"))
+
+    # Set all existing blocks as unused
+    blocks = Block.all
+    blocks.each do |b|
+      b.region = -1
+      b.save
+    end
+
+    # Arrange blocks
+    regions_blocks['regions'].each_with_index do |region_name, iregion|
+      regions_blocks[region_name].each_with_index do |block_name, iblock|
+        block = find_block(block_name)
+        block.region = iregion
+        block.position = iblock + 1
+        block.save
+      end
+    end
+
+    site_conf = SiteConf.instance
+    site_conf.theme = theme
+    site_conf.save
   end
 end
