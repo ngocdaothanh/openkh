@@ -27,9 +27,9 @@ create DB by running rake db:create if the user you specify has enough
 permission.
 * Run rake gems to see the list of required gems, and run rake gems:install to
 install
-* Install OpenKH: rake openkh:install
+* Install OpenKH: rake user:install
 * To add demo data (with an account with user name "admin" password "admin"):
-rake openkh:demo
+rake user:demo
 * Start OpenKH as a normal Rails application
 
 h2. Install/uninstall module
@@ -44,7 +44,7 @@ and delete its directory
 h2. Theme
 
 There are many themes in the directory "themes". To switch theme:
-* Run rake openkh:theme THEME=<theme>
+* Run rake user:theme THEME=<theme>
 * Restart OpenKH
 
 h2. Developers
