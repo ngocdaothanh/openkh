@@ -56,6 +56,10 @@ namespace :openkh do
         ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
         version = ENV["VERSION"] ? ENV["VERSION"].to_i : nil
 
+        # Module "comment" must be migrated first because other modules may
+        # depend on its table
+        ActiveRecord::Migrator.migrate("modules/core/comment/db/migrate/", version)
+        
         Dir.glob("#{RAILS_ROOT}/modules/**").each do |path|
           type = path.split(File::SEPARATOR).last
           Dir.glob("#{RAILS_ROOT}/modules/#{type}/**").each do |path|
