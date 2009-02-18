@@ -9,7 +9,7 @@
     %input{:id => 'comment_method', :type => 'hidden', :name => '_method', :value => 'post'}
     %input{:id => 'comment_model_type', :type => 'hidden', :name => 'comment[model_type]', :value => object.class.to_s}
     %input{:id => 'comment_model_id', :type => 'hidden', :name => 'comment[model_id]', :value => object.id}
-    ~ text_area_tag(nil, '', {:id => 'comment_message', :name => 'comment[message]', :rows => '20'})
+    ~ text_area_tag(nil, '', {:id => 'comment_body', :name => 'comment[body]', :rows => '20'})
 
     %p#comment_buttons
       = submit_tag(t('common.save'))

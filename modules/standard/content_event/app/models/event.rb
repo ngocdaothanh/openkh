@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
     indexes title
     indexes introduction
     indexes instruction
-    indexes comments.message, :as => :comments
+    indexes comments.body, :as => :comments
 
     set_property :field_weights => {'title' => 10, 'introduction' => 5, 'instruction' => 2, 'comments' => 1}
 

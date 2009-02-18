@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
 
   has_many :categorizings
   has_and_belongs_to_many :blocks
-  has_one :toc
+  has_one :toc, :dependent => :destroy
 
   def self.tops
     find(:all, :conditions => ['parent_id IS NULL AND name NOT LIKE ?', UNCATEGORIZED_NAME], :order => 'position')
@@ -21,5 +21,9 @@ class Category < ActiveRecord::Base
   def name
     n = super
     (n == UNCATEGORIZED_NAME)? I18n.t('category.uncategorized') : n
+  end
+
+  def uncategorized?
+    name == I18n.t('category.uncategorized')
   end
 end

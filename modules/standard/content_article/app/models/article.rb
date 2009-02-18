@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
     indexes title
     indexes introduction
     indexes body
-    indexes comments.message, :as => :comments
+    indexes comments.body, :as => :comments
 
     set_property :field_weights => {'title' => 10, 'introduction' => 5, 'body' => 2, 'comments' => 1}
 
@@ -25,7 +25,7 @@ class Article < ActiveRecord::Base
         :updated_at => self.updated_at,
         :views      => self.views,
         :title      => self.title,
-        :message    => "#{self.abstract}#{self.details}",
+        :body       => "#{self.abstract}#{self.details}",
         :tags       => self.tags,
         :user_id    => self.versions.first.user_id,
         :ip         => self.ip,

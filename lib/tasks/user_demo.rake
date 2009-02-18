@@ -38,7 +38,7 @@ namespace :user do
           :model_type => 'Article',
           :model_id   => b.id,
           :user_id    => admin.id,
-          :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
+          :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
           :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
@@ -51,7 +51,7 @@ namespace :user do
       q = Qa.create(
         :views      => rand(1000) + 1,
         :title      => "Q/A #{i}",
-        :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
+        :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
         :user_id    => admin.id,
         :ip         => '127.0.0.1',
         :created_at => t,
@@ -63,7 +63,7 @@ namespace :user do
           :model_type => 'Qa',
           :model_id   => q.id,
           :user_id    => admin.id,
-          :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
+          :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
           :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
@@ -89,7 +89,7 @@ namespace :user do
           :model_type => 'Poll',
           :model_id   => p.id,
           :user_id    => admin.id,
-          :message    => '<p>' + Faker::Lorem.paragraph + '</p>',
+          :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
           :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)

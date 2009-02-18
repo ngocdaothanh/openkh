@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+  before_filter :check_login,   :only => [:create, :edit, :update, :revert]
+  before_filter :check_captcha, :only => [:create, :update, :revert]
+
   def create
     @group = Group.new(params[:group])
     @group.user_id = mod[:me].id

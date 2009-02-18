@@ -1,13 +1,13 @@
 class Qa < ActiveRecord::Base
-  attr_accessor :message, :ip
+  attr_accessor :body, :ip
 
   acts_as_content
 
-  validates_presence_of :message, :on => :create
+  validates_presence_of :body, :on => :create
 
   define_index do
     indexes title
-    indexes comments.message, :as => :comments
+    indexes comments.body, :as => :comments
 
     set_property :field_weights => {'title' => 10, 'comments' => 1}
 
@@ -19,7 +19,7 @@ class Qa < ActiveRecord::Base
     Comment.create(
       :model_type => 'Qa',
       :model_id   => self.id,
-      :message    => self.message,
+      :body       => self.body,
       :user_id    => self.user_id,
       :ip         => self.ip,
       :created_at => self.created_at,

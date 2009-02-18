@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     render(:update) do |page|
       if comment.save
         page['#comment_list'].append(render('comments/comment', :comment => comment))
-        page << "OpenKH.editor('comment_message', 'comment[message]').setContent('');"
+        page << "OpenKH.editor('comment_body', 'comment[body]').setContent('');"
       else
         page.alert(comment.errors.full_messages.join("\n"))
       end
@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
         break
       end
 
-      comment.message = params[:comment][:message]
+      comment.body = params[:comment][:body]
       comment.ip = request.remote_ip
       unless comment.save
         @status = 400

@@ -7,7 +7,7 @@ class Poll < ActiveRecord::Base
 
   define_index do
     indexes title
-    indexes comments.message, :as => :comments
+    indexes comments.body, :as => :comments
 
     set_property :field_weights => {'title' => 10, 'comments' => 1}
 

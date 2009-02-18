@@ -2,5 +2,6 @@
 - #   region, title, content
 
 - unless title.blank?
-  %h2.title= h(title)
-= content
+  %h2.block_title= h(title)
+
+.block_content= content

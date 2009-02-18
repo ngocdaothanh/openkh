@@ -14,7 +14,7 @@ OpenKH.comment = {
       _method: $('#comment_method').attr('value'),
       'comment[model_type]': $('#comment_model_type').attr('value'),
       'comment[model_id]': $('#comment_model_id').attr('value'),
-      'comment[message]': $('#comment_message').attr('value') || ''  <%# The value can be "undefined" %>
+      'comment[body]': $('#comment_body').attr('value') || ''  <%# The value can be "undefined" %>
     }
     $.ajax({
       url: action,
@@ -26,7 +26,7 @@ OpenKH.comment = {
             eval(request.responseText);
           } else {  <%# update %>
             var comment = $('#comment_' + OpenKH.comment.id);
-            comment.children('.comment_message').html($('#comment_message').attr('value'));
+            comment.children('.comment_body').html($('#comment_body').attr('value'));
             OpenKH.comment.cancelEdit();
           }
         } else {
@@ -53,13 +53,13 @@ OpenKH.comment = {
     $('#comment_method').attr('value', 'put');
 
     var comment = $('#comment_' + id);
-    var message = comment.children('.comment_message').html();
+    var body = comment.children('.comment_body').html();
 
     <%# Move the form, trick: (1) disable then reenable TinyMCE (2) set value to the textarea before reenable %>
-    tinyMCE.execCommand('mceRemoveControl', false, 'comment_message');
+    tinyMCE.execCommand('mceRemoveControl', false, 'comment_body');
     comment.after($('#comment_form'));
-    $('#comment_message').attr('value', message);
-    tinyMCE.execCommand('mceAddControl', false, 'comment_message');
+    $('#comment_body').attr('value', body);
+    tinyMCE.execCommand('mceAddControl', false, 'comment_body');
 
     $('#comment_cancel').show();
     comment.hide();
@@ -73,10 +73,10 @@ OpenKH.comment = {
     $('#comment_form').attr('action', '<%= comments_path %>');
     $('#comment_method').attr('value', 'post');
 
-    tinyMCE.execCommand('mceRemoveControl', false, 'comment_message');
-    $('#comment_message').attr('value', '');
+    tinyMCE.execCommand('mceRemoveControl', false, 'comment_body');
+    $('#comment_body').attr('value', '');
     $('#comment_container').after($('#comment_form'));
-    tinyMCE.execCommand('mceAddControl', false, 'comment_message');
+    tinyMCE.execCommand('mceAddControl', false, 'comment_body');
 
     $('#comment_cancel').hide();
     $('#comment_' + this.id).show();

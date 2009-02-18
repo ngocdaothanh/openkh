@@ -11,4 +11,4 @@
 = javascript_include_tag('chat')
 %script{:type => 'text/javascript'}
   $('#chat_input').keydown(OpenKH.chat.onKeyDown);
-  == OpenKH.chat.embed('#{h(block.remote_port)}', '#{session.session_id}')
+  == OpenKH.chat.embed('#{h(block.remote_port)}', '#{request.session_options[:id]}')

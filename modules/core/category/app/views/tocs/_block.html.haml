@@ -1,0 +1,8 @@
+-# Input:
+-#   category_id, toc
+
+- if toc.nil?
+  = link_to(theme_image_tag('edit.png'), new_toc_path(:category_id => category_id), :title => t('common.create'))
+- else
+  = sanitize(toc.body)
+  = link_to(theme_image_tag('edit.png'), edit_toc_path(toc, :category_id => category_id, :version => toc.version), :title => t('common.edit'))

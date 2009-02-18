@@ -1,7 +1,9 @@
 - form_for(@toc, :html => {:onsubmit => 'tinyMCE.triggerSave(); return captcha.show(this);'}) do |f|
   = f.error_messages
 
-  = f.label(:table_of_contents)
-  ~ f.text_area(:table_of_contents, :rows => '30')
+  = f.hidden_field(:category_id)
+
+  = f.label(:body)
+  ~ f.text_area(:body, :rows => '30')
 
   = f.submit(t('common.save'))

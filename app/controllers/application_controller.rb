@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Compatible with both normal and Ajax requests.
-  # Returns true if the check passed.
+  # Returns true if the check passed, this result is used at check_login_and_admin.
   def check_login
     ret = true
     if mod[:me].nil?

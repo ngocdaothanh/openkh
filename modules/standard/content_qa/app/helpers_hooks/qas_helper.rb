@@ -6,9 +6,9 @@ module ApplicationHelper
   def qas_feed(qa)
     last_comment = Comment.last('Qa', qa.id)
     if last_comment.nil?
-      qa.message
+      qa.body
     else
-      last_comment.message
+      last_comment.body
     end
   end
 end

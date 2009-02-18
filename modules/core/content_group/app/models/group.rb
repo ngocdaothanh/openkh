@@ -9,7 +9,7 @@ class Group < ActiveRecord::Base
   define_index do
     indexes title
     indexes introduction
-    indexes comments.message, :as => :comments
+    indexes comments.body, :as => :comments
 
     set_property :field_weights => {'title' => 10, 'introduction' => 5, 'comments' => 1}
 
