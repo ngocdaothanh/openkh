@@ -2,10 +2,8 @@ namespace :developer do
   desc 'Download additional things and create additional directories to prepare development environment after checking out'
   task :prepare do
     ['public/modules', 'public/themes', 'tmp'].each do |dir|
-      unless File.directory?(dir)
-        puts "Create #{dir}..."
-        FileUtils.mkdir_p(dir)
-      end
+      require 'cmd'; include Cmd # to use method: create_dir_if_not_exists
+      create_dir_if_not_exists(dir)
     end
 
     puts 'Update Javascripts for JRails...'

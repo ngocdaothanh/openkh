@@ -1,4 +1,14 @@
 module Cmd
+  def create_dir_if_not_exists(dir)
+    return if dir.blank?
+    dir = dir.to_s # accept symbol
+
+    unless File.directory?(dir)
+      puts "Create #{dir}"
+      FileUtils.mkdir_p(dir)
+    end
+  end
+
   # Run external command and return the result
   def run(command, options = {:desc => '', :get_output_string => false})
     puts options[:desc]

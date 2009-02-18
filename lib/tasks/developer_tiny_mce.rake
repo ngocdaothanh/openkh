@@ -25,7 +25,7 @@ namespace :developer do
 
       require 'hpricot'
       require 'open-uri'
-      require 'cmd'; include Cmd # to use method run
+      require 'cmd'; include Cmd # to use method: run
 
       url = "http://tinymce.moxiecode.com/download.php"
 
