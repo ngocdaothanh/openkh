@@ -35,16 +35,16 @@ rake user:demo
 h2. Install/uninstall module
 
 * To install, copy it to modules directory and run:
-rake db:migrate:plugin name=[module name]
+rake user:module:install MODULE=&lt;module&gt;
 * To uninstall, run:
-rake db:migrate:plugin name=[module name] VERSION=0
+rake user:module:uninstall MODULE=&lt;module&gt;
 and delete its directory
-* Remember to restart OpenKH after installing/uninstalling
+* Restart OpenKH after installing/uninstalling
 
 h2. Theme
 
 There are many themes in the directory "themes". To switch theme:
-* Run rake user:theme THEME=<theme>
+* Run rake user:theme THEME=&lt;theme&gt;
 * Restart OpenKH
 
 h2. Developers

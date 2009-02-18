@@ -1,38 +1,14 @@
 namespace :user do
-    desc 'Install OpenKH'
-  task :install do
-    ['public/modules', 'public/themes'].each do |dir|
-      unless File.directory?(dir)
-        puts "Create #{dir}..."
-        FileUtils.mkdir_p(dir)
-      end
-    end
-
-    puts 'Create basic data tables...'
-    Rake::Task['db:migrate'].invoke
-
-    puts 'Create data tables for modules...'
-    Rake::Task['openkh:db:migrate:modules'].invoke
-
-    puts 'Update Javascripts for JRails...'
-    Rake::Task['jrails:update:javascripts'].invoke
-
-    puts 'Add source code plugin for TinyMCE...'
-    Rake::Task['tiny_mce:add'].invoke
-
-    puts 'OpenKH installed, run rake user:demo if you want a demo site'
-  end
-
   # This task should not be broken into each module's migration because of
   # their interrelation.
   desc 'Add demo data'
   task :demo => :environment do
     require 'faker'
 
-    MAX_DT = 9999
+    MAX_DT = 60*60*24*365*2
     def rand_time
       now = Time.now
-      t = rand(now - rand(MAX_DT))
+      t = now - rand(MAX_DT)
       Time.at(t)
     end
 
@@ -208,73 +184,5 @@ namespace :user do
 
     ENV['THEME'] = 'qwilm'
     Rake::Task['user:theme'].invoke
-  end
-
-  desc 'Set theme'
-  task :theme => :environment do
-    theme = ENV['THEME']
-    raise 'THEME not set' if theme.nil?
-
-    # Finds the first block with the given name. If the block does not
-    # exist, initialize a new one and returns it.
-    #
-    # If the block name is in the form BlockName(attr1 = value1, attr2 = value2)
-    # it is also handled correctly.
-    def find_block(block_name)
-      attrs = {}
-      if block_name =~ /(.+)\((.*)\)/
-        block_name = $1
-        attrs_values = $2
-        attrs_values.split(',').each do |attr_value|
-          next unless attr_value =~ /(.+)=(.+)/
-          attr  = $1.strip
-          value = $2.strip
-          attrs[attr] = value
-        end
-      end
-
-      class_name = "#{block_name}Block"
-      blocks = Block.find(:all, :conditions => {:type => class_name})
-      blocks.each do |block|
-        broken = false
-        attrs.each do |attr, value|
-          if block.send(attr).to_s != value
-            broken = true
-            break
-          end
-        end
-
-        return block unless broken
-      end
-
-      # Not found, try initializing a new one
-      klass = class_name.constantize
-      block = klass.new
-      attrs.each { |attr, value| block.send("#{attr}=", value) }
-      block
-    end
-
-    regions_blocks = YAML.load(File.read("#{RAILS_ROOT}/themes/#{theme}/regions_blocks.yml"))
-
-    # Set all existing blocks as unused
-    blocks = Block.all
-    blocks.each do |b|
-      b.region = -1
-      b.save
-    end
-
-    # Arrange blocks
-    regions_blocks['regions'].each_with_index do |region_name, iregion|
-      regions_blocks[region_name].each_with_index do |block_name, iblock|
-        block = find_block(block_name)
-        block.region = iregion
-        block.position = iblock + 1
-        block.save
-      end
-    end
-
-    site_conf = SiteConf.instance
-    site_conf.theme = theme
-    site_conf.save
   end
 end

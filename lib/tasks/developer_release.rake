@@ -1,5 +1,5 @@
-namespace :openkh do
-  desc 'Prepare release package for openkh (tool for developer; tested in Unix only)'
+namespace :developer do
+  desc 'Create release package'
   task :release do
     release_path = File.join(File.dirname(RAILS_ROOT), 'release')
     FileUtils.mkdir(release_path) unless File.directory?(release_path)

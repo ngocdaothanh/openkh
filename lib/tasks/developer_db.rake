@@ -2,7 +2,7 @@
 #
 # One thing, dumping is not neccessary:
 # Rake::Task["db:schema:dump"].invoke if ActiveRecord::Base.schema_format == :ruby
-namespace :openkh do
+namespace :developer do
   namespace :db do
     desc 'This task is used internally by others to ensure that MODULE environment variable is given'
     task :check_module do
@@ -23,14 +23,14 @@ namespace :openkh do
     end
 
     desc 'Migrate the database through scripts in db/migrate and update db/schema.rb by invoking db:schema:dump. Target specific version with VERSION=x. Turn off output with VERBOSE=false.'
-    task :migrate => [:environment, "openkh:db:check_module"] do
+    task :migrate => [:environment, "developer:db:check_module"] do
       ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
       ActiveRecord::Migrator.migrate("modules/#{ENV["MODULE"]}/db/migrate/", ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
     end
 
     namespace :migrate do
       desc 'Calculate migration prefix number from module name'
-      task :prefix => "openkh:db:check_module" do
+      task :prefix => "developer:db:check_module" do
         require 'base64'
 
         module_name = ENV['MODULE']
@@ -51,7 +51,7 @@ namespace :openkh do
       desc "Migrate all modules"
       task :modules => :environment do
         # Use File::SEPARATOR to ensure crossplatform
-        # Rake::Task["openkh:db:migrate"].invoke does not work
+        # Rake::Task["developer:db:migrate"].invoke does not work
 
         ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
         version = ENV["VERSION"] ? ENV["VERSION"].to_i : nil
@@ -59,7 +59,7 @@ namespace :openkh do
         # Module "comment" must be migrated first because other modules may
         # depend on its table
         ActiveRecord::Migrator.migrate("modules/core/comment/db/migrate/", version)
-        
+
         Dir.glob("#{RAILS_ROOT}/modules/**").each do |path|
           type = path.split(File::SEPARATOR).last
           Dir.glob("#{RAILS_ROOT}/modules/#{type}/**").each do |path|
@@ -70,25 +70,25 @@ namespace :openkh do
       end
 
       desc  'Rollbacks the database one migration and re migrate up. If you want to rollback more than one step, define STEP=x. Target specific version with VERSION=x.'
-      task :redo => [:environment, "openkh:db:check_module"] do
+      task :redo => [:environment, "developer:db:check_module"] do
         if ENV["VERSION"]
-          Rake::Task["openkh:db:migrate:down"].invoke
-          Rake::Task["openkh:db:migrate:up"].invoke
+          Rake::Task["developer:db:migrate:down"].invoke
+          Rake::Task["developer:db:migrate:up"].invoke
         else
-          Rake::Task["openkh:db:rollback"].invoke
-          Rake::Task["openkh:db:migrate"].invoke
+          Rake::Task["developer:db:rollback"].invoke
+          Rake::Task["developer:db:migrate"].invoke
         end
       end
 
       desc 'Runs the "up" for a given migration VERSION.'
-      task :up => [:environment, "openkh:db:check_module"] do
+      task :up => [:environment, "developer:db:check_module"] do
         version = ENV["VERSION"] ? ENV["VERSION"].to_i : nil
         raise "VERSION is required" unless version
         ActiveRecord::Migrator.run(:up, "modules/#{ENV["MODULE"]}/db/migrate/", version)
       end
 
       desc 'Runs the "down" for a given migration VERSION.'
-      task :down => [:environment, "openkh:db:check_module"] do
+      task :down => [:environment, "developer:db:check_module"] do
         version = ENV["VERSION"] ? ENV["VERSION"].to_i : nil
         raise "VERSION is required" unless version
         ActiveRecord::Migrator.run(:down, "modules/#{ENV["MODULE"]}/db/migrate/", version)
@@ -96,7 +96,7 @@ namespace :openkh do
     end
 
     desc 'Rolls the schema back to the previous version. Specify the number of steps with STEP=n'
-    task :rollback => [:environment, "openkh:db:check_module"] do
+    task :rollback => [:environment, "developer:db:check_module"] do
       step = ENV['STEP'] ? ENV['STEP'].to_i : 1
       ActiveRecord::Migrator.rollback("modules/#{ENV["MODULE"]}/db/migrate/", step)
     end
