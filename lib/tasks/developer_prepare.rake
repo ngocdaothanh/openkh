@@ -1,5 +1,5 @@
 namespace :developer do
-  desc 'Prepare development environment after checking out'
+  desc 'Download additional things and create additional directories to prepare development environment after checking out'
   task :prepare do
     ['public/modules', 'public/themes', 'tmp'].each do |dir|
       unless File.directory?(dir)
