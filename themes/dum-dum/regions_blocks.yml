@@ -1,3 +1,3 @@
 regions: [content, sidebar]
 content: [GoogleMap, RecentContents(mode = preview)]
-sidebar: [Search, CurrentUser, Chat, Dict, ContentTypes, RecentContents(mode = title), Static, RemoteFeed, Pages, Categories]
+sidebar: [Search, CurrentUser, Chat, Dict, ContentTypes, RecentContents(mode = title), Static, RemoteFeed, Pages, Categories, Toc]

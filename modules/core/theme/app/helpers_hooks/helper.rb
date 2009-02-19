@@ -67,9 +67,7 @@ module ApplicationHelper
   #-----------------------------------------------------------------------------
 
   def region_select_choices
-    ret = [['---', -1]]
-    CONF[:regions].each_with_index { |r, i| ret << [r, i] }
-    ret
+    CONF[:regions].inject([['---', -1]]) { |ret, region| ret << [region, ret.size - 1] }
   end
 
   def theme_image_path(source)
