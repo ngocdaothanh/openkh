@@ -74,6 +74,7 @@ namespace :user do
     15.times do |i|
       t = rand_time
       p = Poll.create(
+        :views      => rand(1000) + 1,
         :title      => "Poll #{i}?",
         :responses  => ['Response 1', 'Response 2', 'Response 3'],
         :votes      => [rand(10), rand(10), rand(10)],

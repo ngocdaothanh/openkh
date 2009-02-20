@@ -1,6 +1,7 @@
 class Schema < ActiveRecord::Migration
   def self.up
     create_table :polls do |t|
+      t.integer  :views,     :null => false, :default => 0
       t.string   :title,     :null => false
       t.text     :responses, :null => false  # Serialized array of responses
       t.text     :votes,     :null => false  # Serialized array of number of votes for each response
