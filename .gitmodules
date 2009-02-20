@@ -19,3 +19,6 @@
 [submodule "vendor/plugins/thinking-sphinx"]
 	path = vendor/plugins/thinking-sphinx
 	url = git://github.com/freelancing-god/thinking-sphinx.git
+[submodule "vendor/plugins/haml"]
+	path = vendor/plugins/haml
+	url = git://github.com/nex3/haml.git
