@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    @admin ||= SiteConf.instance.admin?(self)
+    SiteConf.instance.admin?(self)
   end
 
   def num_contents
@@ -35,4 +35,7 @@ class User < ActiveRecord::Base
       ret.concat(klass.all(:conditions => {:user_id => self.id}))
     end
   end
+
+  extend ActiveSupport::Memoizable
+  memoize :to_param, :admin?, :num_contents, :contents
 end
