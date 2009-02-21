@@ -30,7 +30,7 @@ module ActiveRecord
 
           validates_presence_of :title
 
-          # Do not use normal methods so that classes that include this module
+          # Do not use instance methods so that classes that include this module
           # can have their own version of before_save and after_save.
           before_save 'self.category_ids = [Category.uncategorized.id] if category_ids.empty?'
           after_save  'Categorizing.updated_at(self.class.to_s, id, updated_at)'

@@ -26,4 +26,8 @@ class Category < ActiveRecord::Base
   def uncategorized?
     name == I18n.t('category.uncategorized')
   end
+
+  def num_contents
+    categorizings.size
+  end
 end

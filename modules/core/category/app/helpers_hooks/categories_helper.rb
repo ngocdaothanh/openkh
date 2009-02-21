@@ -5,7 +5,8 @@ module ApplicationHelper
     mod[:categories].each do |cat|
       content << html_tree(cat) do |c, level|
         link = link_to(c.name, category_path(:slug => c.slug))
-        [(c == mod[:category])? content_tag(:em, link) : link ]
+        ret = link + " (#{c.num_contents})"
+        [(c == mod[:category])? content_tag(:em, ret) : ret]
       end
     end
     content = content_tag(:ul, content, :class => 'tree pages')

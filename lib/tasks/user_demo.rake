@@ -3,9 +3,8 @@ namespace :user do
   # their interrelation.
   desc 'Add demo data'
   task :demo => :environment do
-    require 'faker'
-
     MAX_DT = 60*60*24*365*2
+    CATEGORIES = ['Hardware', 'Software', 'Network', 'Graphics Design']  # There's already a categoy "Uncategorized"
     def rand_time
       now = Time.now
       t = now - rand(MAX_DT)
@@ -19,14 +18,22 @@ namespace :user do
       :password              => 'admin',
       :password_confirmation => 'admin')
 
+    puts 'Add some categories...'
+    CATEGORIES.each do |name|
+      Category.create(
+        :name => name,
+        :slug => name.downcase.gsub(/ /, '-'))
+    end
+
     puts 'Add some articles and comments...'
     15.times do |i|
       t = rand_time
-      b = Article.create(
+      a = Article.create(
+        :category_ids => [rand(CATEGORIES.size + 1) + 1],
         :views        => rand(1000) + 1,
-        :title        => "Article #{i}",
-        :introduction => '<p>' + Faker::Lorem.paragraph + '</p>',
-        :body         => '<p>' + Faker::Lorem.paragraph + '</p>',
+        :title        => Faker::Lorem.sentence.gsub('.', ''),
+        :introduction => "<p>#{Faker::Lorem.paragraph}</p>",
+        :body         => "<p>#{Faker::Lorem.paragraph}</p>",
         :user_id      => admin.id,
         :ip           => '127.0.0.1',
         :created_at   => t,
@@ -36,9 +43,9 @@ namespace :user do
         t = rand_time
         Comment.create(
           :model_type => 'Article',
-          :model_id   => b.id,
+          :model_id   => a.id,
           :user_id    => admin.id,
-          :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
+          :body       => "<p>#{Faker::Lorem.paragraph}</p>",
           :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
@@ -48,10 +55,11 @@ namespace :user do
     puts 'Add some Q/As and comments...'
     15.times do |i|
       t = rand_time
-      q = Qa.create(
+      qa = Qa.create(
+        :category_ids => [rand(CATEGORIES.size + 1) + 1],
         :views      => rand(1000) + 1,
-        :title      => "Q/A #{i}",
-        :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
+        :title      => Faker::Lorem.sentence.gsub('.', ''),
+        :body       => "<p>#{Faker::Lorem.paragraph}</p>",
         :user_id    => admin.id,
         :ip         => '127.0.0.1',
         :created_at => t,
@@ -61,9 +69,9 @@ namespace :user do
         t = rand_time
         Comment.create(
           :model_type => 'Qa',
-          :model_id   => q.id,
+          :model_id   => qa.id,
           :user_id    => admin.id,
-          :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
+          :body       => "<p>#{Faker::Lorem.paragraph}</p>",
           :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
@@ -74,15 +82,16 @@ namespace :user do
     15.times do |i|
       t = rand_time
       p = Poll.create(
-        :views      => rand(1000) + 1,
-        :title      => "Poll #{i}?",
-        :responses  => ['Response 1', 'Response 2', 'Response 3'],
-        :votes      => [rand(10), rand(10), rand(10)],
-        :voters     => [],
-        :user_id    => admin.id,
-        :ip         => '127.0.0.1',
-        :created_at => t,
-        :updated_at => t)
+        :category_ids => [rand(CATEGORIES.size + 1) + 1],
+        :views        => rand(1000) + 1,
+        :title        => Faker::Lorem.sentence.gsub('.', '?'),
+        :responses    => [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence],
+        :votes        => [rand(10), rand(10), rand(10)],
+        :voters       => [],
+        :user_id      => admin.id,
+        :ip           => '127.0.0.1',
+        :created_at   => t,
+        :updated_at   => t)
 
       rand(15).times do |j|
         t = rand_time
@@ -90,7 +99,7 @@ namespace :user do
           :model_type => 'Poll',
           :model_id   => p.id,
           :user_id    => admin.id,
-          :body       => '<p>' + Faker::Lorem.paragraph + '</p>',
+          :body       => "<p>#{Faker::Lorem.paragraph}</p>",
           :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
@@ -176,12 +185,6 @@ namespace :user do
     StaticBlock.create(
       :title => 'Funny video',
       :body  => '<object width="' + video_width + '" height="' + video_height + '"><param name="movie" value="http://www.youtube.com/v/dpfYAghuNtU&hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><embed src="http://www.youtube.com/v/dpfYAghuNtU&hl=en&fs=1" type="application/x-shockwave-flash" allowfullscreen="true" width="' + video_width + '" height="' + video_height + '"></embed></object>')
-
-    ['Hardware', 'Software', 'Network', 'Graphics Design'].each do |name|
-      Category.create(
-        :name => name,
-        :slug => name.downcase.gsub(/ /, '-'))
-    end
 
     ENV['THEME'] = 'qwilm'
     Rake::Task['user:theme'].invoke
