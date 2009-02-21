@@ -9,35 +9,36 @@
     = hidden_field_tag('model_type', object.class.to_s)
     = hidden_field_tag('model_id', object.id)
     = file_field_tag('uploaded_file', :size => 40)
+    = '(' + t('upload.limit', :mb => UploadConf.instance.limit) + ')'
     %p
       = submit_tag(t('upload.upload'))
-      = t('upload.limit', :mb => UploadConf.instance.limit/(1024*1024))
 
   #uploads_loading{:style => 'display:none'}= image_tag('loading.gif')
 
 %iframe#uploads_frame{:name => 'uploads_frame', :style => 'position:absolute; left:-1000px; top:-1000px;'}
 
-%script{:type => 'text/javascript'}
+:javascript
   function uploadsUpload() {
-  $('uploads_form').submit();
-  uploadsToggle();
+    $('uploads_form').submit();
+    uploadsToggle();
   }
 
   function uploadsDelete(a) {
-  == if (!confirm('#{t('common.delete_confirmation')}')) {
-  return;
-  }
-  var href = a.parentNode.parentNode.getElementsByTagName('a')[0].href;
-  href = decodeURIComponent(href);
-  new Ajax.Request('/uploads/dummy', {
-  method: 'delete',
-  == parameters: 'href=' + encodeURIComponent(href) + '&model_type=#{object.class.to_s}&model_id=#{object.id}',
-  evalScripts: true
-  });
+    if (!confirm('#{t('common.delete_confirmation')}')) {
+      return;
+    }
+
+    var href = a.parentNode.parentNode.getElementsByTagName('a')[0].href;
+    href = decodeURIComponent(href);
+    new Ajax.Request('/uploads/dummy', {
+      method: 'delete',
+      parameters: 'href=' + encodeURIComponent(href) + '&model_type=#{object.class.to_s}&model_id=#{object.id}',
+      evalScripts: true
+    });
   }
 
   function uploadsToggle() {
-  $('uploads_form').toggle();
-  $('uploads_loading').toggle();
-  return true;
+    $('uploads_form').toggle();
+    $('uploads_loading').toggle();
+    return true;
   }

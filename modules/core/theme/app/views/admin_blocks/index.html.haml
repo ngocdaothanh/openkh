@@ -14,16 +14,15 @@
       %br
       = h(t("#{b.to_s.underscore}.help"))
 
-%script
-  :plain
-    function batchUpdate(f) {
-      var a = $('.block_conf');
-      a.each(function(i, e) {
-        var i = document.createElement('input');
-        i.type  = 'hidden';
-        i.name  = e.name;
-        i.value = e.value;
-        f.appendChild(i)
-      });
-      f.submit();
-    }
+:javascript
+  function batchUpdate(f) {
+    var a = $('.block_conf');
+    a.each(function(i, e) {
+      var i = document.createElement('input');
+      i.type  = 'hidden';
+      i.name  = e.name;
+      i.value = e.value;
+      f.appendChild(i)
+    });
+    f.submit();
+  }

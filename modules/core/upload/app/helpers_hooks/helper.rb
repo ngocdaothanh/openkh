@@ -10,9 +10,9 @@ module ApplicationHelper
   def html_upload_list(object)
     model_type = object.class.to_s
 
-    down = model_type.downcase.pluralize
+    plural = model_type.downcase.pluralize
     model_id = object.id
-    dir = File.expand_path("#{RAILS_ROOT}/public/system/#{down}/#{model_id}")
+    dir = File.expand_path("#{RAILS_ROOT}/public/system/#{plural}/#{model_id}")
     urls = []
     if File.directory?(dir)
       files = Dir.glob("#{dir}/**/*").sort
@@ -21,7 +21,7 @@ module ApplicationHelper
 
         name = f.split("#{dir}/").last
         url = {
-          :href => "/system/#{down}/#{model_id}/#{name}",
+          :href => "/system/#{plural}/#{model_id}/#{name}",
           :stat => File::Stat.new(f)
         }
 

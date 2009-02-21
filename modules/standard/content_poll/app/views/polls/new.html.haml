@@ -30,7 +30,7 @@
 
   = f.submit(t('common.save'))
 
-%script{:type => 'text/javascript'}
+:javascript
   $('#add_response').click(function() {
-  == $('#responses').append('#{escape_javascript(text_field_tag('poll[responses][]'))}<br />');
+    $('#responses').append('#{escape_javascript(text_field_tag('poll[responses][]'))}<br />');
   });

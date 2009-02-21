@@ -2,8 +2,9 @@
   #captcha_mask{:style => 'overflow:hidden; display:none; position:absolute; z-index:9000; left:0; top:0; background-color:silver'}
     #captcha_dlg{:style => 'display:none; margin-top:100px; margin-left:auto; margin-right:auto; width:320px; height:auto; padding:5px; font-weight:bold; background-color:#B8D1F5; border:1px #6593CF solid'}
       %center
-        %script{:type => 'text/javascript'}
+        :javascript
           var RecaptchaOptions = {theme: 'white'}
+
         %script{:type => 'text/javascript', :src => "http://api.recaptcha.net/challenge?k=#{CaptchaConf.instance.public_key}"}
 
   = javascript_include_tag('../modules/captcha/javascripts/captcha')

@@ -21,20 +21,20 @@
   %br
   = button_to_function(t('user.send'), 'captcha.show(usersPMSend)', :id => 'users_pm_submit')
 
-  %script{:type => 'text/javascript'}
+  :javascript
     function usersPMSend() {
-    == new Ajax.Request('#{pm_user_path(@user.id)}', {
-    method: 'post',
-    parameters: 'message=' + encodeURI($F('users_pm_message')),
-    evalScripts: true
-    });
-    usersPMToggle();
+      new Ajax.Request('#{pm_user_path(@user.id)}', {
+        method: 'post',
+        parameters: 'message=' + encodeURI($F('users_pm_message')),
+        evalScripts: true
+      });
+      usersPMToggle();
     }
 
     function usersPMToggle() {
-    $('users_pm_loading').toggle();
-    $('users_pm_message').toggle();
-    $('users_pm_submit').toggle();
+      $('users_pm_loading').toggle();
+      $('users_pm_message').toggle();
+      $('users_pm_submit').toggle();
     }
 
 - unless @user.contents.empty?
