@@ -6,7 +6,7 @@ module ApplicationHelper
   def current_user_block(block)
     title = mod[:me].nil? ? t('user.login') : full_user_name(mod[:me])
     content = render('current_user_block/show')
-    [title, content]
+    [html_user_gravatar(mod[:me]) + ' ' + title, content]
   end
 
   #-----------------------------------------------------------------------------
