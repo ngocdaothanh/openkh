@@ -1,9 +1,5 @@
 This module adds chat block:
 * browser <-- (flash socket) --> chat server --> DB
 
-Start chat server with the same environment of that of the main OpenKH:
-ruby script/chat_server <development | production>
-
-== Technical details
-
-TODO
+Start chat server:
+ruby modules/standard/chat/script/chat_server
