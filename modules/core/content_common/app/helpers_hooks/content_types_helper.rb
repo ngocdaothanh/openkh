@@ -6,8 +6,7 @@ module ApplicationHelper
       down = t.downcase
       plural = down.pluralize
       name = t("#{klass.to_s.underscore}.name")
-      name_count = "#{name} (#{klass.count})"
-      content << content_tag(:li, link_to(name_count, send("#{plural}_path")))
+      content << content_tag(:li, link_to(name, send("#{plural}_path")) + " (#{klass.count})")
     end
     content = content_tag(:ul, content)
 
