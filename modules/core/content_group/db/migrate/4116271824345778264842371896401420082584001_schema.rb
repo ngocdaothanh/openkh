@@ -5,7 +5,6 @@ class Schema < ActiveRecord::Migration
       t.text    :introduction, :null => false
       t.text    :links,        :null => false
       t.integer :user_id,      :null => false
-      t.string  :ip,           :null => false, :limit => 15
       t.timestamps
     end
     Group.create_versioned_table

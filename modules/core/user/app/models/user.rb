@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   validates_presence_of :user_name
 
+  has_many :ips
+
   def self.inherited(subclass)
     subclass.class_eval do
       # May be same user_name but different type

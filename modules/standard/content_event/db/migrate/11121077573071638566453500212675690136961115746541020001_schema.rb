@@ -6,7 +6,6 @@ class Schema < ActiveRecord::Migration
       t.text     :introduction, :null => false
       t.text     :instruction,  :null => false
       t.integer  :user_id,      :null => false
-      t.string   :ip,           :null => false, :limit => 15
       t.integer  :closed,       :null => false, :default => 0
       t.timestamps
     end

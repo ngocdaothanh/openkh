@@ -1,7 +1,7 @@
-var Captcha = Class.create();
-Captcha.prototype = {
-  initialize: function() {
-    if ($bypassCaptcha) {
+var captcha = {
+  initialize: function(bypass) {
+    this.bypass = bypass;
+    if (bypass) {
       return;
     }
 
@@ -18,7 +18,7 @@ Captcha.prototype = {
   show: function(formOrFunction) {
     this.formOrFunction = formOrFunction;
 
-    if ($bypassCaptcha) {
+    if (this.bypass) {
       this.on200(null);
       return false;
     }
@@ -87,18 +87,15 @@ Captcha.prototype = {
     } else {
       this.formOrFunction.submit();
     }
-    if (!$bypassCaptcha) {
+    if (!this.bypass) {
       this.onCancel();
     }
   },
 
   on400: function(request) {
     this.txt.disabled = false;
-	this.txt.value    = '';
-	Recaptcha.reload ('r');
+    this.txt.value    = '';
+    Recaptcha.reload ('r');
     Recaptcha.focus_response_field();
   }
 };
-
-var captcha;
-Event.observe(window, 'load', function() {  captcha = new Captcha() }, false);

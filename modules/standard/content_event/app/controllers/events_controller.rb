@@ -6,7 +6,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.user_id = mod[:me].id
-    @event.ip      = request.remote_ip
     if @event.save
       redirect_to(event_path(@event))
     else

@@ -1,6 +1,6 @@
 class LoginOpenidController < ApplicationController
   add_breadcrumb I18n.t('user.users'), 'users_path'
-  add_breadcrumb I18n.t('user.login'), '', :only => [:do_login]
+  add_breadcrumb I18n.t('user.login'), :only => [:do_login]
 
   def do_login
     begin
@@ -48,6 +48,7 @@ class LoginOpenidController < ApplicationController
 
       if me.errors.empty?
         session[:me_id] = me.id  # Login
+        Ip.create(:user_id => me.id, :ip => request.remote_ip)
         redirect_to(session[:destination] || root_path)
       end
     else

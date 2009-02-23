@@ -1,29 +1,29 @@
 -# Input: object
 
-#uploads_list= html_upload_list(object)
+#upload_list= html_upload_list(object)
 
 - if mod[:me].nil?
   %p.notice= link_to(t('upload.login_to_upload'), login_path)
 - else
-  - form_tag(uploads_path, :id => 'uploads_form', :target => 'uploads_frame', :multipart => true, :method => 'post', :onsubmit => 'return captcha.show(uploadsUpload)') do
+  - form_tag(uploads_path, :id => 'upload_form', :target => 'upload_frame', :multipart => true, :method => 'post', :onsubmit => 'return captcha.show(uploadUpload)') do
     = hidden_field_tag('model_type', object.class.to_s)
     = hidden_field_tag('model_id', object.id)
-    = file_field_tag('uploaded_file', :size => 40)
+    = file_field_tag('uploaded_file', :size => 30)
     = '(' + t('upload.limit', :mb => UploadConf.instance.limit) + ')'
-    %p
-      = submit_tag(t('upload.upload'))
+    %br
+    = submit_tag(t('upload.upload'))
 
-  #uploads_loading{:style => 'display:none'}= image_tag('loading.gif')
+  #upload_loading{:style => 'display:none'}= image_tag('loading.gif')
 
-%iframe#uploads_frame{:name => 'uploads_frame', :style => 'position:absolute; left:-1000px; top:-1000px;'}
+%iframe#upload_frame{:name => 'upload_frame', :style => 'position:absolute; left:-1000px; top:-1000px;'}
 
 :javascript
-  function uploadsUpload() {
-    $('uploads_form').submit();
-    uploadsToggle();
+  function uploadUpload() {
+    $('upload_form').submit();
+    uploadToggle();
   }
 
-  function uploadsDelete(a) {
+  function uploadDelete(a) {
     if (!confirm('#{t('common.delete_confirmation')}')) {
       return;
     }
@@ -37,8 +37,8 @@
     });
   }
 
-  function uploadsToggle() {
-    $('uploads_form').toggle();
-    $('uploads_loading').toggle();
+  function uploadToggle() {
+    $('upload_form').toggle();
+    $('upload_loading').toggle();
     return true;
   }

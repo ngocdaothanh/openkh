@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(params[:comment])
     comment.user_id = mod[:me].id
-    comment.ip      = request.remote_ip
 
     render(:update) do |page|
       if comment.save
@@ -43,7 +42,6 @@ class CommentsController < ApplicationController
       end
 
       comment.body = params[:comment][:body]
-      comment.ip = request.remote_ip
       unless comment.save
         @status = 400
         page.alert(comment.errors.full_messages.join("\n"))

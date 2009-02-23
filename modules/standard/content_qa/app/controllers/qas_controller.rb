@@ -11,7 +11,6 @@ class QasController < ApplicationController
 
     @qa = Qa.new(params[:qa])
     @qa.user_id = mod[:me].id
-    @qa.ip      = request.remote_ip
     if @qa.save
       redirect_to(qa_path(@qa.to_param))
     else

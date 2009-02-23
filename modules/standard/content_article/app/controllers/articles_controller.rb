@@ -7,7 +7,6 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(params[:article])
     @article.user_id = mod[:me].id
-    @article.ip      = request.remote_ip
     if @article.save
       redirect_to(article_path(@article))
     else
@@ -59,7 +58,6 @@ class ArticlesController < ApplicationController
       end
     else
       @article.user_id    = mod[:me].id
-      @article.ip         = request.remote_ip
       @article.created_at = now  # Creation time of the new version
       saved = @article.save
     end

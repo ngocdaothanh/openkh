@@ -5,7 +5,6 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(params[:poll])
     @poll.user_id = mod[:me].id
-    @poll.ip      = request.remote_ip
     if @poll.save
       redirect_to(poll_path(@poll))
     else

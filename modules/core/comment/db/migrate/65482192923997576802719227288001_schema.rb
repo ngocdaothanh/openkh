@@ -5,7 +5,6 @@ class Schema < ActiveRecord::Migration
     create_table :comments do |t|
       t.integer  :user_id, :null => false
       t.text     :body,    :null => false
-      t.string   :ip,      :null => false, :limit => 15
       t.timestamps
     end
   end

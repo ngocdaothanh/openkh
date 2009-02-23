@@ -1,5 +1,5 @@
 class Qa < ActiveRecord::Base
-  attr_accessor :body, :ip
+  attr_accessor :body
 
   acts_as_content
 
@@ -21,7 +21,6 @@ class Qa < ActiveRecord::Base
       :model_id   => self.id,
       :body       => self.body,
       :user_id    => self.user_id,
-      :ip         => self.ip,
       :created_at => self.created_at,
       :updated_at => self.updated_at)
     Comment.record_timestamps = true

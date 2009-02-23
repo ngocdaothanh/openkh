@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :check_login,   :only => [:pm]
 
   add_breadcrumb I18n.t('user.user'), 'users_path'
-  add_breadcrumb I18n.t('user.login'), '', :only => [:login]
+  add_breadcrumb I18n.t('user.login'), :only => [:login]
 
   def login
     if mod[:me].nil?

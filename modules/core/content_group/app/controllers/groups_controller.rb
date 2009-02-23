@@ -5,7 +5,6 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.user_id = mod[:me].id
-    @group.ip      = request.remote_ip
     if @group.save
       redirect_to(group_path(:id => @group.to_param))
     else
@@ -56,7 +55,6 @@ class GroupsController < ApplicationController
       end
     else
       @group.user_id    = mod[:me].id
-      @group.ip         = request.remote_ip
       @group.created_at = now  # Creation time of the new version
       saved = @group.save
     end

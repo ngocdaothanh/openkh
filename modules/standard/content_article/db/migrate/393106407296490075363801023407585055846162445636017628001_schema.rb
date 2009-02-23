@@ -10,7 +10,6 @@ class Schema < ActiveRecord::Migration
       t.text     :introduction, :null => false
       t.text     :body,         :null => false
       t.integer  :user_id,      :null => false
-      t.string   :ip,           :null => false, :limit => 15
       t.datetime :created_at,   :null => false  # The time of creation of a version, the program must manually modify this
     end
     Article.create_versioned_table

@@ -7,7 +7,6 @@ class Schema < ActiveRecord::Migration
       t.text     :votes,     :null => false  # Serialized array of number of votes for each response
       t.text     :voters,    :null => false  # Serialized array of ids of voters
       t.integer  :user_id,   :null => false
-      t.string   :ip,        :null => false, :limit => 15
       t.timestamps
     end
     add_column :comments, :poll_id, :integer

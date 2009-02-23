@@ -35,7 +35,6 @@ namespace :user do
         :introduction => "<p>#{Faker::Lorem.paragraph}</p>",
         :body         => "<p>#{Faker::Lorem.paragraph}</p>",
         :user_id      => admin.id,
-        :ip           => '127.0.0.1',
         :created_at   => t,
         :updated_at => t)
 
@@ -46,7 +45,6 @@ namespace :user do
           :model_id   => a.id,
           :user_id    => admin.id,
           :body       => "<p>#{Faker::Lorem.paragraph}</p>",
-          :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
       end
@@ -61,7 +59,6 @@ namespace :user do
         :title      => Faker::Lorem.sentence.gsub('.', ''),
         :body       => "<p>#{Faker::Lorem.paragraph}</p>",
         :user_id    => admin.id,
-        :ip         => '127.0.0.1',
         :created_at => t,
         :updated_at => t)
 
@@ -72,7 +69,6 @@ namespace :user do
           :model_id   => qa.id,
           :user_id    => admin.id,
           :body       => "<p>#{Faker::Lorem.paragraph}</p>",
-          :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
       end
@@ -89,7 +85,6 @@ namespace :user do
         :votes        => [rand(10), rand(10), rand(10)],
         :voters       => [],
         :user_id      => admin.id,
-        :ip           => '127.0.0.1',
         :created_at   => t,
         :updated_at   => t)
 
@@ -100,7 +95,6 @@ namespace :user do
           :model_id   => p.id,
           :user_id    => admin.id,
           :body       => "<p>#{Faker::Lorem.paragraph}</p>",
-          :ip         => '127.0.0.1',
           :created_at => t,
           :updated_at => t)
       end
