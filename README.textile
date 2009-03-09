@@ -4,24 +4,25 @@ difference: OPEN
 * Normal users can do everything with minimum restriction from the admins, thus
 OpenKH is perfect for building open community sites (e.g. sites where users are
 able to collaborate to create blikis, QAs, books).
-* "Demo":http://demo.cntt.tv/
-* "Wiki":http://wiki.github.com/ngocdaothanh/openkh (instruction to install etc.)
+
+Please read the "wiki":http://wiki.github.com/ngocdaothanh/openkh for more information.
 
 h2. Developers
 
 h3. Current developers
 
-* "Nguyen Tuan Anh":http://rubyforge.org/users/akia/
-* "Dao Thanh Ngoc":http://rubyforge.org/users/ngocdaothanh/
-* "Nguyen Duy Tho":http://rubyforge.org/users/ntdt/
+* "Anh Nguyen Tuan":http://rubyforge.org/users/akia/
+* "Eiji Sakai":http://d.hatena.ne.jp/elm200/
+* "Ngoc Dao Thanh":http://rubyforge.org/users/ngocdaothanh/
+* "Tho Nguyen Duy":http://rubyforge.org/users/ntdt/
 
 h3. Retired developers
 
-* "Tran Truong Duc Giang":http://rubyforge.org/users/jishin/
-* "Tran Thien Khiem":http://rubyforge.org/users/danicount/
-* "Tran Thi Phuong Linh":http://rubyforge.org/users/alide/
-* "Dang Ba Khac Trieu":http://rubyforge.org/users/dangtrieu/
-* "Vo Thanh Trung":http://rubyforge.org/users/thanhtrungvv/
+* "Giang Tran Truong Duc":http://rubyforge.org/users/jishin/
+* "Khiem Tran Thien":http://rubyforge.org/users/danicount/
+* "Linh Tran Thi Phuong":http://rubyforge.org/users/alide/
+* "Trieu Dang Ba Khac":http://rubyforge.org/users/dangtrieu/
+* "Trung Vo Thanh":http://rubyforge.org/users/thanhtrungvv/
 
 Only ones who have committed are listed.
 
