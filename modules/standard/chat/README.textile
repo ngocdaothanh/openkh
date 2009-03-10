@@ -1,5 +1,5 @@
 This module adds chat block:
 * browser <-- (flash socket) --> chat server --> DB
 
-Start chat server:
+To start chat server:
 ruby modules/standard/chat/script/chat_server

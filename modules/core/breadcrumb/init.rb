@@ -1,3 +1,6 @@
+# See:
+# http://szeryf.wordpress.com/2008/06/13/easy-and-flexible-breadcrumbs-for-rails/
+# http://szeryf.wordpress.com/2008/07/23/breadcrumbs-ii-the-internationalization/
 ActionController::Base.class_eval do
   private
 
