@@ -1,12 +1,19 @@
 class DictJaEnSchema < ActiveRecord::Migration
   # FIXME: download directly from the server of EDICT
   def self.import_from_edict
-    source = File.read("#{RAILS_ROOT}/tmp/edict.utf8")
+    file = "#{RAILS_ROOT}/tmp/edict.utf8"
+
+    # Download EDICT's Japanese-English dictionary to tmp
+    unless File.exists?(file)
+      tmp_dir = "#{RAILS_ROOT}/tmp"
+      File.mkdir(tmp_dir) unless File.exists?(tmp_dir)
+      system("cd #{tmp_dir} && wget http://ftp.monash.edu.au/pub/nihongo/edict.gz && gunzip edict.gz && iconv -f euc-jp -t utf8 edict > edict.utf8 && rm edict")
+    end
 
     con = DictJaEn.connection
 
     values_array = []
-    source.each_line do |l|
+    File.read(file).each_line do |l|
       next unless l =~ /^(.+)\s\[(.+)\]\s\/(.+)\/$/
 
       entry, pronunciation, description = con.quote($1), con.quote($2), con.quote($3)
