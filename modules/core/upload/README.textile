@@ -1,0 +1,3 @@
+This module allows uploading files to directories corresponding to contents.
+
+Uploaded files are stored in public/system. When creating backup, you should also backup this directory.

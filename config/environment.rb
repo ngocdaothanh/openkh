@@ -17,6 +17,7 @@ require File.join(File.dirname(__FILE__), 'conf')
 
 Rails::Initializer.run do |config|
   config.gem 'faker'
+  config.gem 'RedCloth'
 
   # Evaluate gems.rb from all modules
   files = Dir.glob("#{RAILS_ROOT}/modules/**/gems.rb")

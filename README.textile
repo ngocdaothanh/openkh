@@ -1,9 +1,6 @@
-OpenKH is Open + Know-How. It aims to become "Drupal on Rails" with one
-difference: OPEN
+OpenKH is Open + Know-How. It aims to become "Drupal on Rails" with one difference: OPEN
 * There are only 2 types of users: normal user and admin (e.g no moderator).
-* Normal users can do everything with minimum restriction from the admins, thus
-OpenKH is perfect for building open community sites (e.g. sites where users are
-able to collaborate to create blikis, QAs, books).
+* Normal users can do everything with minimum restriction from the admins, thus OpenKH is perfect for building open community sites (e.g. sites where users are able to collaborate to create blikis, QAs, books).
 
 Please read the "wiki":http://wiki.github.com/ngocdaothanh/openkh for more information.
 
