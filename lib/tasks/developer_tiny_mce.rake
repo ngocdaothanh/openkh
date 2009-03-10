@@ -6,7 +6,7 @@ namespace :developer do
         doc.search("/html/body//a").each do |a|
           href = a.attributes['href']
           if /prdownloads\.sourceforge\.net/ =~ href
-            download_cmd = "cd /tmp && rm -f tinymce_*.zip && wget #{href}"
+            download_cmd = "cd /tmp && rm -rf tinymce* && mkdir tinymce && cd tinymce && wget #{href}"
             # We return here because we only want the first match (which links to latest tiny_mce)
             return run(download_cmd, :desc => 'Download tiny_mce')
           end
@@ -14,7 +14,7 @@ namespace :developer do
       end
 
       def unzip
-        unzip_cmd = "cd /tmp && rm -rf tinymce && unzip tinymce_*.zip"
+        unzip_cmd = "cd /tmp/tinymce && unzip tinymce_*.zip"
         run(unzip_cmd, :desc => 'Unzip downloaded file')
       end
 
