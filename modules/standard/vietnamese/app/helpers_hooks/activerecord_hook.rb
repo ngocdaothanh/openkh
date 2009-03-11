@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ActiveRecord::Base.class_eval do
   def sanitize_to_param_with_vietnamese(to_param_result)
     ret = to_param_result

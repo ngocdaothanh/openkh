@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 namespace :user do
   # This task should not be broken into each module's migration because of
   # their interrelation.

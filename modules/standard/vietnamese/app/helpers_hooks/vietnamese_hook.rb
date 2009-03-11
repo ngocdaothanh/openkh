@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 module ApplicationHelper
   if CONF[:locale] == 'vi'
     def current_user_block_with_vietnamese_ime(block)
