@@ -9,9 +9,9 @@ en:
     title: "Categories"
     help: "List of categories."
 
-  toc_block:
-    title: "Table of contents"
-    help: "This block can be used for displaying table of contents for the whole site and each category."
+  link_block:
+    title: "Links"
+    help: "This block can be used for displaying links (table of contents) to important contents or external links."
 
-    title_for_category: "Table of contents of category {{name}}"
-    title_for_site: "Table of contents of site"
+    title_for_category: "Links of category {{name}}"
+    title_for_site: "Links"

@@ -4,5 +4,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :admin_categories, :collection => {:batch_update => :put}
 
-  map.resources :tocs, :member => {:version => :get, :diff => :get, :revert => :put}
+  map.resources :links, :member => {:version => :get, :diff => :get, :revert => :put}
 end

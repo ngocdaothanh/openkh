@@ -1,0 +1,6 @@
+.links_table_of_contents= sanitize(@link.table_of_contents)
+
+%p
+  - if !@effective_version.nil?
+    = html_content_version_pager(@link, @effective_version)
+    = link_to(theme_image_tag('edit.png'), edit_link_path(@link, :version => @link.version), :name => t('common.edit'))

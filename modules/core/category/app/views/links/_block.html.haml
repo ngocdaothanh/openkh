@@ -1,0 +1,8 @@
+-# Input:
+-#   category_id, link
+
+- if link.nil?
+  = link_to(theme_image_tag('edit.png'), new_link_path(:category_id => category_id), :title => t('common.create'))
+- else
+  = sanitize(link.body)
+  = link_to(theme_image_tag('edit.png'), edit_link_path(link, :category_id => category_id, :version => link.version), :title => t('common.edit'))

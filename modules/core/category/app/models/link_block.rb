@@ -1,0 +1,2 @@
+class LinkBlock < Block
+end
