@@ -21,6 +21,8 @@ db/*.*
 
 log/*.log
 
+modules/extended
+
 # Copied by JRails from its directory
 public/javascripts/jquery*
 public/javascripts/jrails.js
