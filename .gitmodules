@@ -13,9 +13,6 @@
 [submodule "vendor/plugins/acts_as_versioned"]
 	path = vendor/plugins/acts_as_versioned
 	url = git://github.com/technoweenie/acts_as_versioned.git
-[submodule "vendor/plugins/jrails"]
-	path = vendor/plugins/jrails
-	url = git://github.com/aaronchi/jrails.git
 [submodule "vendor/plugins/haml"]
 	path = vendor/plugins/haml
 	url = git://github.com/nex3/haml.git
