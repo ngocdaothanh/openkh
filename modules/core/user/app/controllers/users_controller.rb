@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   before_filter :check_login,   :only => [:pm]
 
   add_breadcrumb I18n.t('user.user'), 'users_path'
-  add_breadcrumb I18n.t('user.login'), :only => [:login]
 
   def login
     if mod[:me].nil?
       remember_destination
+      add_breadcrumb I18n.t('user.login')
     else
       redirect_to(root_path)
     end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    add_breadcrumb(@user.user_name, '')
+    add_breadcrumb(@user.user_name)
   end
 
   # Ajax.
