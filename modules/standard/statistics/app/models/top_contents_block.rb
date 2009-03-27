@@ -1,0 +1,2 @@
+class TopContentsBlock < Block
+end

@@ -1,0 +1,8 @@
+en:
+  top_users_block:
+    title: "Top users"
+    help: "List of users who have created the most contents"
+
+  top_contents_block:
+    title: "Top contents"
+    help: "List of contents that are most read"
