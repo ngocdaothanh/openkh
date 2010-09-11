@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-  # See config/initializers/fix_session_for_swfupload.rb
   protect_from_forgery
+
+  # See config/initializers/fix_session_for_swfupload.rb
   def self.swfupload(actions)
     session :cookie_only => false, :only => actions
     protect_from_forgery :except => actions

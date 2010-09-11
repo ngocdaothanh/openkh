@@ -1,18 +1,18 @@
 # PostgreSQL. Versions 7.4 and 8.x are supported.
 #
-# Install the ruby-pg driver (ruby-postgres and postgres-pr are older):
-#   gem install ruby-pg
-# On Mac OS X:
-#   sudo port install postgresql83 postgresql83-server
-#   sudo env PATH=/opt/local/lib/postgresql83/bin:$PATH ARCHFLAGS="-arch i386" gem install ruby-pg
+# Install the pg driver:
+#   gem install pg
+# On Mac OS X with macports:
+#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
 # On Windows:
-#   gem install ruby-postgres
+#   gem install pg
 #       Choose the win32 build.
 #       Install PostgreSQL and put its /bin directory on your path.
 development:
   adapter: postgresql
   encoding: unicode
-  database: openkh
+  database: openkh_development
+  pool: 5
   username: postgres
   password: postgres
 
@@ -31,12 +31,6 @@ development:
   # The server defaults to notice.
   #min_messages: warning
 
-production:
-  adapter: postgresql
-  database: openkh
-  username: postgres
-  password: postgres
-
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -44,5 +38,14 @@ test:
   adapter: postgresql
   encoding: unicode
   database: openkh_test
+  pool: 5
+  username: postgres
+  password: postgres
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: openkh_production
+  pool: 5
   username: postgres
   password: postgres

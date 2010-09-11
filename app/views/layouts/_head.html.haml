@@ -9,6 +9,9 @@
 = javascript_include_tag('application')  # Dynamic thus does not exist on disk thus cannot be cached
 = stylesheet_link_tag('application', :media => 'all')
 
+= stylesheet_link_tag :all
+= csrf_meta_tag
+
 - if mod[:wysiwyg]
   = javascript_include_tag('tiny_mce/tiny_mce')
 
