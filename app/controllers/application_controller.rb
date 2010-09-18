@@ -7,9 +7,6 @@ class ApplicationController < ActionController::Base
     protect_from_forgery :except => actions
   end
 
-  # No layout for RSS views
-  exempt_from_layout :builder
-
   before_filter :prepare_system_wide_variables
 
   add_breadcrumb I18n.t('common.home'), 'root_path'

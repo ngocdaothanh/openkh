@@ -18,8 +18,13 @@ module OpenKH
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
-    config.paths.vendor.plugins << "#{config.root}/engines/core"
-    config.paths.vendor.plugins << "#{config.root}/engines/standard"
+    # Prevent error relating to autoreload in development environment, ex:
+    # * "A copy of ApplicationController has been removed from the module tree but is still active!"
+    # * undefined local variable or method `mod' for #<ContentsController:0x2475598>
+    config.autoload_once_paths += %W{#{config.root}/app/controllers}
+
+    config.paths.vendor.plugins << "#{config.root}/modules/core"
+    config.paths.vendor.plugins << "#{config.root}/modules/standard"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -54,60 +59,5 @@ Rails::Initializer.run do |config|
   files = Dir.glob("#{RAILS_ROOT}/modules/**/gems.rb")
   lines = files.inject('') { |tmp_lines, file| tmp_lines << File.read(file) }
   eval(lines)
-
-  config.plugin_paths += %W(
-    #{RAILS_ROOT}/modules/core
-    #{RAILS_ROOT}/modules/standard
-    #{RAILS_ROOT}/modules/extended)
-
-  # Prevent error relating to autoreload in development environment, ex:
-  # * "A copy of ApplicationController has been removed from the module tree but is still active!"
-  # * undefined local variable or method `mod' for #<ContentsController:0x2475598>
-  config.load_once_paths += %W{#{RAILS_ROOT}/app/controllers}
-
-  # Only load the plugins named here, in the order given. By default, all plugins
-  # in vendor/plugins are loaded in alphabetical order.
-  # :all can be used as a placeholder for all plugins not explicitly named
-  # config.plugins = [:exception_notification, :ssl_requirement, :all]
-
-  # Add additional load paths for your own custom dirs
-  # config.load_paths += %W(#{RAILS_ROOT}/extras)
-
-  # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector
 end
 =end
-
-# The piece of code below must be put here, not in initializers, so that it is
-# loaded *after* the helpers of the core.
-
-# Modules ----------------------------------------------------------------------
-
-# Helpers must be loaded *after* hooks in decreasing module priority:
-# core -> standard -> extended
-files = []
-['app', 'modules/core', 'modules/standard', 'modules/extended'].each do |dir|
-  ['admin_*_controller', '*helper', '*conf', '*block', '*hook'].each do |file|
-    files += Dir.glob("#{Rails.root}/#{dir}/**/#{file}.rb")
-  end
-  files += Dir.glob("#{Rails.root}/#{dir}/**/models/**/*.rb")
-end
-files.each { |h| require(h) }
-
-# Include all helpers and hooks, all the time ----------------------------------
-
-# ApplicationController.class_eval do
-#   include ApplicationHelper
-# end
-#
-# ActionView::Base.class_eval do
-#   include ApplicationHelper
-#
-#   # Render only if the template exists. If the template is missing and there is
-#   # a block given, the block will be evaluated and returned.
-#   def render_if_exists(*args)
-#     render(*args)
-#   rescue ActionView::MissingTemplate
-#     block_given? ? yield : ''
-#   end
-# end

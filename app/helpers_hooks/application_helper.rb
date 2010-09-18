@@ -6,6 +6,7 @@ module ApplicationHelper
   #                        is not a category. To force the before filter to prepare
   #                        this variable, design your extension route so that
   #                        params[:category] is a box path.
+puts 222
   def mod
     @mod ||= {}
   end
