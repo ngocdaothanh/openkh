@@ -40,8 +40,8 @@ class Article < ActiveRecord::Base
         "model_id = #{self.id}")
 
       # Convert upload directory
-      FileUtils.mv("#{RAILS_ROOT}/public/system/articles/#{id}",
-        "#{RAILS_ROOT}/public/system/qas/#{qa.id}", :force => true)
+      FileUtils.mv("#{Rails.root}/public/system/articles/#{id}",
+        "#{Rails.root}/public/system/qas/#{qa.id}", :force => true)
 
       # See after_destroy
       destroy

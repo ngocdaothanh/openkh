@@ -8,10 +8,7 @@ h2. Developers
 
 h3. Current developers
 
-* "Anh Nguyen Tuan":http://rubyforge.org/users/akia/
-* "Eiji Sakai":http://d.hatena.ne.jp/elm200/
 * "Ngoc Dao Thanh":http://rubyforge.org/users/ngocdaothanh/
-* "Tho Nguyen Duy":http://rubyforge.org/users/ntdt/
 
 h3. Retired developers
 
@@ -20,6 +17,8 @@ h3. Retired developers
 * "Linh Tran Thi Phuong":http://rubyforge.org/users/alide/
 * "Trieu Dang Ba Khac":http://rubyforge.org/users/dangtrieu/
 * "Trung Vo Thanh":http://rubyforge.org/users/thanhtrungvv/
+* "Tho Nguyen Duy":http://rubyforge.org/users/ntdt/
+* "Anh Nguyen Tuan":http://rubyforge.org/users/akia/
 
 Only ones who have committed are listed.
 

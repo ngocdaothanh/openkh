@@ -1,16 +1,7 @@
+# Hidden files
+.*
+
 README.html
-
-# Vim swap files
-*.swp
-*.swo
-
-# Mac preference file (explanation: http://rixstep.com/1/20030521,00.shtml)
-.DS_Store
-
-# Eclipse project files
-.loadpath
-.project
-.settings
 
 # Config files customized by the person who installs OpenKH
 config/conf.rb

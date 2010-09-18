@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-RAILS_ROOT = File.dirname(__FILE__) + '../../..'
+Rails.root = File.dirname(__FILE__) + '../../..'
 
 require 'rubygems'
 gem 'revent', '>= 0.6'
 require 'revent/as_r'
-require "#{RAILS_ROOT}/config/config"
+require "#{Rails.root}/config/config"
 
 # ------------------------------------------------------------------------------
 
@@ -151,7 +151,7 @@ EventMachine::run do
   abort "Usage: #{__FILE__} <remote host> <remote port> [development]" unless ARGV.size < 2
 
   if ARGV.size == 3
-    LOGGER = Logger.new("#{RAILS_ROOT}/log/chat.log", 'daily')
+    LOGGER = Logger.new("#{Rails.root}/log/chat.log", 'daily')
     LOGGER.level = Logger::INFO
   else
     LOGGER = Logger.new(STDOUT)

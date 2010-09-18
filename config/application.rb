@@ -8,12 +8,20 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module OpenKH
   class Application < Rails::Application
+    # Load CONF before modules
+    require File.join(File.dirname(__FILE__), 'conf')
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+
+    config.plugin_paths += %W(
+      #{Rails.root}/modules/core
+      #{Rails.root}/modules/standard
+      #{Rails.root}/modules/extended)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -26,9 +34,9 @@ module OpenKH
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    # All files from config/locales/*.rb,yml are added automatically.
+    config.i18n.load_path += Dir[Rails.root.join('/modules/**/config/locales/*.{rb,yml}').to_s]
+    config.i18n.default_locale = CONF[:locale]
 
     # JavaScript files you want as :defaults (application.js is always included).
     config.action_view.javascript_expansions[:defaults] = %w()
@@ -43,37 +51,11 @@ end
 
 =begin
 
-# Uncomment below to force Rails into production mode when
-# you don't control web/app server and can't set it the proper way
-# ENV['RAILS_ENV'] ||= 'production'
-
-# Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3' unless defined? RAILS_GEM_VERSION
-
-# Bootstrap the Rails environment, frameworks, and default configuration
-require File.join(File.dirname(__FILE__), 'boot')
-
-#-------------------------------------------------------------------------------
-
-# Load CONF before modules
-require File.join(File.dirname(__FILE__), 'conf')
-
-#-------------------------------------------------------------------------------
-
 Rails::Initializer.run do |config|
-  config.gem 'faker'
-  config.gem 'RedCloth'  # Used to create README.html from README.textile files
-
   # Evaluate gems.rb from all modules
   files = Dir.glob("#{RAILS_ROOT}/modules/**/gems.rb")
   lines = files.inject('') { |tmp_lines, file| tmp_lines << File.read(file) }
   eval(lines)
-
-  config.time_zone = 'UTC'
-  # The internationalization framework can be changed to have another default locale (standard is :en) or more load paths.
-  # All files from config/locales/*.rb,yml are added automatically.
-  config.i18n.load_path += Dir[File.join(RAILS_ROOT, '/modules/**/config/locales/*.{rb,yml}')]
-  config.i18n.default_locale = CONF[:locale]
 
   config.plugin_paths += %W(
     #{RAILS_ROOT}/modules/core
@@ -96,6 +78,7 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
+=end
 
 # The piece of code below must be put here, not in initializers, so that it is
 # loaded *after* the helpers of the core.
@@ -107,9 +90,9 @@ end
 files = []
 ['app', 'modules/core', 'modules/standard', 'modules/extended'].each do |dir|
   ['admin_*_controller', '*helper', '*conf', '*block', '*hook'].each do |file|
-    files += Dir.glob("#{RAILS_ROOT}/#{dir}/**/#{file}.rb")
+    files += Dir.glob("#{Rails.root}/#{dir}/**/#{file}.rb")
   end
-  files += Dir.glob("#{RAILS_ROOT}/#{dir}/**/models/**/*.rb")
+  files += Dir.glob("#{Rails.root}/#{dir}/**/models/**/*.rb")
 end
 files.each { |h| require(h) }
 
@@ -130,5 +113,3 @@ ActionView::Base.class_eval do
     block_given? ? yield : ''
   end
 end
-
-=end

@@ -12,7 +12,7 @@ module ApplicationHelper
 
     plural = model_type.downcase.pluralize
     model_id = object.id
-    dir = File.expand_path("#{RAILS_ROOT}/public/system/#{plural}/#{model_id}")
+    dir = File.expand_path("#{Rails.root}/public/system/#{plural}/#{model_id}")
     urls = []
     if File.directory?(dir)
       files = Dir.glob("#{dir}/**/*").sort

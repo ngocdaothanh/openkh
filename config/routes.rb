@@ -2,7 +2,6 @@ OpenKH::Application.routes.draw do
   root :to => 'site#root'
 
   match '*path' => 'site#error_404'
-  end
 end
 
   # The priority is based upon order of creation:

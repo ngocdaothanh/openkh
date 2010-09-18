@@ -30,7 +30,7 @@ class UploadsController < ApplicationController
         notice = t('common.hack_you')
         raise
       end
-      dir_name = "#{RAILS_ROOT}/public/system/#{model_type.downcase.pluralize}/#{model_id}"
+      dir_name = "#{Rails.root}/public/system/#{model_type.downcase.pluralize}/#{model_id}"
       FileUtils.mkdir_p(dir_name, :mode => 0755)
 
       full_name = "#{dir_name}/#{mod[:me].id}-#{file_name}"
@@ -82,7 +82,7 @@ class UploadsController < ApplicationController
         end
       end
 
-      full_name = "#{RAILS_ROOT}/public/#{name}"
+      full_name = "#{Rails.root}/public/#{name}"
       FileUtils.rm_rf(full_name)
 
       # Try purging empty directory
