@@ -5,8 +5,9 @@
 %title= h(title_from_breadcrumbs || SiteConf.instance.title)
 %meta{:name => 'keywords', :content => CONF[:keywords]}
 
-= javascript_include_tag('jquery', 'jquery-ui', 'jrails', 'swfobject', :cache => 'all')
+= javascript_include_tag('http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js')
 = javascript_include_tag('application')  # Dynamic thus does not exist on disk thus cannot be cached
+
 = stylesheet_link_tag('application', :media => 'all')
 
 = stylesheet_link_tag :all

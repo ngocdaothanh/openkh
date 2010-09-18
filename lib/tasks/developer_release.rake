@@ -1,7 +1,7 @@
 namespace :developer do
   desc 'Create release package'
   task :release do
-    release_path = File.join(File.dirname(RAILS_ROOT), 'release')
+    release_path = File.join(File.dirname(Rails.root), 'release')
     FileUtils.mkdir(release_path) unless File.directory?(release_path)
     base_name = 'openkh'
     target = File.join(release_path, base_name)

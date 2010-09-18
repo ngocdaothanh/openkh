@@ -43,7 +43,7 @@ namespace :user do
       block
     end
 
-    regions_blocks = YAML.load(File.read("#{RAILS_ROOT}/themes/#{theme}/regions_blocks.yml"))
+    regions_blocks = YAML.load(File.read("#{Rails.root}/themes/#{theme}/regions_blocks.yml"))
 
     # Set all existing blocks as unused
     blocks = Block.all

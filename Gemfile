@@ -16,11 +16,18 @@ gem 'acts_as_versioned', :git => 'git://github.com/technoweenie/acts_as_versione
 gem 'acts_as_tree', :git => 'git://github.com/parasew/acts_as_tree.git'
 
 gem 'acts_as_taggable_on_steroids',
-  :git => 'git://github.com/jviney/acts_as_taggable_on_steroids.git'
+  :git => 'git://github.com/jviney/acts_as_taggable_on_steroids.git',
+  :require => 'acts_as_taggable'
 
 #gem 'acts_as_configurable', :git => 'git://github.com/rpheath/acts_as_configurable.git'
 
-gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
+#gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
+gem 'will_paginate', '= 3.0.pre'
+
+gem 'thinking-sphinx',
+  :git     => 'git://github.com/freelancing-god/thinking-sphinx.git',
+  :branch  => 'rails3',
+  :require => 'thinking_sphinx'
 
 # Use unicorn as the web server
 # gem 'unicorn'

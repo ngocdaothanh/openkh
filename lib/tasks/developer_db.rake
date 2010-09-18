@@ -10,7 +10,7 @@ namespace :developer do
         # Set the full module name back to ENV["MODULE"]
         found = false
         ["core", "standard", "extended"].each do |type|
-          if File.exist?("#{RAILS_ROOT}/modules/#{type}/#{ENV["MODULE"]}")
+          if File.exist?("#{Rails.root}/modules/#{type}/#{ENV["MODULE"]}")
             found = true
             ENV["MODULE"] = "#{type}/#{ENV["MODULE"]}"
             break
@@ -56,13 +56,14 @@ namespace :developer do
         ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
         version = ENV["VERSION"] ? ENV["VERSION"].to_i : nil
 
-        # Module "comment" must be migrated first because other modules may
-        # depend on its table
+        # Module "theme" and "comment" must be migrated first because other modules may
+        # depend on their tables
+        ActiveRecord::Migrator.migrate("modules/core/theme/db/migrate/",   version)
         ActiveRecord::Migrator.migrate("modules/core/comment/db/migrate/", version)
 
-        Dir.glob("#{RAILS_ROOT}/modules/**").each do |path|
+        Dir.glob("#{Rails.root}/modules/**").each do |path|
           type = path.split(File::SEPARATOR).last
-          Dir.glob("#{RAILS_ROOT}/modules/#{type}/**").each do |path|
+          Dir.glob("#{Rails.root}/modules/#{type}/**").each do |path|
             mod = path.split(File::SEPARATOR).last
             ActiveRecord::Migrator.migrate("modules/#{type}/#{mod}/db/migrate/", version)
           end
