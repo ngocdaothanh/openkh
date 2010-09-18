@@ -1,3 +1,3 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :tags
+Rails.application.routes.draw do
+  resources :tags
 end

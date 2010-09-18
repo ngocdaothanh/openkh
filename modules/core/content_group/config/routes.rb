@@ -1,7 +1,7 @@
-ActionController::Routing::Routes.draw do |map|
-  map.groups    'groups',     :controller => 'contents', :action => 'index', :type => 'Group', :conditions => {:method => :get}
-  map.new_group 'groups/new', :controller => 'contents', :action => 'new',   :type => 'Group', :conditions => {:method => :get}
-  map.group     'groups/:id', :controller => 'contents', :action => 'show',  :type => 'Group', :conditions => {:method => :get}
+Rails.application.routes.draw do
+  match 'groups'     => 'contents#index', :type => 'Group', :conditions => {:method => :get}, :as => 'groups'
+  match 'groups/new' => 'contents#new',   :type => 'Group', :conditions => {:method => :get}, :as => 'new_group'
+  match 'groups/:id' => 'contents#show',  :type => 'Group', :conditions => {:method => :get}, :as => 'group'
 
-  map.resources :groups, :member => {:version => :get, :diff => :get, :revert => :put}
+  resources :groups, :member => {:version => :get, :diff => :get, :revert => :put}
 end

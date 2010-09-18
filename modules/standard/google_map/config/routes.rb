@@ -1,5 +1,5 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :admin_google_map_markers
+Rails.application.routes.draw do
+  resources :admin_google_map_markers
 
-  map.google_map_block 'google_map_block/:id', :controller => 'google_map_block', :action => 'show'
+  match 'google_map_block/:id' => 'google_map_block#show', :as => 'google_map_block'
 end

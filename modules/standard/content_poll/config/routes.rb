@@ -1,6 +1,6 @@
-ActionController::Routing::Routes.draw do |map|
-  map.polls    'polls',     :controller => 'contents', :action => 'index', :type => 'Poll', :conditions => {:method => :get}
-  map.new_poll 'polls/new', :controller => 'contents', :action => 'new',   :type => 'Poll', :conditions => {:method => :get}
-  map.poll     'polls/:id', :controller => 'contents', :action => 'show',  :type => 'Poll', :conditions => {:method => :get}
-  map.resources :polls
+Rails.application.routes.draw do
+  match 'polls'     => 'contents#index', :type => 'Poll', :conditions => {:method => :get}, :as => 'polls'
+  match 'polls/new' => 'contents#new',   :type => 'Poll', :conditions => {:method => :get}, :as => 'new_poll'
+  match 'polls/:id' => 'contents#show',  :type => 'Poll', :conditions => {:method => :get}, :as => 'poll'
+  resources :polls
 end

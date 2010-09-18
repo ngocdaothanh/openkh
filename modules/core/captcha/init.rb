@@ -1,3 +1,5 @@
+config.middleware.use ::ActionDispatch::Static, "#{root}/public"
+
 ActionController::Base.class_eval do
   private
 

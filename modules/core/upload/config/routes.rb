@@ -1,5 +1,5 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :uploads
+Rails.application.routes.draw do
+  resources :uploads
 
-  map.admin_uploads 'admin_uploads', :controller => 'admin_uploads'
+  match 'admin_uploads' => 'admin_uploads', :as => 'admin_uploads'
 end

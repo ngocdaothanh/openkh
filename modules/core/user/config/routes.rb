@@ -1,7 +1,6 @@
-ActionController::Routing::Routes.draw do |map|
-  map.with_options :controller => 'users' do |m|
-    m.login  'login',  :action => 'login'
-    m.logout 'logout', :action => 'logout'
-  end
-  map.resources :users, :member => {:pm => :post}
+Rails.application.routes.draw do
+  match 'login'  => 'users#login',  :as => 'login'
+  match 'logout' => 'users#logout', :as => 'logout'
+
+  resources :users, :member => {:pm => :post}
 end

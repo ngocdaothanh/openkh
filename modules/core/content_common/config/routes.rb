@@ -1,12 +1,10 @@
-ActionController::Routing::Routes.draw do |map|
-  map.with_options(:controller => 'contents') do |m|
-    m.new_content 'new', :action => 'new_help'
+Rails.application.routes.draw do
+  match 'new' => 'contents#new_help', :as => 'new_content'
 
-    m.recent_contents 'recent_contents/:block_id', :action => 'recent'
+  match 'recent_contents/:block_id' => 'contents#recent', :as => 'recent_contents'
 
-    m.search 'search/:search_keyword', :action => 'search'
-    m.search 'search/:search_keyword/:page', :action => 'search'
+  match 'search/:search_keyword' => 'contents#search', :as => 'search'
+  match 'search/:search_keyword/:page' => 'search', :as => 'search'
 
-    m.feed 'feed', :action => 'feed', :format => :atom
-  end
+  match 'feed' => 'contents#feed', :format => :atom, :as => 'feed'
 end

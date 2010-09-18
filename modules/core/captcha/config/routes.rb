@@ -1,3 +1,3 @@
-ActionController::Routing::Routes.draw do |map|
-  map.captcha 'captcha', :controller => 'captcha', :action => 'create'
+Rails.application.routes.draw do
+  match 'captcha' => 'captcha#create', :as => 'captcha'
 end

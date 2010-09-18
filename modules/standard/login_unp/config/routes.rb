@@ -1,3 +1,3 @@
-ActionController::Routing::Routes.draw do |map|
-  map.login_with_unp 'login_with_unp', :controller => 'login_unp', :action => 'do_login', :method => :post
+Rails.application.routes.draw do
+  match 'login_with_unp' => 'login_unp#do_login', :method => :post, :as => 'login_with_unp'
 end

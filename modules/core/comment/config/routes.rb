@@ -1,3 +1,3 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :comments
+Rails.application.routes.draw do
+  resources :comments
 end

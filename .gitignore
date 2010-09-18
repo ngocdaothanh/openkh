@@ -1,6 +1,7 @@
 # Hidden files
 .*
 
+Gemfile.lock
 README.html
 
 # Config files customized by the person who installs OpenKH

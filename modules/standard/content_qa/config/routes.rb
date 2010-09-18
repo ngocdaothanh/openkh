@@ -1,8 +1,8 @@
-ActionController::Routing::Routes.draw do |map|
-  map.qas    'qas',     :controller => 'contents', :action => 'index', :type => 'Qa', :conditions => {:method => :get}
-  map.new_qa 'qas/new', :controller => 'contents', :action => 'new',   :type => 'Qa', :conditions => {:method => :get}
-  map.qa     'qas/:id', :controller => 'contents', :action => 'show',  :type => 'Qa', :conditions => {:method => :get}
-  map.resources :qas
+Rails.application.routes.draw do
+  match 'qas'     => 'contents#index', :type => 'Qa', :conditions => {:method => :get}, :as => 'qas'
+  match 'qas/new' => 'contents#new',   :type => 'Qa', :conditions => {:method => :get}, :as => 'new_qa'
+  match 'qas/:id' => 'contents#show',  :type => 'Qa', :conditions => {:method => :get}, :as => 'qa'
+  resources :qas
 
-  map.resources :admin_qas
+  resources :admin_qas
 end

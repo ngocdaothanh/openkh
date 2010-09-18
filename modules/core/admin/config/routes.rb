@@ -1,5 +1,5 @@
-ActionController::Routing::Routes.draw do |map|
-  map.admin 'admin', :controller => 'admin'
+Rails.application.routes.draw do
+  match 'admin' => 'admin', :as => 'admin'
 
-  map.resources :admin_confs
+  resources :admin_confs
 end

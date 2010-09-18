@@ -18,10 +18,8 @@ module OpenKH
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
-    config.plugin_paths += %W(
-      #{Rails.root}/modules/core
-      #{Rails.root}/modules/standard
-      #{Rails.root}/modules/extended)
+    config.paths.vendor.plugins << "#{config.root}/engines/core"
+    config.paths.vendor.plugins << "#{config.root}/engines/standard"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -98,18 +96,18 @@ files.each { |h| require(h) }
 
 # Include all helpers and hooks, all the time ----------------------------------
 
-ApplicationController.class_eval do
-  include ApplicationHelper
-end
-
-ActionView::Base.class_eval do
-  include ApplicationHelper
-
-  # Render only if the template exists. If the template is missing and there is
-  # a block given, the block will be evaluated and returned.
-  def render_if_exists(*args)
-    render(*args)
-  rescue ActionView::MissingTemplate
-    block_given? ? yield : ''
-  end
-end
+# ApplicationController.class_eval do
+#   include ApplicationHelper
+# end
+#
+# ActionView::Base.class_eval do
+#   include ApplicationHelper
+#
+#   # Render only if the template exists. If the template is missing and there is
+#   # a block given, the block will be evaluated and returned.
+#   def render_if_exists(*args)
+#     render(*args)
+#   rescue ActionView::MissingTemplate
+#     block_given? ? yield : ''
+#   end
+# end

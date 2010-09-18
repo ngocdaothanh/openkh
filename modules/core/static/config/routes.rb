@@ -1,6 +1,6 @@
-ActionController::Routing::Routes.draw do |map|
-  map.pages 'pages',       :controller => 'pages', :action => 'index'
-  map.page  'pages/:slug', :controller => 'pages', :action => 'show'
+Rails.application.routes.draw do
+  match 'pages',       => 'pages#index', :as => 'pages'
+  match 'pages/:slug', => 'pages#show', :as => 'page'
 
-  map.resources :admin_pages, :collection => {:batch_update => :put}
+  resources :admin_pages, :collection => {:batch_update => :put}
 end

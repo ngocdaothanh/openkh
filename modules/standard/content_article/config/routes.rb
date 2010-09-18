@@ -1,8 +1,8 @@
-ActionController::Routing::Routes.draw do |map|
-  map.articles    'articles',     :controller => 'contents', :action => 'index', :type => 'Article', :conditions => {:method => :get}
-  map.new_article 'articles/new', :controller => 'contents', :action => 'new',   :type => 'Article', :conditions => {:method => :get}
-  map.article     'articles/:id', :controller => 'contents', :action => 'show',  :type => 'Article', :conditions => {:method => :get}
-  map.resources :articles, :member => {:version => :get, :diff => :get, :revert => :put}
+Rails.application.routes.draw do
+  match 'articles'     => 'contents#index', :type => 'Article', :conditions => {:method => :get}, :as => 'articles'
+  match 'articles/new' => 'contents#new',   :type => 'Article', :conditions => {:method => :get}, :as => 'new_article'
+  match 'articles/:id' => 'contents#show',  :type => 'Article', :conditions => {:method => :get}, :as => 'article'
+  resources :articles, :member => {:version => :get, :diff => :get, :revert => :put}
 
-  map.resources :admin_articles
+  resources :admin_articles
 end

@@ -1,3 +1,3 @@
-ActionController::Routing::Routes.draw do |map|
-  map.connect 'google_search', :controller => 'google_search'
+Rails.application.routes.draw do
+  match 'google_search' => 'google_search'
 end
