@@ -3,7 +3,3 @@ OpenKH is Open + Know-How. It aims to become "Drupal on Rails" with one differen
 * Normal users can do everything with minimum restriction from the admins, thus OpenKH is perfect for building open community sites (e.g. sites where users are able to collaborate to create blikis, QAs, books).
 
 Please read the "wiki":http://wiki.github.com/ngocdaothanh/openkh for more information.
-
-h2. License
-
-MIT License. See the included LICENCE file.
