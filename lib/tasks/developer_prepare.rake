@@ -7,9 +7,6 @@ namespace :developer do
       create_dir_if_not_exists(dir)
     end
 
-    puts 'Update Javascripts for JRails...'
-    Rake::Task['jrails:update:javascripts'].invoke
-
     puts 'Download TinyMCE...'
     Rake::Task['developer:tiny_mce:download'].invoke
 

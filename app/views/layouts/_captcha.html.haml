@@ -7,7 +7,7 @@
 
         %script{:type => 'text/javascript', :src => "http://api.recaptcha.net/challenge?k=#{CaptchaConf.instance.public_key}"}
 
-= javascript_include_tag('../modules/captcha/javascripts/captcha')
+= javascript_include_tag('/javascripts/captcha')
 
 :javascript
   captcha.initialize(#{!CaptchaConf.instance.enabled});
