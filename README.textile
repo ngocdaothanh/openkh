@@ -4,24 +4,6 @@ OpenKH is Open + Know-How. It aims to become "Drupal on Rails" with one differen
 
 Please read the "wiki":http://wiki.github.com/ngocdaothanh/openkh for more information.
 
-h2. Developers
-
-h3. Current developers
-
-* "Ngoc Dao Thanh":http://rubyforge.org/users/ngocdaothanh/
-
-h3. Retired developers
-
-* "Giang Tran Truong Duc":http://rubyforge.org/users/jishin/
-* "Khiem Tran Thien":http://rubyforge.org/users/danicount/
-* "Linh Tran Thi Phuong":http://rubyforge.org/users/alide/
-* "Trieu Dang Ba Khac":http://rubyforge.org/users/dangtrieu/
-* "Trung Vo Thanh":http://rubyforge.org/users/thanhtrungvv/
-* "Tho Nguyen Duy":http://rubyforge.org/users/ntdt/
-* "Anh Nguyen Tuan":http://rubyforge.org/users/akia/
-
-Only ones who have committed are listed.
-
 h2. License
 
 MIT License. See the included LICENCE file.
