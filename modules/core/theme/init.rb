@@ -6,8 +6,6 @@ unless CONF[:theme].nil?
   # Cannot use view_paths.unshift
   ActionController::Base.view_paths = %W(#{Rails.root}/themes/#{CONF[:theme]}/app/views) + ActionController::Base.view_paths
 
-  require "#{Rails.root}/themes/#{CONF[:theme]}/init"
-
   regions_blocks = YAML.load(File.read("#{Rails.root}/themes/#{CONF[:theme]}/regions_blocks.yml"))
   CONF[:regions] = regions_blocks['regions'].map { |e| e.intern }
 end

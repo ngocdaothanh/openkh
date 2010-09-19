@@ -25,6 +25,7 @@ module OpenKH
 
     config.paths.vendor.plugins << "#{config.root}/modules/core"
     config.paths.vendor.plugins << "#{config.root}/modules/standard"
+    config.paths.vendor.plugins << "#{config.root}/themes/#{CONF[:theme]}"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
