@@ -1,9 +1,9 @@
 en:
   login_openid:
     title: "Login with OpenID"
-    instruction: 'If you provide your email in your <a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a> profile, it will be used to display {{link_to_gravatar}}. For your privacy, the email will not be displayed to others.'
+    instruction: 'If you provide your email in your <a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a> profile, it will be used to display %{link_to_gravatar}. For your privacy, the email will not be displayed to others.'
     invalid: "Could not find an OpenID for that URL."
     could_not_login: "Could not login with your OpenID."
 
     openid_page: "OpenID page"
-    openid_instruction: "Please declare an email at your page {{openid_page}}."
+    openid_instruction: "Please declare an email at your page %{openid_page}."

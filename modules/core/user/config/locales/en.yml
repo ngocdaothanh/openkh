@@ -16,7 +16,7 @@ en:
     sent: "Email has been sent successfully."
     could_not_send: "Could not send email."
 
-    wrote: "{{user_name}} ({{email}}) wrote:"
+    wrote: "%{user_name} (%{email}) wrote:"
 
     user: "User"
     users: "Users"

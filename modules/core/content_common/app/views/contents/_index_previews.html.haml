@@ -1,9 +1,10 @@
 -# Inputs:
--#   contents: may contain different types of contents
--#   options: params for paginating_links
+-#   categorizings: collection from will_paginate find
+-#   options: params for will_paginate
 
 #previews
-  - contents.each do |n|
+  - categorizings.each do |c|
+    - n              = c.model
     - type           = n.class.to_s
     - down           = type.downcase
     - preview_method = "html_preview_#{down}"
@@ -15,4 +16,4 @@
       = html_preview
       = html_comment_last(n)
 
-  %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('previews', this.href)")
+  %p.pager= will_paginate(categorizings, :params => options, :onclick => "return OpenKH.showPage('previews', this.href)")

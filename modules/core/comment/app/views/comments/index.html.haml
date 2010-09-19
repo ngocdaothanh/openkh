@@ -2,4 +2,4 @@
   - @comments.each do |c|
     = render('comments/comment', :comment => c)
 
-%p.pager= paginating_links(@comments, {:params => {:controller => 'comments', :action => 'index', :model_type => @comments_model_type, :model_id => @comments_model_id}}, :onclick => "return OpenKH.showPage('comment_container', this.href)")
+%p.pager= will_paginate(@comments, :params => {:controller => 'comments', :action => 'index', :model_type => @comments_model_type, :model_id => @comments_model_id}, :onclick => "return OpenKH.showPage('comment_container', this.href)")

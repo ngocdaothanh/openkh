@@ -23,14 +23,14 @@ module ApplicationHelper
   # The header is usually simple and common for all view mode, thus should be
   # grouped in only one partial.
   def html_content_header(content, no_user_info = false)
-    return render("contents/html_header", :content => content, :no_user_info => no_user_info)
+    render("contents/html_header", :content => content, :no_user_info => no_user_info)
   end
 
   # Renders information about of a content (author, created_at, updated_at...).
   def html_content_user_info(content)
-    extra_row = t('common.time_ago', :dt => time_ago_in_words(content.created_at))
+    extra_row = t('common.time_ago', :dt => time_ago_in_words(content.created_at)).html_safe
     extra_row.capitalize!
-    return html_user_info(content.user, extra_row)
+    html_user_info(content.user, extra_row)
   end
 
   def html_content_contributors(content)

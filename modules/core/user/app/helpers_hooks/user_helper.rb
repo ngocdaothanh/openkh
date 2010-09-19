@@ -14,7 +14,7 @@ module ApplicationHelper
   # Renders author of a content (may be not a content).
   def html_user_author(content)
     extra_row = t('common.time_ago', :dt => time_ago_in_words(content.created_at))
-    return html_user_info(content.user, extra_row)
+    html_user_info(content.user, extra_row)
   end
 
   # Renders information about any user.
@@ -26,9 +26,9 @@ module ApplicationHelper
 
   def html_user_content_count(user)
     if user.num_contents == 0
-      return ''
+      ''
     else
-      return "#{theme_image_tag('contents.png', :title => t('user.contributed_contents'))} #{user.num_contents}"
+      "#{theme_image_tag('contents.png', :title => t('user.contributed_contents'))} #{user.num_contents}".html_safe
     end
   end
 

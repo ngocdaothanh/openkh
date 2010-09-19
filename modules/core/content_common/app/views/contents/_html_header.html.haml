@@ -14,6 +14,6 @@
 
 - unless content.categories.empty?
   - links = content.categories.map { |c| link_to(c.name, category_path(c.slug)) }
-  = links.join(', ')
+  = links.join(', ').html_safe
 
 = html_content_user_info(content) unless no_user_info

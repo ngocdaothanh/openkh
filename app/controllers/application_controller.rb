@@ -76,9 +76,9 @@ class ApplicationController < ActionController::Base
 
   #-----------------------------------------------------------------------------
 
-  def rescue_action_in_public(exception)
-    render(:template => 'site/error_500', :layout => true, :status => 500)
-  end
+  # def rescue_action_in_public(exception)
+  #   render(:template => 'site/error_500', :layout => true, :status => 500)
+  # end
 
   def local_request?
     false

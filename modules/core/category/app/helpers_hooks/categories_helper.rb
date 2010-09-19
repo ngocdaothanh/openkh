@@ -1,6 +1,6 @@
 module ApplicationHelper
   def categories_block(block)
-    content = ''
+    content = ''.html_safe
     mod[:categories] << Category.uncategorized
     mod[:categories].each do |cat|
       content << html_tree(cat) do |c, level|

@@ -20,14 +20,14 @@ module ApplicationHelper
 
         ret[1].blank? ? nil : ret  # Do not render if content is blank
       end
+
       regions[r].compact!          # Do not render if content is blank
     end
 
     mod[:regions] = {}  # Hash of HTML for regions
     CONF[:regions].each do |r|
       mod[:regions][r] = regions[r].nil? ?
-        '' :
-        render('layouts/region', :region => r, :blocks => regions[r])
+        '' : render('layouts/region', :region => r, :blocks => regions[r])
     end
 
     if block_index?

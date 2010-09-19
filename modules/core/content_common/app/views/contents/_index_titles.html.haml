@@ -1,11 +1,12 @@
 -# Inputs:
--#   contents: may contain different types of contents
--#   options: params for paginating_links
+-#   categorizings: collection from will_paginate find
+-#   options: params for will_paginate
 
 #titles
   %ul
-    - contents.each do |n|
+    - categorizings.each do |c|
+      - n              = c.model
       - icon_if_recent = content_recent?(n) ? (' ' + theme_image_tag('new.png')) : ''
       %li= link_to(n.title + icon_if_recent, content_show_path(n))
 
-  %p.pager= paginating_links(contents, {:window_size => 5, :params => options}, :onclick => "return OpenKH.showPage('titles', this.href)")
+  %p.pager= will_paginate(categorizings, :params => options, :onclick => "return OpenKH.showPage('titles', this.href)")

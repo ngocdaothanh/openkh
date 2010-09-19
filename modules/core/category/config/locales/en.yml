@@ -13,5 +13,5 @@ en:
     title: "Links"
     help: "This block can be used for displaying links (table of contents) to important contents or external links."
 
-    title_for_category: "Links of category {{name}}"
+    title_for_category: "Links of category %{name}"
     title_for_site: "Links"

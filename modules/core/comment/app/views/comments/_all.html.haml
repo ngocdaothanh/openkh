@@ -8,7 +8,7 @@
     - comments.each do |c|
       ~ render('comments/comment', :comment => c)
 
-  %p.pager= paginating_links(comments, {:params => {:controller => 'comments', :action => 'index', :model_type => object.class.to_s, :model_id => object.id}}, :onclick => "return OpenKH.showPage('comment_container', this.href)")
+  %p.pager= will_paginate(comments, :params => {:controller => 'comments', :action => 'index', :model_type => object.class.to_s, :model_id => object.id}, :onclick => "return OpenKH.showPage('comment_container', this.href)")
 
 = render('comments/form', :object => object)
 = html_upload_list_and_upload(object)

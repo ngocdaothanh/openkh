@@ -4,7 +4,7 @@ en:
     uploads: "Uploads"
     size: "Size"
     label_limit: "Limit (MB)"
-    limit: "Max {{mb}} MB"
+    limit: "Max %{mb} MB"
     save_to_upload: "To be able to upload files, please save first."
     login_to_upload: "You must login to be able to upload."
 

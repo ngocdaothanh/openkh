@@ -1,7 +1,7 @@
 en:
   theme:
-    create_new_block: "Create new {{block}} block"
-    edit_block: "Edit {{block}} block"
+    create_new_block: "Create new %{block} block"
+    edit_block: "Edit %{block} block"
     region: "Region"
     unassigned_blocks: "Unassigned blocks"
     blocks_saved: "Blocks saved"

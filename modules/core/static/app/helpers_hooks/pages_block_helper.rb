@@ -1,6 +1,6 @@
 module ApplicationHelper
   def pages_block(block)
-    content = ''
+    content = ''.html_safe
     pages = Page.tops
     unless pages.empty?
       pages.each do |page|
