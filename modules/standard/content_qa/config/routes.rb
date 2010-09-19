@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  match 'qas'     => 'contents#index', :type => 'Qa', :conditions => {:method => :get}, :as => 'qas'
-  match 'qas/new' => 'contents#new',   :type => 'Qa', :conditions => {:method => :get}, :as => 'new_qa'
-  match 'qas/:id' => 'contents#show',  :type => 'Qa', :conditions => {:method => :get}, :as => 'qa'
+  get 'qas'     => 'contents#index', :type => 'Qa', :as => 'qas'
+  get 'qas/new' => 'contents#new',   :type => 'Qa', :as => 'new_qa'
+  get 'qas/:id' => 'contents#show',  :type => 'Qa', :as => 'qa'
   resources :qas
 
   resources :admin_qas

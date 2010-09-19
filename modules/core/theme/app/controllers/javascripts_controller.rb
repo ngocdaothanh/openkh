@@ -4,10 +4,10 @@ class JavascriptsController < ApplicationController
 
   def show
     # Sanitize
-    if params[:file] =~ /^[a-z_]/
-      render(:template => "javascripts/#{params[:file]}.js.erb", :content_type => 'text/javascript')
-    else
+    if params[:file] =~ /[^a-z_]/
       render(:nothing => true, :status => 404)
+    else
+      render(:template => "javascripts/#{params[:file]}.js.erb", :content_type => 'text/javascript')
     end
   end
 end

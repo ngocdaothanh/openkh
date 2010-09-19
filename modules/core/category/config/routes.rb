@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
-  match 'categories' => 'categories#index', :as => 'categories'
+  match 'categories'       => 'categories#index', :as => 'categories'
   match 'categories/:slug' => 'categories#show', :as => 'category'
 
-  resources :admin_categories, :collection => {:batch_update => :put}
+  resources :admin_categories do
+    collection do
+      put 'batch_update'
+    end
+  end
 
-  resources :links, :member => {:version => :get, :diff => :get, :revert => :put}
+  resources :links do
+    member do
+      get 'version'
+      get 'diff'
+      put 'revert'
+    end
+  end
 end

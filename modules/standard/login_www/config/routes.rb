@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  match 'login_www' => 'login_www#do_login', :method => :post, :as => 'login_www'
+  post 'login_www' => 'login_www#do_login', :as => 'login_www'
 end

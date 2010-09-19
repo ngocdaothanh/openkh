@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  match 'polls'     => 'contents#index', :type => 'Poll', :conditions => {:method => :get}, :as => 'polls'
-  match 'polls/new' => 'contents#new',   :type => 'Poll', :conditions => {:method => :get}, :as => 'new_poll'
-  match 'polls/:id' => 'contents#show',  :type => 'Poll', :conditions => {:method => :get}, :as => 'poll'
+  get 'polls'     => 'contents#index', :type => 'Poll', :as => 'polls'
+  get 'polls/new' => 'contents#new',   :type => 'Poll', :as => 'new_poll'
+  get 'polls/:id' => 'contents#show',  :type => 'Poll', :as => 'poll'
   resources :polls
 end

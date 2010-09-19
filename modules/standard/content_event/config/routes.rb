@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  match 'events'     => 'contents#index', :type => 'Event', :conditions => {:method => :get}, :as => 'events'
-  match 'events/new' => 'contents#new',   :type => 'Event', :conditions => {:method => :get}, :as => 'new_event'
-  match 'events/:id' => 'contents#show',  :type => 'Event', :conditions => {:method => :get}, :as => 'event'
-  resources :events, :member => {:join => :post, :unjoin => :post}
+  get 'events'     => 'contents#index', :type => 'Event', :as => 'events'
+  get 'events/new' => 'contents#new',   :type => 'Event', :as => 'new_event'
+  get 'events/:id' => 'contents#show',  :type => 'Event', :as => 'event'
+
+  resources :events do
+    member do
+      post 'join'
+      post 'unjoin'
+    end
+  end
 
   resources :admin_events
 end
