@@ -12,4 +12,4 @@
       - icon_if_recent = content_recent?(n) ? (' ' + theme_image_tag('new.png')) : ''
       %li= link_to(n.title + icon_if_recent, content_show_path(n))
 
-  %p.pager= will_paginate(collection, :params => options, :onclick => "return OpenKH.showPage('titles', this.href)")
+  %p.pager= will_paginate(collection, :params => options, :renderer => AjaxLinkRenderer.new('titles'))

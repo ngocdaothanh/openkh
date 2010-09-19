@@ -19,4 +19,4 @@
       = html_preview
       = html_comment_last(n)
 
-  %p.pager= will_paginate(collection, :params => options, :onclick => "return OpenKH.showPage('previews', this.href)")
+  %p.pager= will_paginate(collection, :params => options, :renderer => AjaxLinkRenderer.new('previews'))
