@@ -38,11 +38,10 @@ class ContentsController < ApplicationController
 
   def search
     klasses = ActiveRecord::Acts::Content.model_types.map { |t| t.constantize }
-    results = ThinkingSphinx::Search.search(params[:search_keyword], :classes => klasses, :order => 'updated_at DESC', :page => params[:page], :per_page => 20)
 
-    FIXME
-    @results = PagingEnumerator.new(20, results.total_entries, false, params[:page] || 1, 1) do |page|
-      results
+    results = ThinkingSphinx::Search.search(params[:search_keyword], :classes => klasses, :order => 'updated_at DESC', :page => params[:page], :per_page => 20)
+    @results = WillPaginate::Collection.create(params[:page] || 1, 20, results.total_entries) do |pager|
+      pager.replace(results)
     end
 
     add_breadcrumb(t('search_block.title'))

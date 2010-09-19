@@ -1,10 +1,13 @@
 -# Inputs:
--#   categorizings: collection from will_paginate find
+-#   categorizings or contents: collection from will_paginate find
 -#   options: params for will_paginate
 
+- collection_is_categorizings = defined?(categorizings)
+- collection = collection_is_categorizings ? categorizings : contents
+
 #previews
-  - categorizings.each do |c|
-    - n              = c.model
+  - collection.each do |c|
+    - n              = collection_is_categorizings ? c.model : c
     - type           = n.class.to_s
     - down           = type.downcase
     - preview_method = "html_preview_#{down}"
@@ -16,4 +19,4 @@
       = html_preview
       = html_comment_last(n)
 
-  %p.pager= will_paginate(categorizings, :params => options, :onclick => "return OpenKH.showPage('previews', this.href)")
+  %p.pager= will_paginate(collection, :params => options, :onclick => "return OpenKH.showPage('previews', this.href)")

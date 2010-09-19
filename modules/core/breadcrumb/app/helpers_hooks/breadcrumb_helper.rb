@@ -13,7 +13,7 @@ module ApplicationHelper
     @html_breadcrumbs = links.join(" #{conf.separator} ")
     @html_breadcrumbs = "#{conf.prefix} #{conf.separator} " + @html_breadcrumbs if !@html_breadcrumbs.blank? && !conf.prefix.blank?
 
-    @html_breadcrumbs
+    @html_breadcrumbs.html_safe
   end
 
   def title_from_breadcrumbs

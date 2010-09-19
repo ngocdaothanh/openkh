@@ -14,4 +14,4 @@
 
 %div[comment]
   = html_user_info(comment.user, extra_row, *extra_columns)
-  .comment_body~ comment.body
+  .comment_body~ comment.body.html_safe

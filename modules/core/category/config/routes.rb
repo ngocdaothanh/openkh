@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   match 'categories'       => 'categories#index', :as => 'categories'
-  match 'categories/:slug' => 'categories#show', :as => 'category'
+  match 'categories/:slug' => 'categories#show',  :as => 'category'
 
   resources :admin_categories do
     collection do

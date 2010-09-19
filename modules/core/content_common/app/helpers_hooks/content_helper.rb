@@ -3,10 +3,10 @@ module ApplicationHelper
   # mode   :preview or :title
   # limit  Default 10
   def html_content_index(type, page, mode, limit = 10)
-    contents = type.constantize.find(
-      :all,
-      :page  => {:current => page, :size => limit},
-      :order => 'updated_at DESC')
+    contents = type.constantize.paginate(
+      :page          => page,
+      :total_entries => limit,
+      :order         => 'updated_at DESC')
 
     if contents.empty?
       content = ''

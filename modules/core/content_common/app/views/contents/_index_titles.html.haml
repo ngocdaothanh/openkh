@@ -1,12 +1,15 @@
 -# Inputs:
--#   categorizings: collection from will_paginate find
+-#   categorizings or contents: collection from will_paginate find
 -#   options: params for will_paginate
+
+- collection_is_categorizings = defined?(categorizings)
+- collection = collection_is_categorizings ? categorizings : contents
 
 #titles
   %ul
-    - categorizings.each do |c|
-      - n              = c.model
+    - collection.each do |c|
+      - n              = collection_is_categorizings ? c.model : c
       - icon_if_recent = content_recent?(n) ? (' ' + theme_image_tag('new.png')) : ''
       %li= link_to(n.title + icon_if_recent, content_show_path(n))
 
-  %p.pager= will_paginate(categorizings, :params => options, :onclick => "return OpenKH.showPage('titles', this.href)")
+  %p.pager= will_paginate(collection, :params => options, :onclick => "return OpenKH.showPage('titles', this.href)")
